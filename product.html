@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amen+ | Product Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specifically for Product page */
+        .product-page {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: white;
+            border-radius: 40px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-container::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            color: #D4AF37;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        .product-container::after {
+            content: "✝";
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: #D4AF37;
+            opacity: 0.05;
+            transform: rotate(-15deg);
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+        }
+
+        .product-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(92, 58, 45, 0.2);
+            border: 3px solid #D4AF37;
+            background: #FDF6F0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #D4AF37;
+            color: #5C3A2D;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-details {
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-details h1 {
+            font-size: 2.5rem;
+            color: #5C3A2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-details .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 2rem;
+        }
+
+        .size-selection {
+            margin-bottom: 2rem;
+        }
+
+        .size-selection h3 {
+            font-size: 1.2rem;
+            color: #5C3A2D;
+            margin-bottom: 1rem;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #5C3A2D;
+            background: white;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #5C3A2D;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-btn:hover {
+            background: #D4AF37;
+            border-color: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-3px);
+        }
+
+        .size-btn.active {
+            background: #5C3A2D;
+            color: white;
+            border-color: #5C3A2D;
+        }
+
+        .size-guide-link {
+            margin-top: 1rem;
+        }
+
+        .size-guide-link a {
+            color: #8B6B4D;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s;
+        }
+
+        .size-guide-link a:hover {
+            color: #D4AF37;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: #5C3A2D;
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            border: 2px solid #D4AF37;
+            margin-bottom: 2rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .product-description {
+            background: #FDF6F0;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid #D4AF37;
+        }
+
+        .product-description h3 {
+            font-size: 1.3rem;
+            color: #5C3A2D;
+            margin-bottom: 1rem;
+        }
+
+        .product-description p {
+            color: #4A4A4A;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .product-description ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .product-description li {
+            padding: 0.5rem 0;
+            color: #4A4A4A;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-description li::before {
+            content: "✓";
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        .impact-statement {
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+            color: white;
+        }
+
+        .impact-statement h4 {
+            color: #D4AF37;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .impact-statement p {
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+        }
+
+        .related-products {
+            margin-top: 4rem;
+        }
+
+        .related-products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #5C3A2D;
+            margin-bottom: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: "✝";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1rem;
+            color: #D4AF37;
+            opacity: 0.2;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            padding: 1rem 1rem 0.5rem;
+            font-size: 1rem;
+            color: #5C3A2D;
+        }
+
+        .product-card .price {
+            padding: 0 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .view-product {
+            display: block;
+            margin: 1rem;
+            padding: 0.8rem;
+            background: #5C3A2D;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-product:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-3px);
+        }
+
+        .brand-story {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, #FDF6F0, white);
+            border-radius: 40px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-story::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 5rem;
+            color: #D4AF37;
+            opacity: 0.05;
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: #5C3A2D;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #8B6B4D;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(92, 58, 45, 0.05);
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(92, 58, 45, 0.1);
+            border-color: #D4AF37;
+        }
+
+        .story-card i {
+            font-size: 2rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .story-card h3 {
+            color: #5C3A2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-card p {
+            color: #4A4A4A;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .brand-positioning {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid #D4AF37;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .brand-positioning h3 {
+            color: #5C3A2D;
+            margin-bottom: 1rem;
+        }
+
+        .brand-positioning p {
+            color: #4A4A4A;
+            line-height: 1.8;
+        }
+
+        .purchase-info {
+            margin-top: 4rem;
+        }
+
+        .purchase-info h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #5C3A2D;
+            margin-bottom: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: #5C3A2D;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: #4A4A4A;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            background: #FDF6F0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5C3A2D;
+        }
+
+        .contact-details i {
+            font-size: 1rem;
+            color: #D4AF37;
+            margin: 0;
+        }
+
+        .shop-more-btn {
+            background: #5C3A2D;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #D4AF37;
+        }
+
+        .shop-more-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-3px);
+        }
+
+        .delivery-note {
+            background: #FDF6F0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-left: 4px solid #D4AF37;
+        }
+
+        .delivery-note i {
+            color: #D4AF37;
+            font-size: 1.5rem;
+        }
+
+        .delivery-note p {
+            color: #5C3A2D;
+            margin: 0;
+        }
+
+        @media (max-width: 992px) {
+            .products-grid,
+            .story-grid,
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid,
+            .story-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Amen+ Logo" class="logo-image">
+                <span>AMEN<span class="plus">+</span></span>
+                <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
+            </a>
+      <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact & Team</a>
+</div>
+            <div class="nav-icons">
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="product-page">
+        <div class="product-container">
+            <!-- Product Image with Badge -->
+            <div class="product-image">
+                <span class="product-badge" id="product-badge">New Arrival</span>
+                <img id="product-image" src="" alt="Product">
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <h1 id="product-name"></h1>
+                <p class="price" id="product-price"></p>
+                
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <h3>Select Size</h3>
+                    <div class="size-options" id="size-options">
+                        <!-- Sizes populated by JavaScript -->
+                    </div>
+                    <p class="size-guide-link"><a href="#"><i class="fas fa-ruler"></i> Size Guide</a></p>
+                </div>
+
+                <!-- Add to Cart -->
+                <button class="add-to-cart-btn" id="add-to-cart">
+                    <i class="fas fa-shopping-bag"></i> Add to Cart
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <!-- Product Description -->
+                <div class="product-description">
+                    <h3>Description</h3>
+                    <p><strong>Amen+ Crossroads Collection</strong> represents the intersection of faith and fashion. Each piece is crafted with premium materials and designed for comfort and style.</p>
+                    <ul>
+                        <li>100% Premium Cotton</li>
+                        <li>Screen Printed Design</li>
+                        <li>Preshrunk Fabric</li>
+                        <li>Made with Purpose in Ghana</li>
+                    </ul>
+                    
+                    <!-- Brand Impact Statement -->
+                    <div class="impact-statement">
+                        <h4><i class="fas fa-heart"></i> Your Purchase Makes Impact</h4>
+                        <p>Every Amen+ purchase supports our mission to feed the homeless in Ghanaian communities. You're not just buying clothing—you're fueling hope and making a difference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="products-grid" id="related-products">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Brand Story Section -->
+        <section class="brand-story">
+            <div class="story-content">
+                <h2>Wear Your Amen. Feed a Community.</h2>
+                <p class="tagline">Faith meets fashion. Quality apparel with purpose.</p>
+                
+                <div class="story-grid">
+                    <div class="story-card">
+                        <i class="fas fa-cross"></i>
+                        <h3>Faith Expression</h3>
+                        <p>Fashion as a tool to express belief openly and boldly.</p>
+                    </div>
+                    <div class="story-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Purpose-Driven</h3>
+                        <p>Every piece has meaning. Every purchase has impact.</p>
+                    </div>
+                    <div class="story-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Community Impact</h3>
+                        <p>Clothing that feeds people and fuels hope in Ghana.</p>
+                    </div>
+                    <div class="story-card">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>Identity in Christ</h3>
+                        <p>Helping people wear who they are—and whose they are.</p>
+                    </div>
+                </div>
+
+                <!-- Brand Positioning -->
+                <div class="brand-positioning">
+                    <h3>Our Position</h3>
+                    <p>Amen+ is a Christian clothing brand for faith-driven individuals who want to express belief through modern fashion while making a real-world impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Purchase & Contact Info -->
+        <section class="purchase-info">
+            <h2>Ready to Purchase?</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Online Store</h3>
+                    <p>Add items to cart and checkout securely via Paystack.</p>
+                    <button class="shop-more-btn" onclick="window.location.href='shop.html'">
+                        Continue Shopping <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Direct Purchase Contact</h3>
+                    <p>Prefer to order directly? Contact our sales team:</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-user"></i> <strong>Leslly Mensah</strong> - Sales & Customer Service</p>
+                        <p><i class="fas fa-phone"></i> +233 20 168 6831</p>
+                        <p><i class="fab fa-whatsapp"></i> +233 20 168 6831</p>
+                        <p><i class="fas fa-envelope"></i> sales@amenplus.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Bulk Orders & Partnerships</h3>
+                    <p>For churches, ministries, or bulk orders:</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-user"></i> <strong>Richmond Appiah</strong> - Founder</p>
+                        <p><i class="fas fa-phone"></i> +233 55 536 5341</p>
+                        <p><i class="fas fa-envelope"></i> richmond@amenplus.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Delivery Note -->
+            <div class="delivery-note">
+                <i class="fas fa-truck"></i>
+                <p><strong>Delivery across Ghana:</strong> ₵35 - ₵48. Select your location at checkout.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">₵0</span>
+                </div>
+                <div class="delivery-fee-line">
+                    <span>Delivery Fee:</span>
+                    <span id="delivery-fee">₵0</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="grand-total">₵0</span>
+                </div>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fas fa-lock"></i> Checkout with Paystack
+            </button>
+            <div class="cart-actions">
+                <a href="shop.html" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <a href="delivery.html" class="view-delivery-info">
+                    <i class="fas fa-truck"></i> Delivery Info
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Amen<span class="plus">+</span></h3>
+                <p class="brand-essence">At the intersection of faith, culture, and impact—using fashion as a modern-day message board for the Gospel.</p>
+                <div class="impact-promise">
+                    <p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="shop.html"><i class="fas fa-store"></i> Shop Collection</a>
+                <a href="about.html"><i class="fas fa-book-open"></i> Our Story</a>
+                <a href="delivery.html"><i class="fas fa-truck"></i> Delivery Info</a>
+                <a href="contact.html"><i class="fas fa-address-book"></i> Contact & Team</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> JamesTown GA-181-5283, Accra</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233201686831">+233 20 168 6831</a> (Customer Service)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233538590891">+233 53 859 0891</a> (Tech Support)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233553604898">+233 55 360 4898</a> (Brand)</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/amenplusgh" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/amenplusgh" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/233201686831" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amen+. Wear Your Amen. All rights reserved.</p>
+            <p class="brand-tags">Faith-Driven Fashion | Ghana Made | Community Impact</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233201686831" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with Customer Service
+    </a>
+
+    <!-- Paystack SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/paystack-sms.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product.js"></script>
+    <script>
+        // Update product badge based on product data
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be enhanced by product.js
+            const badge = document.getElementById('product-badge');
+            if (badge) {
+                // Check URL for product ID to set badge
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = parseInt(urlParams.get('id'));
+                
+                // Set badge based on product ID (example logic)
+                if (productId <= 5) {
+                    badge.textContent = "New Arrival";
+                } else if (productId >= 27) {
+                    badge.textContent = "Limited Edition";
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

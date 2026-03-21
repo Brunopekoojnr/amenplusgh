@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amen+ | Home - Faith Meets Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specifically for Home page */
+        .hero {
+            background: linear-gradient(rgba(92, 58, 45, 0.85), rgba(92, 58, 45, 0.9)), 
+                        url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1400') center/cover fixed;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: float 6s infinite;
+        }
+
+        .hero::after {
+            content: "✝";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: float 8s infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, white, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .plus {
+            font-size: 5rem;
+            -webkit-text-fill-color: #D4AF37;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: #D4AF37;
+            color: #5C3A2D;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-primary:hover {
+            background: #5C3A2D;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .delivery-preview {
+            background: linear-gradient(135deg, #FDF6F0, white);
+            padding: 5rem 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .delivery-preview::before {
+            content: "✝";
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 4rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            animation: float 7s infinite;
+        }
+
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .delivery-preview h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #5C3A2D;
+        }
+
+        .preview-subtitle {
+            font-size: 1.3rem;
+            color: #8B6B4D;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .delivery-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .highlight {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            transition: all 0.4s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .highlight:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .highlight i {
+            font-size: 3rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight h3 {
+            font-size: 2rem;
+            color: #5C3A2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight p {
+            color: #4A4A4A;
+            font-size: 1rem;
+        }
+
+        .btn-view-delivery {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #5C3A2D;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-view-delivery:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .team-preview-home {
+            padding: 5rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .team-preview-home::before {
+            content: "✝";
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            font-size: 4rem;
+            color: #D4AF37;
+            opacity: 0.05;
+        }
+
+        .team-preview-home h2 {
+            font-size: 3rem;
+            color: #5C3A2D;
+        }
+
+        .team-mini {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .team-member-mini {
+            text-align: center;
+            width: 220px;
+            transition: all 0.3s;
+        }
+
+        .team-member-mini:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            border: 3px solid #D4AF37;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(92, 58, 45, 0.2);
+        }
+
+        .team-member-mini:hover .member-avatar {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #D4AF37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .team-member-mini h4 {
+            font-size: 1.2rem;
+            color: #5C3A2D;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-member-mini p {
+            color: #8B6B4D;
+            font-size: 0.9rem;
+        }
+
+        .btn-view-team {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #5C3A2D;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-view-team:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .featured-products {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #FDF6F0, white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: #5C3A2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #8B6B4D;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: "✝";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #D4AF37;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            padding: 1rem 1rem 0.5rem;
+            font-size: 1.1rem;
+            color: #5C3A2D;
+        }
+
+        .product-card .price {
+            padding: 0 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            padding: 1rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-product {
+            flex: 1;
+            background: #5C3A2D;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .view-product:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-3px);
+        }
+
+        .quick-add {
+            flex: 1;
+            background: #D4AF37;
+            color: #5C3A2D;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .quick-add:hover {
+            background: #5C3A2D;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #5C3A2D;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-view-all:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .impact-section {
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-section::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: float 8s infinite;
+        }
+
+        .impact-section::after {
+            content: "✝";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: float 10s infinite reverse;
+        }
+
+        .impact-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .impact-content h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-text {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .impact-stats .stat {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            min-width: 200px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+        }
+
+        .impact-stats .stat:hover {
+            transform: translateY(-10px);
+            border-color: #D4AF37;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .impact-stats .stat h3 {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-stats .stat p {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .values-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: #5C3A2D;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: #FDF6F0;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .value-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            color: #5C3A2D;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #4A4A4A;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .delivery-highlights,
+            .products-grid,
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero h1 .plus {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .delivery-highlights,
+            .products-grid,
+            .values-grid,
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-mini {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Amen+ Logo" class="logo-image">
+                <span>AMEN<span class="plus">+</span></span>
+                <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
+            </a>
+         <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact & Team</a>
+</div>
+            <div class="nav-icons">
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Enhanced -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Wear Your Amen<span class="plus">+</span></h1>
+            <p class="hero-subtitle">Faith meets fashion at the crossroads of culture and impact</p>
+            <p class="hero-description">Christian lifestyle apparel that speaks life, hope, and the name of Jesus. Every purchase feeds the homeless in our communities.</p>
+            <div class="hero-buttons">
+                <a href="shop.html" class="btn-primary">Shop Collection</a>
+                <a href="about.html" class="btn-secondary">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Preview - Enhanced -->
+    <section class="delivery-preview">
+        <div class="preview-container">
+            <h2>🚚 Ghana-Wide Delivery</h2>
+            <p class="preview-subtitle">We deliver across Accra, Kasoa, Tema & Kumasi</p>
+            
+            <div class="delivery-highlights">
+                <div class="highlight">
+                    <i class="fas fa-truck"></i>
+                    <h3>From ₵35</h3>
+                    <p>Affordable delivery rates</p>
+                </div>
+                <div class="highlight">
+                    <i class="fas fa-clock"></i>
+                    <h3>48-72 Hours</h3>
+                    <p>Fast delivery nationwide</p>
+                </div>
+                <div class="highlight">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>100+ Areas</h3>
+                    <p>Comprehensive coverage</p>
+                </div>
+            </div>
+            
+            <a href="delivery.html" class="btn-view-delivery">
+                <span>View Delivery Details</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Team Preview Section - Enhanced -->
+    <section class="team-preview-home">
+        <div class="preview-container">
+            <h2>👥 Meet Our Ghanaian Team</h2>
+            <p class="preview-subtitle">The passionate creators behind Amen+</p>
+            
+            <div class="team-mini">
+                <div class="team-member-mini">
+                    <div class="member-avatar">R</div>
+                    <h4>Richmond Appiah</h4>
+                    <p>Founder & Creative Director</p>
+                </div>
+                <div class="team-member-mini">
+                    <div class="member-avatar">S</div>
+                    <h4>Stephen Oboakoh</h4>
+                    <p>Brand Manager</p>
+                </div>
+                <div class="team-member-mini">
+                    <div class="member-avatar">P</div>
+                    <h4>Prince Edward</h4>
+                    <p>Tech Lead</p>
+                </div>
+                <div class="team-member-mini">
+                    <div class="member-avatar">L</div>
+                    <h4>Leslly Mensah</h4>
+                    <p>PR & Sales</p>
+                </div>
+            </div>
+            
+            <a href="contact.html" class="btn-view-team">
+                <span>Meet Full Team</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products - Enhanced -->
+    <section class="featured-products">
+        <div class="section-header">
+            <h2>Crossroads Collection</h2>
+            <p>First Edition - Limited Release</p>
+        </div>
+        <div class="products-grid" id="featured-products">
+            <!-- Featured products will be loaded by JavaScript -->
+        </div>
+        <div class="view-all">
+            <a href="shop.html" class="btn-view-all">
+                <span>View All Products</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Impact Section - Enhanced -->
+    <section class="impact-section">
+        <div class="impact-content">
+            <h2>Your Purchase Makes Impact</h2>
+            <p class="impact-text">Every Amen+ garment purchased provides meals for the homeless in Ghana. We're not just selling clothes—we're building communities.</p>
+            
+            <div class="impact-stats">
+                <div class="stat">
+                    <h3>100%</h3>
+                    <p>Faith-Driven</p>
+                </div>
+                <div class="stat">
+                    <h3>Every Piece</h3>
+                    <p>Has Purpose</p>
+                </div>
+                <div class="stat">
+                    <h3>Community</h3>
+                    <p>Impact Focused</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Values - Enhanced -->
+    <section class="values-section">
+        <h2>Why Amen+?</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-cross"></i>
+                <h3>Faith Expression</h3>
+                <p>Boldly express your belief through intentional design that speaks to the soul.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-tshirt"></i>
+                <h3>Premium Quality</h3>
+                <p>100% premium cotton with Ghanaian craftsmanship that lasts.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Social Impact</h3>
+                <p>Your purchase directly feeds the homeless in our communities.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>Kingdom Culture</h3>
+                <p>Building community through faith and fashion, one piece at a time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">₵0</span>
+                </div>
+                <div class="delivery-fee-line">
+                    <span>Delivery Fee:</span>
+                    <span id="delivery-fee">₵0</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="grand-total">₵0</span>
+                </div>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fas fa-lock"></i> Checkout with Paystack
+            </button>
+            <div class="cart-actions">
+                <a href="shop.html" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <a href="delivery.html" class="view-delivery-info">
+                    <i class="fas fa-truck"></i> Delivery Info
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Amen<span class="plus">+</span></h3>
+                <p class="brand-essence">At the intersection of faith, culture, and impact—using fashion as a modern-day message board for the Gospel.</p>
+                <div class="impact-promise">
+                    <p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="shop.html"><i class="fas fa-store"></i> Shop Collection</a>
+                <a href="about.html"><i class="fas fa-book-open"></i> Our Story</a>
+                <a href="delivery.html"><i class="fas fa-truck"></i> Delivery Info</a>
+                <a href="contact.html"><i class="fas fa-address-book"></i> Contact & Team</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> JamesTown GA-181-5283, Accra</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233201686831">+233 20 168 6831</a> (Customer Service)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233538590891">+233 53 859 0891</a> (Tech Support)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233553604898">+233 55 360 4898</a> (Brand)</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/amenplusgh" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/amenplusgh" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/233201686831" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amen+. Wear Your Amen. All rights reserved.</p>
+            <p class="brand-tags">Faith-Driven Fashion | Ghana Made | Community Impact</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233201686831" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with Customer Service
+    </a>
+
+    <!-- Paystack SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        // Load featured products on home page
+        document.addEventListener('DOMContentLoaded', function() {
+            const featuredContainer = document.getElementById('featured-products');
+            if (featuredContainer && products && products.length > 0) {
+                // Show first 8 products (includes your 5 new shirts)
+                const featured = products.slice(0, 8);
+                featuredContainer.innerHTML = featured.map(product => `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">₵${product.price.toLocaleString()}</p>
+                        <div class="product-actions">
+                            <a href="product.html?id=${product.id}" class="view-product">View Details</a>
+                            <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes[0]}')">
+                                <i class="fas fa-shopping-bag"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>

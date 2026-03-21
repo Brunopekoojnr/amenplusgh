@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amen+ | Our Story</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specifically for About page */
+        .vision-mission {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .vm-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .vm-card.vision::before {
+            content: "✝";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 5rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .vm-card.mission::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            font-size: 5rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .vm-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #5C3A2D;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .vm-card h3 i {
+            color: #D4AF37;
+            font-size: 2rem;
+        }
+
+        .vm-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4A4A4A;
+            margin-bottom: 2rem;
+        }
+
+        .vm-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 25px;
+            background: #5C3A2D;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .vm-btn:hover {
+            background: #D4AF37;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .impact-model {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-model::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+        }
+
+        .impact-model::after {
+            content: "✝";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+        }
+
+        .impact-model h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .impact-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #D4AF37;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #D4AF37;
+            color: #5C3A2D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            border: 3px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .step h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .step p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .step-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 10px 25px;
+            background: transparent;
+            color: white;
+            border: 2px solid #D4AF37;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .step-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: scale(1.05);
+        }
+
+        .values-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #5C3A2D;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, #fff, #FDF6F0);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #5C3A2D;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4A4A4A;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-link {
+            color: #5C3A2D;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .value-link:hover {
+            color: #D4AF37;
+            gap: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .vm-grid,
+            .impact-steps,
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vm-grid,
+            .impact-steps,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-model h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Amen+ Logo" class="logo-image">
+                <span>AMEN<span class="plus">+</span></span>
+                <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
+            </a>
+       <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact & Team</a>
+</div>
+            <div class="nav-icons">
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <h1>Our Story</h1>
+        <p class="subtitle">Faith. Fashion. Impact.</p>
+    </section>
+
+    <!-- Logo + Meaning Section (Split Layout) -->
+    <section class="meaning-section">
+        <div class="meaning-container">
+            <div class="meaning-image">
+                <img src="assets/logo.png" alt="Amen+ Logo Large">
+                <div class="image-overlay">
+                    <span class="overlay-text">Since 2026</span>
+                </div>
+            </div>
+            <div class="meaning-content">
+                <h2>The Meaning of <span class="plus">Amen+</span></h2>
+                <div class="meaning-text">
+                    <p>The "<strong>+</strong>" represents the divine addition in every believer's life—the extra blessing, the added favor, the upgrade that comes with walking in purpose. We believe faith isn't just what you wear on Sunday; it's a lifestyle.</p>
+                    
+                    <p><strong>Amen+</strong> was born at the intersection of faith and fashion, with a vision to create apparel that speaks to the soul while making a style statement. Founded in Ghana, our brand represents excellence, intentionality, and spiritual significance.</p>
+                    
+                    <p>Every piece in our <strong>Crossroads Collection</strong> is more than clothing—it's a wearable declaration, a conversation starter, a modern-day message board for the Gospel.</p>
+                    
+                    <div class="meaning-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>You don't have to preach to be heard. Sometimes, what you wear says it all.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission - REDESIGNED WITH CARDS -->
+    <section class="vision-mission">
+        <div class="vm-grid">
+            <div class="vm-card vision">
+                <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                <p>To become Africa's leading faith-inspired lifestyle brand, creating apparel that empowers believers to wear their identity with confidence while making a tangible impact in our communities.</p>
+                <a href="#" class="vm-btn">Discover Our Vision <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="vm-card mission">
+                <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                <p>To create premium faith-inspired apparel that empowers individuals to wear their beliefs with confidence and style, while supporting Ghanaian creativity and community impact.</p>
+                <a href="#" class="vm-btn">Explore Our Mission <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Model - REDESIGNED WITH BUTTONS -->
+    <section class="impact-model">
+        <h2>How We Make Impact</h2>
+        <div class="impact-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>You Purchase</h3>
+                <p>Buy any Amen+ product from our collection</p>
+                <a href="shop.html" class="step-btn">Shop Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>We Give</h3>
+                <p>A portion of profits feeds the homeless in Ghana</p>
+                <a href="#" class="step-btn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Community Rises</h3>
+                <p>Together, we make Ghana better, one purchase at a time</p>
+                <a href="#" class="step-btn">See Impact <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values - REDESIGNED WITH LINK BUTTONS -->
+    <section class="values-section">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-cross"></i>
+                <h3>Faith-First</h3>
+                <p>Everything we do is rooted in spiritual principles. Our designs carry meaning beyond aesthetics.</p>
+                <a href="#" class="value-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-flag"></i>
+                <h3>Ghanaian Excellence</h3>
+                <p>Proudly made in Ghana with world-class quality. We showcase the best of our nation.</p>
+                <a href="#" class="value-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Community Impact</h3>
+                <p>Fashion that feeds. Every purchase gives back to the vulnerable in our communities.</p>
+                <a href="#" class="value-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-gem"></i>
+                <h3>Premium Quality</h3>
+                <p>We never compromise on materials, comfort, or durability. You deserve the best.</p>
+                <a href="#" class="value-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Amen<span class="plus">+</span></h3>
+                <p class="brand-essence">At the intersection of faith, culture, and impact—using fashion as a modern-day message board for the Gospel.</p>
+                <div class="impact-promise">
+                    <p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="shop.html"><i class="fas fa-store"></i> Shop Collection</a>
+                <a href="about.html"><i class="fas fa-book-open"></i> Our Story</a>
+                <a href="delivery.html"><i class="fas fa-truck"></i> Delivery Info</a>
+                <a href="contact.html"><i class="fas fa-address-book"></i> Contact & Team</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> JamesTown GA-181-5283, Accra</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233201686831">+233 20 168 6831</a> (Customer Service)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233538590891">+233 53 859 0891</a> (Tech Support)</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/amenplusgh" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/amenplusgh" target="_blank" title="Twitter">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/233201686831" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amen+. Wear Your Amen. All rights reserved.</p>
+            <p class="brand-tags">Faith-Driven Fashion | Ghana Made | Community Impact</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233201686831" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with Customer Service
+    </a>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">₵0</span>
+                </div>
+                <div class="delivery-fee-line">
+                    <span>Delivery Fee:</span>
+                    <span id="delivery-fee">₵0</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="grand-total">₵0</span>
+                </div>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fas fa-lock"></i> Checkout with Paystack
+            </button>
+            <div class="cart-actions">
+                <a href="shop.html" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <a href="delivery.html" class="view-delivery-info">
+                    <i class="fas fa-truck"></i> Delivery Info
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Paystack SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

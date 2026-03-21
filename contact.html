@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amen+ | Contact & Team</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== ADDITIONAL STYLES FOR CONTACT PAGE ========== */
+        .contact-hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: "✝";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: crossFade 5s infinite;
+        }
+
+        .contact-hero::after {
+            content: "✝";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.1);
+            animation: crossFade 5s infinite reverse;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
+        }
+
+        .office-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+
+        .office-card {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.15);
+            text-align: center;
+            border: 1px solid #D4AF37;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(92, 58, 45, 0.2);
+        }
+
+        .office-card::before {
+            content: "✝";
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 8rem;
+            color: #D4AF37;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        .office-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #5C3A2D, #8B6B4D);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 3px solid #D4AF37;
+        }
+
+        .office-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .office-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #5C3A2D;
+        }
+
+        .office-address {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #4A4A4A;
+        }
+
+        .office-address strong {
+            color: #5C3A2D;
+        }
+
+        .office-phone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .office-phone i {
+            color: #D4AF37;
+        }
+
+        .phone-link {
+            color: #5C3A2D;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .phone-link:hover {
+            color: #D4AF37;
+        }
+
+        .office-hours {
+            background: #FDF6F0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .office-hours p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #5C3A2D;
+        }
+
+        .office-hours i {
+            color: #D4AF37;
+        }
+
+        .office-direction-btn {
+            background: #5C3A2D;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid #D4AF37;
+        }
+
+        .office-direction-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 20px;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: #5C3A2D;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8B6B4D;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            animation: fadeInUp 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        .team-card:nth-child(1) { animation-delay: 0.1s; }
+        .team-card:nth-child(2) { animation-delay: 0.15s; }
+        .team-card:nth-child(3) { animation-delay: 0.2s; }
+        .team-card:nth-child(4) { animation-delay: 0.25s; }
+        .team-card:nth-child(5) { animation-delay: 0.3s; }
+        .team-card:nth-child(6) { animation-delay: 0.35s; }
+        .team-card:nth-child(7) { animation-delay: 0.4s; }
+        .team-card:nth-child(8) { animation-delay: 0.45s; }
+        .team-card:nth-child(9) { animation-delay: 0.5s; }
+        .team-card:nth-child(10) { animation-delay: 0.55s; }
+
+        .team-card::after {
+            content: "✝";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #D4AF37;
+            opacity: 0.2;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .team-card.founder {
+            border: 2px solid #D4AF37;
+            position: relative;
+        }
+
+        .team-card.founder::before {
+            content: "👑";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            z-index: 2;
+            background: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid #D4AF37;
+        }
+
+        .team-image {
+            height: 450px;
+            overflow: hidden;
+            background: #FDF6F0;
+            position: relative;
+        }
+
+        .team-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                transparent 60%, 
+                rgba(212, 175, 55, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            opacity: 0.95;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.08);
+        }
+
+        .team-card:hover .team-image::after {
+            background: radial-gradient(circle at center, 
+                transparent 50%, 
+                rgba(212, 175, 55, 0.05) 100%);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: #5C3A2D;
+        }
+
+        .team-role {
+            color: #D4AF37;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .team-bio {
+            color: #4A4A4A;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .team-contact {
+            background: #FDF6F0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-contact p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5C3A2D;
+        }
+
+        .team-contact i {
+            color: #D4AF37;
+            width: 18px;
+        }
+
+        .view-profile-btn {
+            background: #5C3A2D;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .view-profile-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-options {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 20px;
+        }
+
+        .contact-options h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #5C3A2D;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(92, 58, 45, 0.1);
+            border-top: 5px solid;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        .option-card:nth-child(1) { animation-delay: 0.1s; }
+        .option-card:nth-child(2) { animation-delay: 0.15s; }
+        .option-card:nth-child(3) { animation-delay: 0.2s; }
+        .option-card:nth-child(4) { animation-delay: 0.25s; }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+        }
+
+        .option-card::before {
+            content: "✝";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        .option-card.brand { border-top-color: #D4AF37; }
+        .option-card.customer-service { border-top-color: #25D366; }
+        .option-card.tech { border-top-color: #5C3A2D; }
+        .option-card.general { border-top-color: #8B6B4D; }
+
+        .option-icon {
+            width: 60px;
+            height: 60px;
+            background: #FDF6F0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 2px solid #D4AF37;
+        }
+
+        .option-icon i {
+            font-size: 1.5rem;
+            color: #5C3A2D;
+        }
+
+        .option-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: #5C3A2D;
+        }
+
+        .option-card > p {
+            text-align: center;
+            color: #4A4A4A;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-details {
+            background: #FDF6F0;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #5C3A2D;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-details i {
+            color: #D4AF37;
+            width: 20px;
+        }
+
+        .contact-details a {
+            color: #5C3A2D;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: #D4AF37;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .call-btn {
+            background: #5C3A2D;
+            color: white;
+        }
+
+        .call-btn:hover {
+            background: #8B6B4D;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(92, 58, 45, 0.2);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .email-btn {
+            background: #8B6B4D;
+            color: white;
+        }
+
+        .email-btn:hover {
+            background: #5C3A2D;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(92, 58, 45, 0.2);
+        }
+
+        .social-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 20px;
+        }
+
+        .social-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #5C3A2D;
+        }
+
+        .social-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            animation: fadeInUp 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        .social-btn:nth-child(1) { animation-delay: 0.1s; }
+        .social-btn:nth-child(2) { animation-delay: 0.15s; }
+        .social-btn:nth-child(3) { animation-delay: 0.2s; }
+        .social-btn:nth-child(4) { animation-delay: 0.25s; }
+
+        .social-btn i {
+            font-size: 1.3rem;
+        }
+
+        .social-btn.instagram { 
+            background: linear-gradient(45deg, #405DE6, #E1306C);
+        }
+        .social-btn.twitter { 
+            background: #000; 
+        }
+        .social-btn.facebook { 
+            background: #1877f2; 
+        }
+        .social-btn.whatsapp { 
+            background: #25D366; 
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .hours-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 20px;
+        }
+
+        .hours-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #5C3A2D;
+        }
+
+        .hours-card {
+            background: white;
+            border-radius: 30px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #FDF6F0;
+            border-radius: 10px;
+        }
+
+        .hours-item.closed {
+            background: #ffe6e6;
+            border-left: 4px solid #ff4444;
+        }
+
+        .hours-item.closed .time {
+            color: #ff4444;
+            font-weight: 600;
+        }
+
+        .day {
+            font-weight: 600;
+            color: #5C3A2D;
+        }
+
+        .time {
+            color: #4A4A4A;
+        }
+
+        .hours-note {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: #FDF6F0;
+            border-radius: 10px;
+            color: #5C3A2D;
+            font-style: italic;
+        }
+
+        .hours-note i {
+            color: #D4AF37;
+        }
+
+        .contact-form-section {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 20px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(92, 58, 45, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #5C3A2D;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #5C3A2D;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #FDF6F0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #FDF6F0;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D4AF37;
+            background: white;
+        }
+
+        .submit-btn {
+            background: #5C3A2D;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            border: 2px solid #D4AF37;
+        }
+
+        .submit-btn:hover {
+            background: #D4AF37;
+            color: #5C3A2D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ========== TEAM PHOTO ENHANCEMENT ========== */
+        .team-image {
+            position: relative;
+            background: #FDF6F0;
+            overflow: hidden;
+        }
+
+        .team-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                transparent 60%, 
+                rgba(212, 175, 55, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        .team-image img {
+            transition: all 0.5s;
+            opacity: 0.98;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-card:hover .team-image::after {
+            background: radial-gradient(circle at center, 
+                transparent 50%, 
+                rgba(212, 175, 55, 0.05) 100%);
+        }
+
+        /* Team Modal Styles */
+        .team-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(92, 58, 45, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 40px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            animation: slideUp 0.5s ease;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            border: 4px solid #D4AF37;
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.8rem;
+            top: 1.8rem;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #D4AF37;
+            transition: all 0.4s;
+            line-height: 1;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+            font-weight: 300;
+        }
+
+        .close-modal:hover {
+            transform: rotate(180deg) scale(1.1);
+            color: #5C3A2D;
+            background: #D4AF37;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                padding: 2rem;
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 4px solid #D4AF37;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            color: #5C3A2D;
+        }
+
+        .modal-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #D4AF37;
+            font-weight: 500;
+        }
+
+        .modal-bio {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4A4A4A;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .modal-funfact {
+            background: #FDF6F0;
+            padding: 1.2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            font-style: italic;
+            border-left: 5px solid #D4AF37;
+            font-size: 1.1rem;
+            color: #5C3A2D;
+        }
+
+        .modal-funfact::before {
+            content: "✨ ";
+            font-style: normal;
+            color: #D4AF37;
+        }
+
+        .modal-contact p {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-contact i {
+            color: #D4AF37;
+            width: 24px;
+            font-size: 1.3rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .modal-whatsapp-btn,
+        .modal-call-btn {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .modal-whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .modal-call-btn {
+            background: #5C3A2D;
+            color: white;
+        }
+
+        .modal-call-btn:hover {
+            background: #8B6B4D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(92, 58, 45, 0.3);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 992px) {
+            .team-grid,
+            .options-grid,
+            .social-buttons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid,
+            .options-grid,
+            .social-buttons-grid,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .team-image {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Amen+ Logo" class="logo-image">
+                <span>AMEN<span class="plus">+</span></span>
+                <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
+            </a>
+    <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact & Team</a>
+</div>
+            <div class="nav-icons">
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <h1>Get In Touch With Our Team</h1>
+        <p>We're here to help with orders, questions, or collaborations</p>
+    </section>
+
+    <!-- Office Address Section - CARD STYLE -->
+    <section class="office-section">
+        <div class="office-card">
+            <div class="office-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h2>Visit Our Office</h2>
+            <p class="office-address">
+                <strong>JamesTown GA-181-5283</strong><br>
+                Accra, Greater Accra Region<br>
+                Ghana
+            </p>
+            <div class="office-phone">
+                <i class="fas fa-phone"></i> 
+                <a href="tel:+233555365341" class="phone-link">+233 555 365 341</a>
+            </div>
+            <div class="office-hours">
+                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+                <p><i class="fas fa-clock"></i> Sat: 10:00 AM - 4:00 PM</p>
+            </div>
+            <button class="office-direction-btn" onclick="window.open('https://maps.google.com/?q=JamesTown+GA-181-5283+Accra+Ghana')">
+                <i class="fas fa-directions"></i> Get Directions
+            </button>
+        </div>
+    </section>
+
+    <!-- Meet The Full Team - CLICKABLE CARDS -->
+    <section class="team-section">
+        <h2>👥 Meet The Amen+ Family</h2>
+        <p class="section-subtitle">Click on any team member to see their full profile</p>
+        
+        <div class="team-grid">
+            <!-- Founder & Creative Director -->
+            <div class="team-card founder" onclick="openTeamModal('richmond')">
+                <div class="team-image">
+                    <img src="assets\Team\Richmond Appiah-Founder and Creative Director.png" alt="Richmond Appiah - Founder">
+                </div>
+                <div class="team-info">
+                    <h3>Richmond Appiah</h3>
+                    <p class="team-role">Founder & Creative Director</p>
+                    <p class="team-bio">Visionary behind Amen+, overseeing creative direction and overall brand strategy.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 536 5341</p>
+                        <p><i class="fas fa-envelope"></i> richmond@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Brand Manager -->
+            <div class="team-card" onclick="openTeamModal('stephen')">
+                <div class="team-image">
+                    <img src="assets\Team\Stephen_Oboakoh-Brand Manager.png" alt="Stephen Oboakoh - Brand Manager">
+                </div>
+                <div class="team-info">
+                    <h3>Stephen Oboakoh</h3>
+                    <p class="team-role">Brand Manager</p>
+                    <p class="team-bio">Ensures consistent brand messaging and identity across all platforms.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 360 4898</p>
+                        <p><i class="fas fa-envelope"></i> brand@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Tech Lead -->
+            <div class="team-card" onclick="openTeamModal('prince')">
+                <div class="team-image">
+                    <img src="assets\Team\Prince_Edward-Tech_lead.png" alt="Prince Edward - Tech Lead">
+                </div>
+                <div class="team-info">
+                    <h3>Prince Edward</h3>
+                    <p class="team-role">Tech Lead</p>
+                    <p class="team-bio">Manages the website, e-commerce platform, and all technical operations.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 530 379 533</p>
+                        <p><i class="fas fa-envelope"></i> tech@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Tech Assistant (Smith) -->
+            <div class="team-card" onclick="openTeamModal('brian')">
+                <div class="team-image">
+                    <img src="assets\Team\Brian_Smith-Tech_Assistant.png" alt="Brian Smith - Tech Assistant">
+                </div>
+                <div class="team-info">
+                    <h3>Brian Smith</h3>
+                    <p class="team-role">Tech Assistant</p>
+                    <p class="team-bio">Assists with technical operations, website maintenance, and digital support.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 53 859 0891</p>
+                        <p><i class="fas fa-envelope"></i> tech@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Design Lead -->
+            <div class="team-card" onclick="openTeamModal('joe')">
+                <div class="team-image">
+                    <img src="assets\Team\Joe_Junior_Makpanki_-Design Lead.png" alt="Joe Junior - Design Lead">
+                </div>
+                <div class="team-info">
+                    <h3>Joe Junior Makpanki</h3>
+                    <p class="team-role">Design Lead</p>
+                    <p class="team-bio">Leads the design team and oversees all creative concepts and collections.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 54 660 4928</p>
+                        <p><i class="fas fa-envelope"></i> design@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- PR, Sales & Community Manager (Leslly) -->
+            <div class="team-card" onclick="openTeamModal('lesly')">
+                <div class="team-image">
+                    <img src="assets\Team\Leslly_Naa-Ayele-PR_Sales and Community Manager.png" alt="Leslly Mensah - PR, Sales & Community">
+                </div>
+                <div class="team-info">
+                    <h3>Leslly Mensah</h3>
+                    <p class="team-role">PR, Sales & Community Manager</p>
+                    <p class="team-bio">Handles all customer service, sales inquiries, and community engagement.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 20 168 6831</p>
+                        <p><i class="fas fa-envelope"></i> sales@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Finance & Accounts -->
+            <div class="team-card" onclick="openTeamModal('melanie')">
+                <div class="team-image">
+                    <img src="assets\Team\Melanie_Afua_Marfoah_Asante-Finance and Accounts.png" alt="Melanie Afua - Finance">
+                </div>
+                <div class="team-info">
+                    <h3>Melanie Asante</h3>
+                    <p class="team-role">Finance & Accounts</p>
+                    <p class="team-bio">Handles all financial operations, payments, and ensures smooth transactions.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 098 7093</p>
+                        <p><i class="fas fa-envelope"></i> finance@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Designer & Stylist -->
+            <div class="team-card" onclick="openTeamModal('alfreda')">
+                <div class="team-image">
+                    <img src="assets\Team\Alfreda_NaaAyele_Okai-lead_Designer_and_Stylist.png" alt="Alfreda NaaAyele - Designer">
+                </div>
+                <div class="team-info">
+                    <h3>Alfreda Okai</h3>
+                    <p class="team-role">Designer & Stylist</p>
+                    <p class="team-bio">Creates stunning designs and ensures every piece meets our high aesthetic standards.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 560 4898</p>
+                        <p><i class="fas fa-envelope"></i> design@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Digital Product Manager -->
+            <div class="team-card" onclick="openTeamModal('katahena')">
+                <div class="team-image">
+                    <img src="assets\Team\Katahena_Bright-Digital_Product-Manager.png" alt="Katahena Bright - Digital Product Manager">
+                </div>
+                <div class="team-info">
+                    <h3>Katahena Bright</h3>
+                    <p class="team-role">Digital Product Manager</p>
+                    <p class="team-bio">Oversees digital product strategy, e-commerce operations, and customer experience optimization.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 24 889 4705</p>
+                        <p><i class="fas fa-envelope"></i> product@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Customer Service Assistant -->
+            <div class="team-card" onclick="openTeamModal('lawrencia')">
+                <div class="team-image">
+                    <img src="assets\Team\Sewornu_Lawrencia-Customer_Service_Assistant.png" alt="Sewornu Lawrencia - Customer Service Assistant">
+                </div>
+                <div class="team-info">
+                    <h3>Sewornu Lawrencia</h3>
+                    <p class="team-role">Customer Service Assistant</p>
+                    <p class="team-bio">Providing exceptional customer support and ensuring every customer has a positive Amen+ experience.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 306 7287</p>
+                        <p><i class="fas fa-envelope"></i> support@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Options - BUTTON CARDS -->
+    <section class="contact-options">
+        <h2>Quick Contact Channels</h2>
+        
+        <div class="options-grid">
+            <!-- Brand & Marketing Card -->
+            <div class="option-card brand">
+                <div class="option-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Brand & Marketing</h3>
+                <p>For collaborations, partnerships, and brand inquiries</p>
+                <div class="contact-details">
+                    <p><strong>Stephen Oboakoh</strong> - Brand Manager</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233553604898">+233 55 360 4898</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:brand@amenplus.com">brand@amenplus.com</a></p>
+                </div>
+                <div class="card-buttons">
+                    <a href="tel:+233553604898" class="card-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                    <a href="mailto:brand@amenplus.com" class="card-btn email-btn"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+            </div>
+
+            <!-- Customer Service Card -->
+            <div class="option-card customer-service">
+                <div class="option-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Customer Service</h3>
+                <p>For orders, inquiries, and general questions</p>
+                <div class="contact-details">
+                    <p><strong>Leslly Mensah</strong> - Customer Service</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233201686831">+233 20 168 6831</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:sales@amenplus.com">sales@amenplus.com</a></p>
+                </div>
+                <div class="card-buttons">
+                    <a href="tel:+233201686831" class="card-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                    <a href="https://wa.me/233201686831" class="card-btn whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Technical Support Card -->
+            <div class="option-card tech">
+                <div class="option-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Technical Support</h3>
+                <p>For website issues and technical questions</p>
+                <div class="contact-details">
+                    <p><strong>Brian Smith</strong> - Tech Assistant</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233538590891">+233 53 859 0891</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:tech@amenplus.com">tech@amenplus.com</a></p>
+                </div>
+                <div class="card-buttons">
+                    <a href="tel:+233538590891" class="card-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                    <a href="mailto:tech@amenplus.com" class="card-btn email-btn"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+            </div>
+
+            <!-- General Inquiries Card -->
+            <div class="option-card general">
+                <div class="option-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3>General Inquiries</h3>
+                <p>For general questions and information</p>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233555365341">+233 555 365 341</a></p>
+                </div>
+                <div class="card-buttons">
+                    <a href="mailto:amenplusgh@gmail.com" class="card-btn email-btn"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="tel:+233555365341" class="card-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section - BUTTON STYLES -->
+    <section class="social-section">
+        <h2>Connect With Us</h2>
+        <div class="social-buttons-grid">
+            <a href="https://www.instagram.com/amenplusgh" class="social-btn instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>@amenplusgh</span>
+            </a>
+            <a href="https://x.com/amenplusgh" class="social-btn twitter" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+                <span>@amenplusgh</span>
+            </a>
+            <a href="https://www.facebook.com/share/1CDQ6CGcPi/" class="social-btn facebook" target="_blank">
+                <i class="fab fa-facebook"></i>
+                <span>Amen+ Ghana</span>
+            </a>
+            <a href="https://wa.me/233201686831" class="social-btn whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>Customer Service</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Operating Hours - CARD STYLE -->
+    <section class="hours-section">
+        <h2>Operating Hours</h2>
+        <div class="hours-card">
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <span class="day">Monday - Friday</span>
+                    <span class="time">9:00 AM - 6:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Saturday</span>
+                    <span class="time">10:00 AM - 4:00 PM</span>
+                </div>
+                <div class="hours-item closed">
+                    <span class="day">Sunday</span>
+                    <span class="time">Closed for Worship & Rest</span>
+                </div>
+            </div>
+            <div class="hours-note">
+                <i class="fas fa-clock"></i> WhatsApp messages may be responded to outside business hours
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form - CARD STYLE -->
+    <section class="contact-form-section">
+        <div class="form-container">
+            <h2>Send Us a Message</h2>
+            <form id="contact-form" onsubmit="handleContactForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="delivery">Delivery Question</option>
+                            <option value="support">Support</option>
+                            <option value="brand">Brand Partnership</option>
+                            <option value="bulk">Bulk Order</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="message">Message *</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Amen<span class="plus">+</span></h3>
+                <p class="brand-essence">At the intersection of faith, culture, and impact—using fashion as a modern-day message board for the Gospel.</p>
+                <div class="impact-promise">
+                    <p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="shop.html"><i class="fas fa-store"></i> Shop Collection</a>
+                <a href="about.html"><i class="fas fa-book-open"></i> Our Story</a>
+                <a href="delivery.html"><i class="fas fa-truck"></i> Delivery Info</a>
+                <a href="contact.html"><i class="fas fa-address-book"></i> Contact & Team</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> JamesTown GA-181-5283, Accra</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233201686831">+233 20 168 6831</a> (Customer Service)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233538590891">+233 53 859 0891</a> (Tech Support)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+233553604898">+233 55 360 4898</a> (Brand)</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/amenplusgh" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/amenplusgh" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/233201686831" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amen+. Wear Your Amen. All rights reserved.</p>
+            <p class="brand-tags">Faith-Driven Fashion | Ghana Made | Community Impact</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233201686831" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with Customer Service
+    </a>
+
+    <!-- Team Bio Modal -->
+    <div id="teamModal" class="team-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="Team Member">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-name"></h2>
+                    <h3 id="modal-role"></h3>
+                    <p id="modal-bio" class="modal-bio"></p>
+                    <div id="modal-funfact" class="modal-funfact"></div>
+                    <div class="modal-contact">
+                        <p><i class="fas fa-phone"></i> <span id="modal-phone"></span></p>
+                        <p><i class="fas fa-envelope"></i> <span id="modal-email"></span></p>
+                        <p><i class="fas fa-tasks"></i> <span id="modal-handles"></span></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <a href="#" id="modal-whatsapp" class="modal-whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                        <a href="#" id="modal-call" class="modal-call-btn" target="_blank">
+                            <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paystack SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        // Team Bios Data
+        const teamBios = {
+            richmond: {
+                name: "Richmond Appiah",
+                role: "Founder & Creative Director",
+                bio: "Visionary behind Amen+, passionate about combining faith with contemporary fashion. I believe every piece should tell a story and every purchase should make an impact.",
+                funFact: "I can sketch a design in 5 minutes flat! ✏️",
+                phone: "+233 55 536 5341",
+                email: "richmond@amenplus.com",
+                handles: "Brand Vision, Creative Direction, Partnerships",
+                image: "assets/Team/Richmond Appiah-Founder and Creative Director.png",
+                whatsapp: "233555365341"
+            },
+            stephen: {
+                name: "Stephen Oboakoh",
+                role: "Brand Manager",
+                bio: "Ensures the Amen+ voice stays authentic and reaches the right people. I'm all about building a brand that resonates with faith-driven individuals.",
+                funFact: "I've watched every gospel music video on YouTube! 🎵",
+                phone: "+233 55 360 4898",
+                email: "brand@amenplus.com",
+                handles: "Brand Strategy, Marketing, Collaborations",
+                image: "assets/Team/Stephen_Oboakoh-Brand Manager.png",
+                whatsapp: "233553604898"
+            },
+            prince: {
+                name: "Prince Edward",
+                role: "Tech Lead",
+                bio: "I make sure the website runs smoothly and securely. From the cart to checkout, I'm behind the scenes ensuring everything works perfectly.",
+                funFact: "I debug code faster than I cook rice 🍚",
+                phone: "+233 530 379 533",
+                email: "tech@amenplus.com",
+                handles: "Website, Technical Support, E-commerce Platform",
+                image: "assets/Team/Prince_Edward-Tech_lead.png",
+                whatsapp: "233530379533"
+            },
+            brian: {
+                name: "Brian Smith",
+                role: "Tech Assistant",
+                bio: "Assisting with all things tech. If there's a bug or a feature to implement, I'm on it!",
+                funFact: "I can type 100 words per minute with one hand ⌨️",
+                phone: "+233 53 859 0891",
+                email: "tech@amenplus.com",
+                handles: "Technical Assistance, Website Support",
+                image: "assets/Team/Brian_Smith-Tech_Assistant.png",
+                whatsapp: "233538590891"
+            },
+            joe: {
+                name: "Joe Junior Makpanki",
+                role: "Design Lead",
+                bio: "I bring the visuals to life. Every design you see on Amen+ starts as a sketch on my tablet and becomes something you can wear.",
+                funFact: "I have 50+ design apps on my phone 🎨",
+                phone: "N/A",
+                email: "design@amenplus.com",
+                handles: "Design Direction, Creative Concepts",
+                image: "assets/Team/Joe_Junior_Makpanki_-Design Lead.png",
+                whatsapp: ""
+            },
+            lesly: {
+                name: "Mensah Teiko Felicia Naa-Ayele Leslly",
+                displayName: "Leslly Mensah",
+                role: "PR, Sales & Community Manager",
+                bio: "Your first point of contact! I handle customer service, sales, and building our community. If you have a question, I'm here to help.",
+                funFact: "I reply to messages faster than anyone! 💬",
+                phone: "+233 20 168 6831",
+                email: "sales@amenplus.com",
+                handles: "Customer Service, Sales, PR, Community Engagement",
+                image: "assets/Team/Leslly_Naa-Ayele-PR_Sales and Community Manager.png",
+                whatsapp: "233201686831"
+            },
+            melanie: {
+                name: "Melanie Afua Marfoah Asante",
+                role: "Finance & Accounts",
+                bio: "I handle the money side of things - payments, accounts, and making sure everything adds up so we can keep making an impact.",
+                funFact: "I balance my personal budget to the last pesewa 💰",
+                phone: "+233 55 098 7093",
+                email: "finance@amenplus.com",
+                handles: "Payments, Financial Matters, Accounting",
+                image: "assets/Team/Melanie_Afua_Marfoah_Asante-Finance and Accounts.png",
+                whatsapp: "233550987093"
+            },
+            alfreda: {
+                name: "Alfreda NaaAyele Okai",
+                role: "Designer & Stylist",
+                bio: "Creating beautiful designs that speak faith. I style and design pieces that you'll love to wear and feel good in.",
+                funFact: "I can match colors better than a Pantone chart 🌈",
+                phone: "+233 55 560 4898",
+                email: "design@amenplus.com",
+                handles: "Design, Styling, Product Development",
+                image: "assets/Team/Alfreda_NaaAyele_Okai-lead_Designer_and_Stylist.png",
+                whatsapp: "+233555604898"
+            },
+            katahena: {
+                name: "Katahena Bright",
+                role: "Digital Product Manager",
+                bio: "Oversees digital product strategy, e-commerce operations, and customer experience optimization.",
+                funFact: "I optimize conversion rates like a chess grandmaster ♟️",
+                phone: "+233 24 889 4705",
+                email: "product@amenplus.com",
+                handles: "Product Strategy, E-commerce, UX/UI Optimization",
+                image: "assets/Team/Katahena_Bright-Digital_Product-Manager.png",
+                whatsapp: "233248894705"
+            },
+            lawrencia: {
+                name: "Sewornu Lawrencia",
+                role: "Customer Service Assistant",
+                bio: "Providing exceptional customer support and ensuring every customer has a positive Amen+ experience.",
+                funFact: "I speak 4 Ghanaian languages fluently! 🇬🇭",
+                phone: "+233 55 306 7287",
+                email: "support@amenplus.com",
+                handles: "Customer Support, Order Assistance, Feedback",
+                image: "assets/Team/Sewornu_Lawrencia-Customer_Service_Assistant.png",
+                whatsapp: "233553067287"
+            }
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('teamModal');
+        const closeModal = document.querySelector('.close-modal');
+
+        function openTeamModal(key) {
+            const member = teamBios[key];
+            if (!member) return;
+            
+            document.getElementById('modal-img').src = member.image;
+            document.getElementById('modal-name').textContent = member.displayName || member.name;
+            document.getElementById('modal-role').textContent = member.role;
+            document.getElementById('modal-bio').textContent = member.bio;
+            
+            const funFactEl = document.getElementById('modal-funfact');
+            if (member.funFact) {
+                funFactEl.textContent = member.funFact;
+                funFactEl.style.display = 'block';
+            } else {
+                funFactEl.style.display = 'none';
+            }
+            
+            document.getElementById('modal-phone').textContent = member.phone;
+            document.getElementById('modal-email').textContent = member.email;
+            document.getElementById('modal-handles').textContent = member.handles;
+            
+            const whatsappLink = document.getElementById('modal-whatsapp');
+            const callLink = document.getElementById('modal-call');
+            
+            if (member.whatsapp) {
+                whatsappLink.href = `https://wa.me/${member.whatsapp}`;
+                whatsappLink.style.display = 'inline-flex';
+            } else {
+                whatsappLink.style.display = 'none';
+            }
+            
+            if (member.phone && member.phone !== 'N/A') {
+                callLink.href = `tel:${member.phone.replace(/\s/g, '')}`;
+                callLink.style.display = 'inline-flex';
+            } else {
+                callLink.style.display = 'none';
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Format WhatsApp message
+            const whatsappMessage = `*New Contact Form Message*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone || 'Not provided'}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+            
+            // Send to customer service (Lesly)
+            window.open(`https://wa.me/233201686831?text=${whatsappMessage}`, '_blank');
+            
+            alert('Thank you! You will be redirected to WhatsApp to send your message.');
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
