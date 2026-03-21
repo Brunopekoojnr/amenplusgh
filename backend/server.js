@@ -1,53 +1,117 @@
 const express = require('express');
 const cors = require('cors');
-require('body-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const mongoose = require('mongoose');
 const Paystack = require('paystack')(process.env.PAYSTACK_SECRET_KEY);
 const cron = require('node-cron');
-const fs = require('fs');
+const axios = require('axios');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MOMONUMBER = '0530379533'; // User's MoMo
 
+// ========== MIDDLEWARE ==========
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('../')); // Serve frontend
+app.use(express.static(path.join(__dirname, '../')));
 
-// Pending deliveries file
-const DELIVERIES_FILE = path.join(__dirname, 'deliveries.json');
+// ========== MONGODB CONNECTION ==========
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB error:', err));
 
-// Load deliveries
-let pendingDeliveries = [];
-try {
-  pendingDeliveries = JSON.parse(fs.readFileSync(DELIVERIES_FILE, 'utf8')) || [];
-} catch (e) {
-  fs.writeFileSync(DELIVERIES_FILE, '[]');
-}
+// ========== ORDER SCHEMA ==========
+const orderSchema = new mongoose.Schema({
+  reference: { type: String, unique: true },
+  customerName: String,
+  customerPhone: String,
+  customerEmail: String,
+  items: Array,
+  total: Number,
+  deliveryZone: String,
+  status: { type: String, default: 'pending' },
+  momoTxId: String,
+  smsSent: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now }
+});
 
-// Phase 1: Paystack verify & store delivery
+const Order = mongoose.model('Order', orderSchema);
+
+// ========== ADMIN AUTH MIDDLEWARE ==========
+const adminAuth = (req, res, next) => {
+  if (req.headers['x-admin-key'] !== process.env.ADMIN_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+};
+
+// ========== SMS HELPER (Arkesel) ==========
+const sendSMS = async (phone, message) => {
+  try {
+    await axios.get('https://sms.arkesel.com/sms/api', {
+      params: {
+        action: 'send-sms',
+        api_key: process.env.ARKESEL_API_KEY,
+        to: phone,
+        from: 'AmenPlus',
+        sms: message
+      }
+    });
+    console.log(`SMS sent to ${phone}`);
+  } catch (err) {
+    console.error('SMS failed:', err.message);
+  }
+};
+
+// ========== ROUTES ==========
+
+// Initialize payment
+app.post('/api/initialize-payment', async (req, res) => {
+  const { email, amount, cart, customerName, customerPhone, deliveryZone } = req.body;
+  try {
+    const response = await Paystack.transaction.initialize({
+      email,
+      amount: amount * 100,
+      metadata: { customerName, customerPhone, deliveryZone, cart: JSON.stringify(cart) }
+    });
+    res.json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Verify payment & save order
 app.post('/api/verify-payment', async (req, res) => {
   const { reference } = req.body;
   try {
     const response = await Paystack.transaction.verify(reference);
     if (response.data.status === 'success') {
-      const orderData = response.data.metadata; // cart, customer, delivery info from frontend
-      pendingDeliveries.push({
-        id: Date.now().toString(),
+      const meta = response.data.metadata;
+
+      // Prevent duplicate orders
+      const existing = await Order.findOne({ reference });
+      if (existing) {
+        return res.json({ success: true, message: 'Order already exists' });
+      }
+
+      const order = await Order.create({
         reference,
-        customerName: orderData.customerName,
-        customerPhone: orderData.customerPhone,
-        items: orderData.items,
+        customerName: meta.customerName,
+        customerPhone: meta.customerPhone,
+        customerEmail: response.data.customer.email,
+        items: JSON.parse(meta.cart || '[]'),
         total: response.data.amount / 100,
-        deliveryZone: orderData.deliveryZone,
-        status: 'pending',
-        createdAt: new Date().toISOString(),
-        phase1: true // Flag for Phase 1
+        deliveryZone: meta.deliveryZone,
       });
-      fs.writeFileSync(DELIVERIES_FILE, JSON.stringify(pendingDeliveries, null, 2));
-      res.json({ success: true, message: 'Order confirmed. Delivery details saved for dispatch.' });
+
+      // Send confirmation SMS
+      await sendSMS(
+        meta.customerPhone,
+        `Hi ${meta.customerName}! Your Amen+ order of GHS ${order.total} has been confirmed. We'll contact you for delivery. Thank you!`
+      );
+
+      res.json({ success: true, message: 'Order confirmed!' });
     } else {
       res.status(400).json({ error: 'Payment not successful' });
     }
@@ -56,48 +120,68 @@ app.post('/api/verify-payment', async (req, res) => {
   }
 });
 
-// Phase 2: Get pending deliveries for MoMo split (manual dispatch)
-app.get('/api/pending-deliveries', (req, res) => {
-  const phase1Deliveries = pendingDeliveries.filter(d => d.phase1 && d.status === 'pending');
-  res.json(phase1Deliveries);
-});
-
-// Update delivery status after MoMo (manual)
-app.post('/api/update-delivery', (req, res) => {
-  const { id, momoTxId, status } = req.body;
-  const delivery = pendingDeliveries.find(d => d.id === id);
-  if (delivery) {
-    delivery.momoTxId = momoTxId;
-    delivery.status = status || 'dispatched';
-    delivery.phase2Complete = true;
-    fs.writeFileSync(DELIVERIES_FILE, JSON.stringify(pendingDeliveries, null, 2));
-    res.json({ success: true });
-  } else {
-    res.status(404).json({ error: 'Delivery not found' });
+// Get all pending orders (admin only)
+app.get('/api/pending-deliveries', adminAuth, async (req, res) => {
+  try {
+    const orders = await Order.find({ status: 'pending' }).sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Auto SMS reminder (cron every day 8AM)
-cron.schedule('0 8 * * *', () => {
-  // TODO: integrate SMS API (e.g. MSG91 or local gateway)
-  console.log('Daily SMS reminder sent to pending deliveries');
+// Get all orders (admin only)
+app.get('/api/orders', adminAuth, async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// Frontend proxy for Paystack initialize (optional)
-app.post('/api/initialize-payment', (req, res) => {
-  const { email, amount, cart, customerName, customerPhone, deliveryZone } = req.body;
-  const paystackPayload = {
-    email,
-    amount: amount * 100,
-    metadata: { cart: JSON.stringify(cart), customerName, customerPhone, deliveryZone }
-  };
-  Paystack.transaction.initialize(paystackPayload)
-    .then(response => res.json(response))
-    .catch(error => res.status(500).json({ error: error.message }));
+// Update delivery status (admin only)
+app.post('/api/update-delivery', adminAuth, async (req, res) => {
+  const { id, momoTxId, status } = req.body;
+  try {
+    const order = await Order.findByIdAndUpdate(
+      id,
+      { momoTxId, status: status || 'dispatched' },
+      { new: true }
+    );
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    // SMS customer on dispatch
+    if (status === 'dispatched') {
+      await sendSMS(
+        order.customerPhone,
+        `Hi ${order.customerName}! Your Amen+ order is on its way! MoMo Tx: ${momoTxId}. Thank you for shopping with us!`
+      );
+    }
+
+    res.json({ success: true, order });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ========== DAILY SMS REMINDER (8AM) ==========
+cron.schedule('0 8 * * *', async () => {
+  try {
+    const pendingOrders = await Order.find({ status: 'pending', smsSent: false });
+    for (const order of pendingOrders) {
+      await sendSMS(
+        order.customerPhone,
+        `Hi ${order.customerName}, your Amen+ order is being processed. We'll update you soon!`
+      );
+      await Order.findByIdAndUpdate(order._id, { smsSent: true });
+    }
+    console.log(`Reminder SMS sent to ${pendingOrders.length} customers`);
+  } catch (err) {
+    console.error('Cron error:', err.message);
+  }
 });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`MoMo for deliveries: ${MOMONUMBER}`);
 });
-
