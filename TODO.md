@@ -1,15 +1,9 @@
-# Cart System Update - Phase 1 (SMS Receipts, No Email)
+# Shop.html Update TODO
 
-**Status**: ✅ Completed
+- [x] Understand current and new shop.html content
+- [x] Create merge plan (new hero, Shirt/Hoodie/Cap/Accessory tabs, pre-order badges/text, API-only loading, no static products)
+- [x] Update shop.html with merged content (API fetch from /api/products, filter by category 'Shirt' etc., preserve UI/animations/skeletons)
+- [ ] Test page load (ensure backend running: cd backend && npm start)
+- [ ] Verify pre-order rendering (add isPreOrder:true, expectedDeliveryDate to a product in backend/deliveries.json or DB)
+- [ ] Complete task
 
-## Completed Steps:
-
-- [x] Modified `js/cart.js` checkout(): Removed email prompt, prompt only **full name** + **phone number**.
-- [x] Used placeholder email `order-${ref}@amenplus.gh` for Paystack requirement.
-- [x] Updated metadata to prioritize phone/name for SMS.
-- [x] Enhanced SMS modal text to clarify "SMS Receipt Confirmation Process".
-- [x] Tested compatibility (Paystack accepts placeholder email).
-
-**Next**: Phase 2 auto-delivery split (backend) or other tasks?
-
-**Test**: Add items to cart → Checkout → Enter name/phone → Paystack success → SMS modal (copy/send manual SMS to 0530379533).

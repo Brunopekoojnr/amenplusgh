@@ -1,3 +1,242 @@
+/* ========== FORCE DESKTOP VIEW ON MOBILE ========== */
+html, body {
+    min-width: 1200px !important;
+    width: 100%;
+    overflow-x: auto !important;
+}
+
+/* Allow horizontal scrolling on all devices */
+body {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide any mobile-specific collapsing */
+@media (max-width: 768px) {
+    html, body {
+        min-width: 1200px !important;
+    }
+    
+    /* Custom scrollbar for horizontal scrolling */
+    ::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--gold-accent, #D4AF37);
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--deep-brown, #5C3A2D);
+    }
+}
+
+/* ========== FORCE 4 COLUMNS ON ALL DEVICES ========== */
+
+/* Products Grid - 4 columns on desktop AND mobile */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+/* Featured products grid - same 4 columns */
+.featured-products .products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+    gap: 2rem;
+}
+
+/* Values Grid - 4 columns on all devices */
+.values-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
+    gap: 2rem;
+    overflow-x: auto;
+}
+
+/* Delivery Highlights - 3 columns on all devices */
+.delivery-highlights {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+    gap: 2rem;
+    overflow-x: auto;
+}
+
+/* Category Grid (shop page) - 4 columns */
+.category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+    gap: 2rem;
+    overflow-x: auto;
+}
+
+/* Team grid - keep 3 columns on desktop, but allow horizontal scroll on mobile */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Options grid - 4 columns */
+.options-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1.5rem;
+}
+
+/* Social buttons grid - 4 columns */
+.social-buttons-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1rem;
+}
+
+/* ========== OVERRIDE ALL MEDIA QUERIES THAT BREAK COLUMNS ========== */
+@media (max-width: 1200px) {
+    .products-grid,
+    .featured-products .products-grid,
+    .category-grid {
+        grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+        overflow-x: auto;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
+        overflow-x: auto;
+    }
+    
+    .delivery-highlights {
+        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .products-grid,
+    .featured-products .products-grid,
+    .category-grid {
+        grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+        overflow-x: auto;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
+        overflow-x: auto;
+    }
+    
+    .delivery-highlights {
+        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+        overflow-x: auto;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .social-buttons-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* FORCE 4 COLUMNS ON MOBILE WITH HORIZONTAL SCROLL */
+    .products-grid,
+    .featured-products .products-grid,
+    .category-grid {
+        grid-template-columns: repeat(4, minmax(260px, 1fr)) !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(4, minmax(230px, 1fr)) !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+    }
+    
+    .delivery-highlights {
+        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .social-buttons-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Make product cards not too small */
+    .product-card {
+        min-width: 250px;
+    }
+    
+    .value-card {
+        min-width: 220px;
+    }
+    
+    .highlight {
+        min-width: 270px;
+    }
+}
+
+/* ========== HORIZONTAL SCROLL CONTAINER HELPER ========== */
+.horizontal-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: var(--gold-accent);
+    border-radius: 10px;
+}
+
+/* Product card minimum width to prevent squishing */
+.product-card {
+    min-width: 240px;
+}
+
+.value-card {
+    min-width: 220px;
+}
+
+.highlight {
+    min-width: 260px;
+}
+
 /* ========== RESET & BASE STYLES ========== */
 * {
     margin: 0;
@@ -471,6 +710,7 @@ section {
 /* ========== HEADER STYLES ========== */
 .main-header {
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(92, 58, 45, 0.1);
     padding: 0.8rem 2rem;
@@ -780,6 +1020,8 @@ section {
     background: transparent;
     color: white;
     border: 2px solid var(--gold-accent);
+    -webkit-backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
@@ -1085,6 +1327,7 @@ section {
     border-radius: 50px;
     display: inline-block;
     border: 2px solid var(--gold-accent);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     position: relative;
     z-index: 2;
@@ -1353,6 +1596,7 @@ section {
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 30px;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(212, 175, 55, 0.3);
     min-width: 200px;
@@ -1801,6 +2045,7 @@ section {
     width: 100%;
     height: 100%;
     background-color: rgba(92, 58, 45, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -1814,6 +2059,8 @@ section {
     position: relative;
     box-shadow: 0 40px 80px rgba(0,0,0,0.4);
     border: 4px solid var(--gold-accent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .close-modal {
@@ -3404,6 +3651,7 @@ section {
     width: 100%;
     height: 100%;
     background-color: rgba(92, 58, 45, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
