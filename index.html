@@ -640,14 +640,19 @@
             line-height: 1.6;
         }
 
+        /* FIXED: Keep 4 columns on tablet */
         @media (max-width: 992px) {
-            .delivery-highlights,
+            .delivery-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
             .products-grid,
             .values-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(4, 1fr);
+                overflow-x: auto;
             }
         }
 
+        /* FIXED: Keep 4 columns on mobile with horizontal scroll */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -661,9 +666,18 @@
                 font-size: 1.4rem;
             }
             
-            .delivery-highlights,
+            .delivery-highlights {
+                grid-template-columns: 1fr;
+            }
+            
             .products-grid,
-            .values-grid,
+            .values-grid {
+                grid-template-columns: repeat(4, minmax(260px, 1fr));
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 1rem;
+            }
+            
             .impact-stats {
                 grid-template-columns: 1fr;
             }
@@ -686,6 +700,7 @@
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header class="main-header">
         <nav class="nav">
@@ -695,12 +710,12 @@
                 <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
             </a>
          <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="delivery.html">Delivery</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact & Team</a>
-</div>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="delivery.html">Delivery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact & Team</a>
+        </div>
             <div class="nav-icons">
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
             </div>
@@ -723,7 +738,7 @@
     <!-- Delivery Preview - Enhanced -->
     <section class="delivery-preview">
         <div class="preview-container">
-            <h2>🚚 Ghana-Wide Delivery</h2>
+            <h2><i class="fas fa-truck"></i> Ghana-Wide Delivery</h2>
             <p class="preview-subtitle">We deliver across Accra, Kasoa, Tema & Kumasi</p>
             
             <div class="delivery-highlights">
@@ -754,7 +769,7 @@
     <!-- Team Preview Section - Enhanced -->
     <section class="team-preview-home">
         <div class="preview-container">
-            <h2>👥 Meet Our Ghanaian Team</h2>
+            <h2><i class="fas fa-users"></i> Meet Our Ghanaian Team</h2>
             <p class="preview-subtitle">The passionate creators behind Amen+</p>
             
             <div class="team-mini">
@@ -948,20 +963,32 @@
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
     <script>
+        // Mobile menu toggle (ADDED)
+        const toggleBtn = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
         // Load featured products on home page
         document.addEventListener('DOMContentLoaded', function() {
             const featuredContainer = document.getElementById('featured-products');
-            if (featuredContainer && products && products.length > 0) {
-                // Show first 8 products (includes your 5 new shirts)
+            if (featuredContainer && typeof products !== 'undefined' && products && products.length > 0) {
+                // Show first 8 products
                 const featured = products.slice(0, 8);
                 featuredContainer.innerHTML = featured.map(product => `
                     <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-image-container">
+                            <img src="${product.image}" alt="${product.name}">
+                            ${product.preorder ? '<span class="product-badge" style="background: #ff6b35;">Pre-order</span>' : ''}
+                        </div>
                         <h3>${product.name}</h3>
                         <p class="price">₵${product.price.toLocaleString()}</p>
                         <div class="product-actions">
                             <a href="product.html?id=${product.id}" class="view-product">View Details</a>
-                            <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes[0]}')">
+                            <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes ? product.sizes[0] : 'M'}')">
                                 <i class="fas fa-shopping-bag"></i> Add
                             </button>
                         </div>
@@ -981,6 +1008,6 @@
             }
         }
     })();
-</script>
+    </script>
 </body>
 </html>

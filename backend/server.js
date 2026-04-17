@@ -1,187 +1,178 @@
+// server.js - Backend for Amen+ Orders
 const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv').config();
-const mongoose = require('mongoose');
-const Paystack = require('paystack')(process.env.PAYSTACK_SECRET_KEY);
-const cron = require('node-cron');
-const axios = require('axios');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-// ========== MIDDLEWARE ==========
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../')));
+app.use(express.static('.')); // Serve static files from current directory
 
-// ========== MONGODB CONNECTION ==========
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB error:', err));
+// ========== DATABASE SETUP ==========
+const db = new sqlite3.Database('./database.sqlite');
 
-// ========== ORDER SCHEMA ==========
-const orderSchema = new mongoose.Schema({
-  reference: { type: String, unique: true },
-  customerName: String,
-  customerPhone: String,
-  customerEmail: String,
-  items: Array,
-  total: Number,
-  deliveryZone: String,
-  status: { type: String, default: 'pending' },
-  momoTxId: String,
-  smsSent: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now }
-});
+// Create orders table if it doesn't exist
+db.run(`
+    CREATE TABLE IF NOT EXISTS orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_id TEXT UNIQUE,
+        customer_name TEXT,
+        customer_phone TEXT,
+        customer_email TEXT,
+        items TEXT,
+        subtotal REAL,
+        delivery_fee REAL,
+        total REAL,
+        delivery_zone TEXT,
+        delivery_area TEXT,
+        payment_ref TEXT,
+        status TEXT DEFAULT 'pending',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+`);
 
-const Order = mongoose.model('Order', orderSchema);
+// Create products table for inventory
+db.run(`
+    CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY,
+        product_id INTEGER,
+        product_name TEXT,
+        stock_quantity INTEGER DEFAULT 0,
+        reserved_quantity INTEGER DEFAULT 0
+    )
+`);
 
-// ========== ADMIN AUTH MIDDLEWARE ==========
-const adminAuth = (req, res, next) => {
-  if (req.headers['x-admin-key'] !== process.env.ADMIN_KEY) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  next();
-};
+console.log('✅ Database initialized');
 
-// ========== SMS HELPER (Arkesel) ==========
-const sendSMS = async (phone, message) => {
-  try {
-    await axios.get('https://sms.arkesel.com/sms/api', {
-      params: {
-        action: 'send-sms',
-        api_key: process.env.ARKESEL_API_KEY,
-        to: phone,
-        from: 'AmenPlus',
-        sms: message
-      }
-    });
-    console.log(`SMS sent to ${phone}`);
-  } catch (err) {
-    console.error('SMS failed:', err.message);
-  }
-};
+// ========== API ENDPOINTS ==========
 
-// ========== ROUTES ==========
+// 1. Save order after payment
+app.post('/api/order', (req, res) => {
+    const {
+        order_id,
+        customer_name,
+        customer_phone,
+        customer_email,
+        items,
+        subtotal,
+        delivery_fee,
+        total,
+        delivery_zone,
+        delivery_area,
+        payment_ref
+    } = req.body;
 
-// Initialize payment
-app.post('/api/initialize-payment', async (req, res) => {
-  const { email, amount, cart, customerName, customerPhone, deliveryZone } = req.body;
-  try {
-    const response = await Paystack.transaction.initialize({
-      email,
-      amount: amount * 100,
-      metadata: { customerName, customerPhone, deliveryZone, cart: JSON.stringify(cart) }
-    });
-    res.json(response);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Verify payment & save order
-app.post('/api/verify-payment', async (req, res) => {
-  const { reference } = req.body;
-  try {
-    const response = await Paystack.transaction.verify(reference);
-    if (response.data.status === 'success') {
-      const meta = response.data.metadata;
-
-      // Prevent duplicate orders
-      const existing = await Order.findOne({ reference });
-      if (existing) {
-        return res.json({ success: true, message: 'Order already exists' });
-      }
-
-      const order = await Order.create({
-        reference,
-        customerName: meta.customerName,
-        customerPhone: meta.customerPhone,
-        customerEmail: response.data.customer.email,
-        items: JSON.parse(meta.cart || '[]'),
-        total: response.data.amount / 100,
-        deliveryZone: meta.deliveryZone,
-      });
-
-      // Send confirmation SMS
-      await sendSMS(
-        meta.customerPhone,
-        `Hi ${meta.customerName}! Your Amen+ order of GHS ${order.total} has been confirmed. We'll contact you for delivery. Thank you!`
-      );
-
-      res.json({ success: true, message: 'Order confirmed!' });
-    } else {
-      res.status(400).json({ error: 'Payment not successful' });
+    // Validate required fields
+    if (!order_id || !customer_name || !customer_phone) {
+        return res.status(400).json({ 
+            success: false, 
+            message: 'Missing required fields' 
+        });
     }
-  } catch (error) {
-    res.status(500).json({ error: 'Verification failed', details: error.message });
-  }
-});
 
-// Get all pending orders (admin only)
-app.get('/api/pending-deliveries', adminAuth, async (req, res) => {
-  try {
-    const orders = await Order.find({ status: 'pending' }).sort({ createdAt: -1 });
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+    const itemsJson = JSON.stringify(items);
 
-// Get all orders (admin only)
-app.get('/api/orders', adminAuth, async (req, res) => {
-  try {
-    const orders = await Order.find().sort({ createdAt: -1 });
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Update delivery status (admin only)
-app.post('/api/update-delivery', adminAuth, async (req, res) => {
-  const { id, momoTxId, status } = req.body;
-  try {
-    const order = await Order.findByIdAndUpdate(
-      id,
-      { momoTxId, status: status || 'dispatched' },
-      { new: true }
+    db.run(
+        `INSERT INTO orders (
+            order_id, customer_name, customer_phone, customer_email,
+            items, subtotal, delivery_fee, total, delivery_zone, delivery_area, payment_ref
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [order_id, customer_name, customer_phone, customer_email, itemsJson, 
+         subtotal, delivery_fee, total, delivery_zone, delivery_area, payment_ref],
+        function(err) {
+            if (err) {
+                console.error('Error saving order:', err);
+                return res.status(500).json({ 
+                    success: false, 
+                    message: err.message 
+                });
+            }
+            
+            console.log(`✅ Order saved: ${order_id}`);
+            
+            // Send SMS notification (you'll set this up later)
+            // sendSMS('0530379533', `New order from ${customer_name}: ₵${total}`);
+            
+            res.json({ 
+                success: true, 
+                message: 'Order saved successfully',
+                order_id: order_id
+            });
+        }
     );
-    if (!order) return res.status(404).json({ error: 'Order not found' });
-
-    // SMS customer on dispatch
-    if (status === 'dispatched') {
-      await sendSMS(
-        order.customerPhone,
-        `Hi ${order.customerName}! Your Amen+ order is on its way! MoMo Tx: ${momoTxId}. Thank you for shopping with us!`
-      );
-    }
-
-    res.json({ success: true, order });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 });
 
-// ========== DAILY SMS REMINDER (8AM) ==========
-cron.schedule('0 8 * * *', async () => {
-  try {
-    const pendingOrders = await Order.find({ status: 'pending', smsSent: false });
-    for (const order of pendingOrders) {
-      await sendSMS(
-        order.customerPhone,
-        `Hi ${order.customerName}, your Amen+ order is being processed. We'll update you soon!`
-      );
-      await Order.findByIdAndUpdate(order._id, { smsSent: true });
-    }
-    console.log(`Reminder SMS sent to ${pendingOrders.length} customers`);
-  } catch (err) {
-    console.error('Cron error:', err.message);
-  }
+// 2. Get all orders (for admin panel)
+app.get('/api/orders', (req, res) => {
+    db.all('SELECT * FROM orders ORDER BY created_at DESC', [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: err.message });
+        }
+        res.json({ success: true, orders: rows });
+    });
 });
 
+// 3. Get single order by ID
+app.get('/api/order/:order_id', (req, res) => {
+    const { order_id } = req.params;
+    db.get('SELECT * FROM orders WHERE order_id = ?', [order_id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: err.message });
+        }
+        res.json({ success: true, order: row });
+    });
+});
+
+// 4. Update order status
+app.put('/api/order/:order_id/status', (req, res) => {
+    const { order_id } = req.params;
+    const { status } = req.body;
+    
+    db.run('UPDATE orders SET status = ? WHERE order_id = ?', [status, order_id], function(err) {
+        if (err) {
+            return res.status(500).json({ success: false, message: err.message });
+        }
+        res.json({ success: true, message: 'Status updated' });
+    });
+});
+
+// 5. Update product stock (for inventory management)
+app.put('/api/product/:product_id/stock', (req, res) => {
+    const { product_id } = req.params;
+    const { stock_quantity } = req.body;
+    
+    db.run(
+        `INSERT INTO products (product_id, stock_quantity) 
+         VALUES (?, ?) 
+         ON CONFLICT(product_id) DO UPDATE SET stock_quantity = excluded.stock_quantity`,
+        [product_id, stock_quantity],
+        function(err) {
+            if (err) {
+                return res.status(500).json({ success: false, message: err.message });
+            }
+            res.json({ success: true, message: 'Stock updated' });
+        }
+    );
+});
+
+// 6. Get product stock
+app.get('/api/product/:product_id/stock', (req, res) => {
+    const { product_id } = req.params;
+    db.get('SELECT * FROM products WHERE product_id = ?', [product_id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: err.message });
+        }
+        res.json({ success: true, stock: row || { stock_quantity: 0 } });
+    });
+});
+
+// ========== START SERVER ==========
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+    console.log(`📦 Admin panel: http://localhost:${PORT}/admin.html`);
 });

@@ -703,7 +703,43 @@ function getProductById(id) {
     return null;
 }
 
-// Make functions globally available
+// ========== BACKEND ORDER SAVING (ADDED - NO EXISTING CODE CHANGED) ==========
+// API endpoint for saving orders (change to your actual server URL when deployed)
+const API_BASE_URL = 'http://localhost:3000/api';
+
+// Function to save order to backend
+function saveOrderToBackend(orderData) {
+    // This sends the order to your Node.js backend
+    fetch(`${API_BASE_URL}/order`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('✅ Order saved to database:', data.order_id);
+        } else {
+            console.error('Failed to save order:', data.message);
+        }
+    })
+    .catch(error => {
+        // Silently fail - doesn't affect customer experience
+        console.warn('Backend not available. Order saved locally only.', error);
+    });
+}
+
+// Note: To automatically save orders when payment succeeds,
+// add this line inside the Paystack callback where you have orderDetails:
+// saveOrderToBackend(orderDetails);
+
+// For now, you need to manually add the saveOrderToBackend call in the callback above.
+// Add this line right after where orderDetails is created:
+// saveOrderToBackend(orderDetails);
+
+// ========== MAKE FUNCTIONS GLOBALLY AVAILABLE ==========
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.updateQuantity = updateQuantity;
@@ -712,3 +748,4 @@ window.selectSpecificArea = selectSpecificArea;
 window.openCart = openCart;
 window.closeCartSidebar = closeCartSidebar;
 window.closeSMSModal = closeSMSModal;
+window.saveOrderToBackend = saveOrderToBackend;
