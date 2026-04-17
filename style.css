@@ -1,206 +1,82 @@
-/* ========== FORCE DESKTOP VIEW ON MOBILE ========== */
-html, body {
-    min-width: 1200px !important;
-    width: 100%;
-    overflow-x: auto !important;
+/* ========== BRAND COLOR OVERRIDE ========== */
+/* Remove ALL purple - Replace with Deep Brown + Gold */
+
+:root {
+    --deep-brown: #5C3A2D !important;
+    --gold-accent: #D4AF37 !important;
+    --coffee-brown: #8B6B4D !important;
+    --cream-white: #FDF6F0 !important;
+    --light-cream: #FAF0E6 !important;
 }
 
-/* Allow horizontal scrolling on all devices */
-body {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+/* Force brand colors everywhere */
+* {
+    -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2) !important;
 }
 
-/* Hide any mobile-specific collapsing */
-@media (max-width: 768px) {
-    html, body {
-        min-width: 1200px !important;
-    }
-    
-    /* Custom scrollbar for horizontal scrolling */
-    ::-webkit-scrollbar {
-        height: 8px;
-        width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: var(--gold-accent, #D4AF37);
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: var(--deep-brown, #5C3A2D);
-    }
+/* Fix iOS purple link color on crosses and symbols */
+*::before,
+*::after {
+    color: inherit !important;
+    text-decoration: none !important;
+    pointer-events: none !important;
 }
 
-/* ========== FORCE 4 COLUMNS ON ALL DEVICES ========== */
-
-/* Products Grid - 4 columns on desktop AND mobile */
-.products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-    gap: 2rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
+/* Override any purple that appears on iOS */
+a, button, [role="button"] {
+    -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2) !important;
 }
 
-/* Featured products grid - same 4 columns */
-.featured-products .products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-    gap: 2rem;
+/* Force cross decorations to be gold NEVER purple */
+.hero::before,
+.hero::after,
+.delivery-preview::before,
+.team-preview-home::before,
+.value-card::before,
+.impact-section::before,
+.impact-section::after,
+.zone-card::before,
+.product-card::before,
+.meaning-container::before,
+.meaning-container::after,
+.team-section::before,
+.team-card::after,
+.footer::before,
+.footer::after,
+.shop-hero::before,
+.shop-hero::after,
+.contact-hero::before,
+.contact-hero::after,
+.delivery-hero::before,
+.delivery-hero::after,
+.office-card::before,
+.option-card::before,
+.category-header::before {
+    color: var(--gold-accent) !important;
+    -webkit-text-fill-color: var(--gold-accent) !important;
+    pointer-events: none !important;
+    text-decoration: none !important;
+    background: none !important;
+} 
+
+/* Fix iOS Purple Cross/Emoji Links */
+.cross-decoration, 
+.hero::before, .hero::after, 
+.delivery-preview::before, 
+.value-card::before, 
+.zone-card::before, 
+.meaning-container::before, .meaning-container::after, 
+.team-section::before, 
+.footer::before, .footer::after {
+    -webkit-text-fill-color: var(--gold-accent) !important;
+    color: var(--gold-accent) !important;
+    pointer-events: none !important; /* This stops iOS from making them links */
+    text-decoration: none !important;
 }
 
-/* Values Grid - 4 columns on all devices */
-.values-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
-    gap: 2rem;
-    overflow-x: auto;
-}
-
-/* Delivery Highlights - 3 columns on all devices */
-.delivery-highlights {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
-    gap: 2rem;
-    overflow-x: auto;
-}
-
-/* Category Grid (shop page) - 4 columns */
-.category-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-    gap: 2rem;
-    overflow-x: auto;
-}
-
-/* Team grid - keep 3 columns on desktop, but allow horizontal scroll on mobile */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-/* Options grid - 4 columns */
-.options-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 1.5rem;
-}
-
-/* Social buttons grid - 4 columns */
-.social-buttons-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 1rem;
-}
-
-/* ========== OVERRIDE ALL MEDIA QUERIES THAT BREAK COLUMNS ========== */
-@media (max-width: 1200px) {
-    .products-grid,
-    .featured-products .products-grid,
-    .category-grid {
-        grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-        overflow-x: auto;
-    }
-    
-    .values-grid {
-        grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
-        overflow-x: auto;
-    }
-    
-    .delivery-highlights {
-        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
-        overflow-x: auto;
-    }
-}
-
-@media (max-width: 992px) {
-    .products-grid,
-    .featured-products .products-grid,
-    .category-grid {
-        grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-        overflow-x: auto;
-    }
-    
-    .values-grid {
-        grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
-        overflow-x: auto;
-    }
-    
-    .delivery-highlights {
-        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
-        overflow-x: auto;
-    }
-    
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .options-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-    
-    .social-buttons-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-
-@media (max-width: 768px) {
-    /* FORCE 4 COLUMNS ON MOBILE WITH HORIZONTAL SCROLL */
-    .products-grid,
-    .featured-products .products-grid,
-    .category-grid {
-        grid-template-columns: repeat(4, minmax(260px, 1fr)) !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
-    }
-    
-    .values-grid {
-        grid-template-columns: repeat(4, minmax(230px, 1fr)) !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
-    }
-    
-    .delivery-highlights {
-        grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
-    }
-    
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .options-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .social-buttons-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    /* Make product cards not too small */
-    .product-card {
-        min-width: 250px;
-    }
-    
-    .value-card {
-        min-width: 220px;
-    }
-    
-    .highlight {
-        min-width: 270px;
-    }
+/* Prevent accidental zooming on inputs */
+input, select, textarea, button {
+    font-size: 16px !important; /* iOS stops zooming if font is 16px */
 }
 
 /* ========== HORIZONTAL SCROLL CONTAINER HELPER ========== */
@@ -1020,7 +896,6 @@ section {
     background: transparent;
     color: white;
     border: 2px solid var(--gold-accent);
-    -webkit-backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
@@ -2465,7 +2340,7 @@ section {
     transform: rotate(15deg);
 }
 
-.option-card.brand { border-top-color: var(--gold-accent); }
+.option-card.{ border-top-color: var(--gold-accent); }
 .option-card.customer-service { border-top-color: #25D366; }
 .option-card.tech { border-top-color: var(--deep-brown); }
 .option-card.general { border-top-color: var(--coffee-brown); }
