@@ -1,3 +1,8 @@
+// ========================================
+// AMEN+ TEAM BIOS DATA
+// Complete team member profiles
+// ========================================
+
 const teamBios = {
     richmond: {
         name: "Richmond Appiah",
@@ -109,5 +114,23 @@ const teamBios = {
         handles: "Customer Support, Order Assistance, Feedback",
         image: "assets/Team/Sewornu_Lawrencia-Customer_Service_Assistant.png",
         whatsapp: "233553067287"
+    },
+
+    joy: {
+        name: "Joy Adevu",
+        role: "Digital Products & Systems Manager",
+        bio: "Driving digital innovation and seamless systems that power Amen+ every day. Passionate about leveraging technology to create exceptional customer experiences and streamline operations.",
+        funFact: "I can automate almost any repetitive task! 🤖",
+        phone: "+233 55 000 0000",
+        email: "joy@amenplus.com",
+        handles: "Digital Products, Systems Management, Tech Innovation",
+        image: "assets/Team/Joy_Adevu_Digital products and systems Manager .png",
+        whatsapp: "233550000000"
     }
 };
+
+// Export for browser
+if (typeof window !== 'undefined') {
+    window.teamBios = teamBios;
+    console.log('✅ Team Bios loaded:', Object.keys(teamBios).length, 'team members');
+}

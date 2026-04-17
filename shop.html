@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+    <meta name="viewport" content="width=1200, initial-scale=0.75, user-scalable=yes, maximum-scale=2.0">
+    <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <title>Amen+ | Shop Collection</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -292,6 +292,11 @@
             border: 1px solid var(--deep-brown);
         }
 
+        .preorder-badge {
+            background: #ff6b35;
+            color: white;
+        }
+
         .product-card h3 {
             padding: 1.2rem 1rem 0.5rem;
             font-size: 1.2rem;
@@ -433,37 +438,29 @@
             .shop-hero h1 {
                 font-size: 2.5rem;
             }
-
             .shop-hero p {
                 font-size: 1.1rem;
             }
-
             .category-grid {
                 grid-template-columns: 1fr;
             }
-
             .category-header h2 {
                 font-size: 1.8rem;
             }
-
             .category-header i {
                 width: 50px;
                 height: 50px;
                 font-size: 1.8rem;
             }
-
             .product-actions {
                 flex-direction: column;
             }
-
             .view-product, .quick-add {
                 width: 100%;
             }
-
             .category-tabs {
                 gap: 10px;
             }
-
             .category-tab {
                 padding: 10px 20px;
                 font-size: 0.9rem;
@@ -487,40 +484,27 @@
             </div>
             <div class="nav-icons">
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
-                <!-- Add this inside your nav, after nav-icons -->
-<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" title="Toggle mobile menu" aria-label="Toggle mobile menu">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
+                <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" title="Toggle mobile menu" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
     </header>
 
     <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" type="button" title="Close menu" onclick="closeMobileMenu()">
-        <i class="fas fa-times"></i>
-    </button>
-    <a href="index.html" onclick="closeMobileMenu()">
-        <i class="fas fa-home"></i> Home
-    </a>
-    <a href="shop.html" onclick="closeMobileMenu()">
-        <i class="fas fa-store"></i> Shop
-    </a>
-    <a href="delivery.html" onclick="closeMobileMenu()">
-        <i class="fas fa-truck"></i> Delivery
-    </a>
-    <a href="about.html" onclick="closeMobileMenu()">
-        <i class="fas fa-book-open"></i> About
-    </a>
-    <a href="contact.html" onclick="closeMobileMenu()">
-        <i class="fas fa-address-book"></i> Contact & Team
-    </a>
-    <a href="https://wa.me/233201686831" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-</div>
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" type="button" title="Close menu" onclick="closeMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html" onclick="closeMobileMenu()"><i class="fas fa-home"></i> Home</a>
+        <a href="shop.html" onclick="closeMobileMenu()"><i class="fas fa-store"></i> Shop</a>
+        <a href="delivery.html" onclick="closeMobileMenu()"><i class="fas fa-truck"></i> Delivery</a>
+        <a href="about.html" onclick="closeMobileMenu()"><i class="fas fa-book-open"></i> About</a>
+        <a href="contact.html" onclick="closeMobileMenu()"><i class="fas fa-address-book"></i> Contact & Team</a>
+        <a href="https://wa.me/233201686831" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
 
     <!-- Shop Hero -->
     <section class="shop-hero">
@@ -532,16 +516,14 @@
     </section>
 
     <!-- Category Tabs -->
-   <div class="category-tabs">
-    <button class="category-tab active" onclick="filterProducts('all')">All Pre-Orders</button>
-    <button class="category-tab" onclick="filterProducts('Shirt')">Shirts & Tees</button>
-    <button class="category-tab" onclick="filterProducts('Accessory')">Accessories</button>
-</div>
+    <div class="category-tabs">
+        <button class="category-tab active" data-category="all">All Pre-Orders</button>
+        <button class="category-tab" data-category="Shirt">Shirts & Tees</button>
+        <button class="category-tab" data-category="Accessory">Accessories</button>
+    </div>
 
     <!-- Products Container -->
-    <section class="products-section" id="products-section">
-        <!-- Products will be loaded by JavaScript -->
-    </section>
+    <section class="products-section" id="products-section"></section>
 
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cart-sidebar">
@@ -549,34 +531,17 @@
             <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
             <button class="close-cart" id="close-cart">&times;</button>
         </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Cart items will be added here -->
-        </div>
+        <div class="cart-items" id="cart-items"></div>
         <div class="cart-footer">
             <div class="cart-summary">
-                <div class="cart-subtotal">
-                    <span>Subtotal:</span>
-                    <span id="cart-subtotal">₵0</span>
-                </div>
-                <div class="delivery-fee-line">
-                    <span>Delivery Fee:</span>
-                    <span id="delivery-fee">₵0</span>
-                </div>
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="grand-total">₵0</span>
-                </div>
+                <div class="cart-subtotal"><span>Subtotal:</span><span id="cart-subtotal">₵0</span></div>
+                <div class="delivery-fee-line"><span>Delivery Fee:</span><span id="delivery-fee">₵0</span></div>
+                <div class="cart-total"><span>Total:</span><span id="grand-total">₵0</span></div>
             </div>
-            <button class="checkout-btn" id="checkout-btn">
-                <i class="fas fa-lock"></i> Checkout with Paystack
-            </button>
+            <button class="checkout-btn" id="checkout-btn"><i class="fas fa-lock"></i> Checkout with Paystack</button>
             <div class="cart-actions">
-                <a href="shop.html" class="continue-shopping">
-                    <i class="fas fa-arrow-left"></i> Continue Shopping
-                </a>
-                <a href="delivery.html" class="view-delivery-info">
-                    <i class="fas fa-truck"></i> Delivery Info
-                </a>
+                <a href="shop.html" class="continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+                <a href="delivery.html" class="view-delivery-info"><i class="fas fa-truck"></i> Delivery Info</a>
             </div>
         </div>
     </div>
@@ -588,11 +553,8 @@
             <div class="footer-section">
                 <h3>Amen<span class="plus">+</span></h3>
                 <p class="brand-essence">At the intersection of faith, culture, and impact—using fashion as a modern-day message board for the Gospel.</p>
-                <div class="impact-promise">
-                    <p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p>
-                </div>
+                <div class="impact-promise"><p><i class="fas fa-check-circle"></i> <strong>Impact Promise:</strong> Every purchase feeds the homeless in our communities.</p></div>
             </div>
-            
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <a href="shop.html"><i class="fas fa-store"></i> Shop Collection</a>
@@ -600,7 +562,6 @@
                 <a href="delivery.html"><i class="fas fa-truck"></i> Delivery Info</a>
                 <a href="contact.html"><i class="fas fa-address-book"></i> Contact & Team</a>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <div class="contact-info">
@@ -611,15 +572,13 @@
                     <p><i class="fas fa-envelope"></i> <a href="mailto:amenplusgh@gmail.com">amenplusgh@gmail.com</a></p>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/amenplusgh" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/amenplusgh" target="_blank" title="X (Twitter)"><i <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://wa.me/233201686831" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/amenplusgh" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/amenplusgh" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/share/1CDQ6CGcPi/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/233201686831" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 Amen+. Wear Your Amen. All rights reserved.</p>
             <p class="brand-tags">Faith-Driven Fashion | Ghana Made | Community Impact</p>
@@ -640,22 +599,21 @@
     <script>
         // Shop page JavaScript with categories
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Shop page loaded with categories');
+            console.log('Shop page loaded');
             
             const productsSection = document.getElementById('products-section');
             const categoryTabs = document.querySelectorAll('.category-tab');
-            let currentCategory = 'all';
             
             if (!productsSection) {
                 console.error('Products section not found!');
                 return;
             }
             
-            if (!products || !Array.isArray(products)) {
+            if (typeof products === 'undefined' || !products || products.length === 0) {
                 console.error('Products array not found!');
                 productsSection.innerHTML = `
-                    <div class="no-products">
-                        <i class="fas fa-tshirt"></i>
+                    <div class="empty-category">
+                        <i class="fas fa-box-open"></i>
                         <h3>No products available</h3>
                         <p>Check back soon for our latest collection</p>
                     </div>
@@ -665,14 +623,11 @@
             
             console.log(`Found ${products.length} products`);
             
-            // Function to render products by category
             function renderProducts(category) {
                 let filteredProducts = products;
                 
                 if (category !== 'all') {
-                    filteredProducts = products.filter(product => 
-                        product.category && product.category.toLowerCase() === category
-                    );
+                    filteredProducts = products.filter(product => product.category === category);
                 }
                 
                 if (filteredProducts.length === 0) {
@@ -681,76 +636,57 @@
                             <i class="fas fa-box-open"></i>
                             <h3>No products in this category yet</h3>
                             <p>Check back soon or browse other categories</p>
-                            <button class="btn-primary" onclick="document.querySelector('[data-category=\\'all\\']').click()">
-                                View All Products
-                            </button>
+                            <button class="btn-primary" onclick="document.querySelector('[data-category=\\'all\\']').click()">View All Products</button>
                         </div>
                     `;
                     return;
                 }
                 
-                // Group products by subcategory
-                const groupedProducts = {};
+                // Group products by subCategory
+                const grouped = {
+                    statement: { title: "Statement Shirts", icon: "fa-tshirt", items: [] },
+                    tees: { title: "Essential Tees", icon: "fa-tshirt", items: [] },
+                    caps: { title: "Signature Caps", icon: "fa-hat-cowboy", items: [] },
+                    totes: { title: "Carry Totes", icon: "fa-bag-shopping", items: [] }
+                };
                 
                 filteredProducts.forEach(product => {
-                    const subCategory = product.subCategory || 'general';
-                    if (!groupedProducts[subCategory]) {
-                        groupedProducts[subCategory] = [];
+                    const sub = product.subCategory;
+                    if (grouped[sub]) {
+                        grouped[sub].items.push(product);
                     }
-                    groupedProducts[subCategory].push(product);
                 });
                 
                 let html = '';
                 
-                // Render each subcategory
-                for (const [subCategory, items] of Object.entries(groupedProducts)) {
-                    const categoryTitle = subCategory.charAt(0).toUpperCase() + subCategory.slice(1);
-                    
-                    html += `
-                        <div class="category-section">
-                            <div class="category-header">
-                                <i class="fas fa-${category === 'male' ? 'male' : category === 'female' ? 'female' : category === 'children' ? 'child' : 'tshirt'}"></i>
-                                <h2>${categoryTitle}</h2>
+                for (const [key, group] of Object.entries(grouped)) {
+                    if (group.items.length > 0) {
+                        html += `
+                            <div class="category-section">
+                                <div class="category-header">
+                                    <i class="fas ${group.icon}"></i>
+                                    <h2>${group.title}</h2>
+                                </div>
+                                <div class="category-grid">
+                                    ${group.items.map(product => `
+                                        <div class="product-card">
+                                            <div class="product-image-container">
+                                                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Product'">
+                                                <span class="product-badge preorder-badge">Pre-order</span>
+                                            </div>
+                                            <h3>${product.name}</h3>
+                                            <p class="product-description">${product.description.substring(0, 70)}...</p>
+                                            <p class="price">₵${product.price.toLocaleString()}</p>
+                                            <div class="product-actions">
+                                                <a href="product.html?id=${product.id}" class="view-product"><i class="fas fa-eye"></i> Details</a>
+                                                <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes[0]}')"><i class="fas fa-shopping-bag"></i> Pre-order</button>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
-                            <div class="category-grid">
-                                ${items.map(product => `
-                                    <div class="product-card">
-                                        <div class="product-image-container">
-                                            <img src="${product.image}" 
-                                                 alt="${product.name}" 
-                                                 loading="lazy"
-                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400?text=Product'; this.classList.add('placeholder-image')">
-                                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-                                            ${product.originalPrice ? `<span class="product-badge" style="background: #e74c3c; color: white; left: auto; right: 15px;">Sale</span>` : ''}
-                                        </div>
-                                        <h3>${product.name}</h3>
-                                        <p class="product-description">${product.description ? product.description.substring(0, 60) + '...' : 'Premium faith-inspired apparel'}</p>
-                                        <p class="price">
-                                            ${product.originalPrice ? `
-                                                <span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 8px;">₵${product.originalPrice}</span>
-                                            ` : ''}
-                                            ₵${product.price.toLocaleString()}
-                                        </p>
-                                        <div class="product-actions">
-                                            <a href="product.html?id=${product.id}" class="view-product">
-                                                <i class="fas fa-eye"></i> Details
-                                            </a>
-                                            <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes ? product.sizes[0] : 'M'}')">
-                                                <i class="fas fa-shopping-bag"></i> Add
-                                            </button>
-                                        </div>
-                                        ${product.colors && product.colors.length > 1 ? `
-                                        <div class="color-options">
-                                            ${product.colors.map(color => `
-                                                <span class="color-dot" style="background-color: ${color.toLowerCase()};" title="${color}"></span>
-                                            `).join('')}
-                                        </div>
-                                        ` : ''}
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
+                        `;
+                    }
                 }
                 
                 productsSection.innerHTML = html;
@@ -759,79 +695,37 @@
             // Initial render
             renderProducts('all');
             
-            // Add click handlers to category tabs
+            // Add click handlers
             categoryTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
                     categoryTabs.forEach(t => t.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
                     this.classList.add('active');
-                    
-                    // Get category
-                    const category = this.dataset.category;
-                    currentCategory = category;
-                    
-                    // Render products for selected category
-                    renderProducts(category);
+                    renderProducts(this.dataset.category);
                 });
             });
             
-            // Update cart count
-            if (typeof updateCartCount === 'function') {
-                updateCartCount();
-            }
+            if (typeof updateCartCount === 'function') updateCartCount();
         });
         
-        // Notification function
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-                <span>${message}</span>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Show notification
-            setTimeout(() => notification.classList.add('show'), 10);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger');
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showNotification(message, type) {
+            console.log(message);
         }
     </script>
-    <script>
-    // Force desktop view on mobile - set zoom to show full width
-    (function() {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Set viewport to show full 1200px width
-            const viewport = document.querySelector('meta[name=viewport]');
-            if (viewport) {
-                viewport.setAttribute('content', 'width=1200, initial-scale=0.7, user-scalable=yes');
-            }
-        }
-    })();
-</script>
-<script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger');
-    menu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
-}
-
-function closeMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger');
-    menu.classList.remove('active');
-    hamburger.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-</script>
 </body>
 </html>

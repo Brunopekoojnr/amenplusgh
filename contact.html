@@ -241,6 +241,7 @@
         .team-card:nth-child(8) { animation-delay: 0.45s; }
         .team-card:nth-child(9) { animation-delay: 0.5s; }
         .team-card:nth-child(10) { animation-delay: 0.55s; }
+        .team-card:nth-child(11) { animation-delay: 0.6s; }
 
         .team-card::after {
             content: "✝";
@@ -1314,27 +1315,24 @@
                     <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-        </div>
 
-        <div class="team-card">
-    <div class="team-image">
-        <img src="assets/Team/Joy_Adevu_Digital products and systems Manager .png" 
-             alt="Joy Adevu" 
-             onerror="this.src='https://via.placeholder.com/300x300/5C3A2D/D4AF37?text=Joy+Adevu'">
-    </div>
-    <div class="team-info">
-        <h3>Joy Adevu</h3>
-        <p class="team-role">Digital Products & Systems Manager</p>
-        <p class="team-bio">Driving digital innovation and seamless systems that power Amen+ every day.</p>
-        <div class="team-contact">
-            <p><i class="fab fa-whatsapp"></i> Available via WhatsApp</p>
-            <p><i class="fas fa-envelope"></i> joy@amenplus.gh</p>
+            <!-- Joy Adevu - Digital Products & Systems Manager (NEW) -->
+            <div class="team-card" onclick="openTeamModal('joy')">
+                <div class="team-image">
+                    <img src="assets/Team/Joy_Adevu_Digital products and systems Manager .png" alt="Joy Adevu - Digital Products & Systems Manager">
+                </div>
+                <div class="team-info">
+                    <h3>Joy Adevu</h3>
+                    <p class="team-role">Digital Products & Systems Manager</p>
+                    <p class="team-bio">Driving digital innovation and seamless systems that power Amen+ every day.</p>
+                    <div class="team-contact">
+                        <p><i class="fas fa-phone"></i> +233 55 000 0000</p>
+                        <p><i class="fas fa-envelope"></i> joy@amenplus.com</p>
+                    </div>
+                    <button class="view-profile-btn">View Profile <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
         </div>
-        <button class="view-profile-btn">
-            <i class="fas fa-user"></i> View Profile
-        </button>
-    </div>
-</div>
     </section>
 
     <!-- Contact Options - BUTTON CARDS -->
@@ -1709,6 +1707,18 @@
                 handles: "Customer Support, Order Assistance, Feedback",
                 image: "assets/Team/Sewornu_Lawrencia-Customer_Service_Assistant.png",
                 whatsapp: "233553067287"
+            },
+            // NEW TEAM MEMBER: JOY ADEVU
+            joy: {
+                name: "Joy Adevu",
+                role: "Digital Products & Systems Manager",
+                bio: "Driving digital innovation and seamless systems that power Amen+ every day. Passionate about leveraging technology to create exceptional customer experiences and streamline operations.",
+                funFact: "I can automate almost any repetitive task! 🤖",
+                phone: "+233 55 000 0000",
+                email: "joy@amenplus.com",
+                handles: "Digital Products, Systems Management, Tech Innovation",
+                image: "assets/Team/Joy_Adevu_Digital products and systems Manager .png",
+                whatsapp: "233550000000"
             }
         };
 
@@ -1800,7 +1810,8 @@
             }
         }
     })();
-</script><script>
+</script>
+<script>
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger');

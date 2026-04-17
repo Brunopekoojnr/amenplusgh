@@ -1,18 +1,18 @@
 // ========================================
-// AMEN+ CROSSROAD EDITION
-// PRE-ORDER LAUNCH COLLECTION
+// AMEN+ CROSSROAD COLLECTION
+// COMPLETE PRE-ORDER LAUNCH CATALOG
 // ========================================
 
 const products = [
+  // ============ STATEMENT SHIRTS (PRE-ORDER) ============
   {
     id: 1,
-    name: "Crossroad Statement Shirt",
+    name: "Crossroad Statement Shirt - Brown",
     price: 200,
-    category: "shirts",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Brown"],
+    category: "Shirt",
+    subCategory: "statement",
+    sizes: ["S", "M", "L", "XL", "2XL"],
     image: "assets/images/IMG_1786.JPG.jpeg",
-    hoverImage: "assets/images/IMG_1787.JPG.jpeg",
     gallery: [
       "assets/images/IMG_1786.JPG.jpeg",
       "assets/images/IMG_1787.JPG.jpeg",
@@ -20,139 +20,175 @@ const products = [
       "assets/images/IMG_1789.JPG.jpeg"
     ],
     description: "At every crossroad, a choice is made. This piece represents the decision to stand firm in Christ—bold in faith, clear in purpose, and unapologetic in identity.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Bold Statement Design",
-      "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    badge: "PRE-ORDER",
-    rating: 5.0,
-    reviewCount: 0,
-    inStock: true,
-    isPreOrder: true,
-    expectedDeliveryDate: "2026-05-15",
-    stockQuantity: 100,
-    tags: ["preorder", "shirt", "statement", "crossroads"]
+    preorder: true,
+    badge: "Pre-order"
   },
   {
     id: 2,
-    name: "Crossroad Essential Tee",
-    price: 150,
-    category: "shirts",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Off-White"],
-    image: "assets/images/IMG_1790.JPG.jpeg",
-    hoverImage: "assets/images/IMG_1791.JPG.jpeg",
+    name: "Crossroad Statement Shirt - Off-White",
+    price: 200,
+    category: "Shirt",
+    subCategory: "statement",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1810.JPG.jpeg",
     gallery: [
-      "assets/images/IMG_1790.JPG.jpeg",
-      "assets/images/IMG_1791.JPG.jpeg",
-      "assets/images/IMG_1792.JPG.jpeg",
-      "assets/images/IMG_1793.JPG.jpeg"
-    ],
-    description: "Everyday wear, eternal message. The Crossroad Tee is a reminder that no matter the path, God is at the center of it all.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Everyday Comfort Fit",
-      "Preshrunk Fabric",
-      "Soft Touch Finish",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    badge: "PRE-ORDER",
-    rating: 5.0,
-    reviewCount: 0,
-    inStock: true,
-    isPreOrder: true,
-    expectedDeliveryDate: "2026-05-15",
-    stockQuantity: 100,
-    tags: ["preorder", "tee", "essential", "crossroads"]
-  },
-  {
-    id: 3,
-    name: "Crossroad Signature Cap",
-    price: 100,
-    category: "accessories",
-    sizes: ["One Size"],
-    colors: ["Brown"],
-    image: "assets/images/IMG_1800.JPG.jpeg",
-    hoverImage: "assets/images/IMG_1801.JPG.jpeg",
-    gallery: [
-      "assets/images/IMG_1800.JPG.jpeg",
-      "assets/images/IMG_1801.JPG.jpeg",
-      "assets/images/IMG_1802.JPG.jpeg",
-      "assets/images/IMG_1803.JPG.jpeg"
-    ],
-    description: "More than an accessory—it's a statement. The Crossroad Cap represents a life led by faith, even in the smallest details.",
-    features: [
-      "Premium Cotton Twill",
-      "Embroidered Crossroad Design",
-      "Adjustable Strap",
-      "Pre-curved Visor",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Spot clean only",
-      "Do not machine wash",
-      "Air dry"
-    ],
-    badge: "PRE-ORDER",
-    rating: 5.0,
-    reviewCount: 0,
-    inStock: true,
-    isPreOrder: true,
-    expectedDeliveryDate: "2026-05-15",
-    stockQuantity: 100,
-    tags: ["preorder", "cap", "signature", "crossroads"]
-  },
-  {
-    id: 4,
-    name: "Crossroad Carry Tote",
-    price: 100,
-    category: "accessories",
-    sizes: ["One Size"],
-    colors: ["Natural"],
-    image: "assets/images/IMG_1809.JPG.jpeg",
-    hoverImage: "assets/images/IMG_1810.JPG.jpeg",
-    gallery: [
-      "assets/images/IMG_1809.JPG.jpeg",
       "assets/images/IMG_1810.JPG.jpeg",
       "assets/images/IMG_1811.JPG.jpeg",
       "assets/images/IMG_1812.JPG.jpeg"
     ],
+    description: "The signature Crossroad Statement Shirt in off-white. A bold declaration of faith for those who walk in purpose.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+
+  // ============ ESSENTIAL TEES (PRE-ORDER) ============
+  {
+    id: 3,
+    name: "Crossroad Essential Tee - Style 1",
+    price: 150,
+    category: "Shirt",
+    subCategory: "tees",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1790.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1790.JPG.jpeg",
+      "assets/images/IMG_1791.JPG.jpeg"
+    ],
+    description: "Everyday wear, eternal message. The Crossroad Tee is a reminder that no matter the path, God is at the center of it all.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 4,
+    name: "Crossroad Essential Tee - Style 2",
+    price: 150,
+    category: "Shirt",
+    subCategory: "tees",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1792.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1792.JPG.jpeg",
+      "assets/images/IMG_1793.JPG.jpeg"
+    ],
+    description: "Premium cotton tee with the Crossroad signature design. Comfortable, classic, faith-driven.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 5,
+    name: "Crossroad Essential Tee - Style 3",
+    price: 150,
+    category: "Shirt",
+    subCategory: "tees",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1794.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1794.JPG.jpeg",
+      "assets/images/IMG_1795.JPG.jpeg"
+    ],
+    description: "Bold and faith-forward. This tee makes a statement wherever you go.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 6,
+    name: "Crossroad Essential Tee - Style 4",
+    price: 150,
+    category: "Shirt",
+    subCategory: "tees",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1796.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1796.JPG.jpeg",
+      "assets/images/IMG_1797.JPG.jpeg"
+    ],
+    description: "Premium quality, comfortable fit. Wear your faith with confidence.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 7,
+    name: "Crossroad Essential Tee - Style 5",
+    price: 150,
+    category: "Shirt",
+    subCategory: "tees",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    image: "assets/images/IMG_1798.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1798.JPG.jpeg",
+      "assets/images/IMG_1799.JPG.jpeg"
+    ],
+    description: "The Crossroad Essential Tee — your everyday declaration of faith.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+
+  // ============ SIGNATURE CAPS (PRE-ORDER) ============
+  {
+    id: 8,
+    name: "Crossroad Signature Cap - Style 1",
+    price: 100,
+    category: "Accessory",
+    subCategory: "caps",
+    sizes: ["One Size"],
+    image: "assets/images/IMG_1800.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1800.JPG.jpeg",
+      "assets/images/IMG_1801.JPG.jpeg"
+    ],
+    description: "More than an accessory—it's a statement. The Crossroad Cap represents a life led by faith, even in the smallest details.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 9,
+    name: "Crossroad Signature Cap - Style 2",
+    price: 100,
+    category: "Accessory",
+    subCategory: "caps",
+    sizes: ["One Size"],
+    image: "assets/images/IMG_1802.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1802.JPG.jpeg",
+      "assets/images/IMG_1803.JPG.jpeg"
+    ],
+    description: "Premium embroidered cap with the Crossroad signature. Adjustable fit for everyday wear.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+  {
+    id: 10,
+    name: "Crossroad Signature Cap - Style 3",
+    price: 100,
+    category: "Accessory",
+    subCategory: "caps",
+    sizes: ["One Size"],
+    image: "assets/images/IMG_1804.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1804.JPG.jpeg",
+      "assets/images/IMG_1805.JPG.jpeg"
+    ],
+    description: "Top off your faith. Premium cotton cap with embroidered Crossroad design.",
+    preorder: true,
+    badge: "Pre-order"
+  },
+
+  // ============ CARRY TOTES (PRE-ORDER) ============
+  {
+    id: 11,
+    name: "Crossroad Carry Tote - Style 1",
+    price: 100,
+    category: "Accessory",
+    subCategory: "totes",
+    sizes: ["One Size"],
+    image: "assets/images/IMG_1809.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1809.JPG.jpeg",
+      "assets/images/IMG_1807.JPG.jpeg"
+    ],
     description: "Wherever life takes you, carry the message. The Crossroad Tote is built for movement, purpose, and representing Christ without compromise.",
-    features: [
-      "100% Heavy Cotton Canvas",
-      "Spacious Interior",
-      "Reinforced Handles",
-      "Internal Pocket",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Spot clean",
-      "Do not machine wash",
-      "Line dry"
-    ],
-    badge: "PRE-ORDER",
-    rating: 5.0,
-    reviewCount: 0,
-    inStock: true,
-    isPreOrder: true,
-    expectedDeliveryDate: "2026-05-15",
-    stockQuantity: 100,
-    tags: ["preorder", "tote", "bag", "carry", "crossroads"]
+    preorder: true,
+    badge: "Pre-order"
   }
 ];
 
@@ -169,38 +205,15 @@ function getProductsByCategory(category) {
   return products.filter(product => product.category === category);
 }
 
-function getPreOrderProducts() {
-  return products.filter(product => product.isPreOrder);
+function getProductsBySubCategory(subCategory) {
+  return products.filter(product => product.subCategory === subCategory);
 }
 
-function searchProducts(query) {
-  const searchTerm = query.toLowerCase();
-  return products.filter(product => 
-    product.name.toLowerCase().includes(searchTerm) ||
-    product.description.toLowerCase().includes(searchTerm) ||
-    product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-  );
-}
-
-function getRelatedProducts(productId, limit = 3) {
-  const product = getProductById(productId);
-  if (!product) return [];
-  return products
-    .filter(p => p.id !== parseInt(productId))
-    .slice(0, limit);
-}
-
-// ========================================
-// EXPORT TO WINDOW
-// ========================================
-
+// Export for browser
 if (typeof window !== 'undefined') {
   window.products = products;
   window.getProductById = getProductById;
   window.getProductsByCategory = getProductsByCategory;
-  window.getPreOrderProducts = getPreOrderProducts;
-  window.searchProducts = searchProducts;
-  window.getRelatedProducts = getRelatedProducts;
-  
-  console.log('✅ Crossroad Collection loaded:', products.length, 'pre-order items');
+  window.getProductsBySubCategory = getProductsBySubCategory;
+  console.log('✅ Crossroad Collection loaded:', products.length, 'products ready for pre-order');
 }
