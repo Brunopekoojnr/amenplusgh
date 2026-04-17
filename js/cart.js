@@ -624,21 +624,37 @@ function checkout() {
         currency: 'GHS',
         ref: 'AMEN-' + Math.floor(Math.random() * 1000000000) + 1,
         metadata: metadata,
-        callback: function(response) {
-            // Payment successful
-            showNotification(`Payment successful! Thank you for your order, ${customerName}.`, 'success');
-            
-            // Prepare order details for SMS
-            const orderDetails = {
-                reference: response.reference,
-                customerName: customerName,
-                itemCount: cart.length,
-                totalAmount: totalAmount,
-                deliveryArea: deliveryLocation.specificArea || deliveryLocation.zoneName
-            };
-            
-            // Show SMS instructions
-            showSMSInstructions(orderDetails);
+      callback: function(response) {
+    // Payment successful
+    showNotification(`Payment successful! Thank you for your order, ${customerName}.`, 'success');
+    
+    // Prepare order details for SMS
+    const orderDetails = {
+        reference: response.reference,
+        customerName: customerName,
+        itemCount: cart.length,
+        totalAmount: totalAmount,
+        deliveryArea: deliveryLocation.specificArea || deliveryLocation.zoneName
+    };
+    
+    // 🆕 SAVE ORDER TO BACKEND (MongoDB) + TRIGGER SMS RECEIPT
+    saveOrderToBackend({
+        reference: response.reference,
+        customerName: customerName,
+        customerPhone: customerPhone,
+        customerEmail: customerEmail,
+        items: cart,
+        totalAmount: totalAmount,
+        deliveryFee: deliveryFee,
+        deliveryZone: deliveryLocation.zoneName,
+        deliveryArea: deliveryLocation.specificArea || 'Not specified'
+    });
+    
+    // Verify payment & trigger SMS receipt
+    verifyPaymentAndSendSMS(response.reference);
+    
+    // Show SMS instructions
+    showSMSInstructions(orderDetails);
             
             // Clear cart
             cart = [];
@@ -705,12 +721,14 @@ function getProductById(id) {
 
 // ========== BACKEND ORDER SAVING (ADDED - NO EXISTING CODE CHANGED) ==========
 // API endpoint for saving orders (change to your actual server URL when deployed)
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/api'
+    : 'https://amenplus-api.onrender.com/api';
 
 // Function to save order to backend
+// Function to save order to backend
 function saveOrderToBackend(orderData) {
-    // This sends the order to your Node.js backend
-    fetch(`${API_BASE_URL}/order`, {
+    fetch(`${API_BASE_URL}/orders`, {  // changed /order to /orders
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -720,32 +738,37 @@ function saveOrderToBackend(orderData) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            console.log('✅ Order saved to database:', data.order_id);
+            console.log('✅ Order saved to database:', data.order);
         } else {
             console.error('Failed to save order:', data.message);
         }
     })
     .catch(error => {
-        // Silently fail - doesn't affect customer experience
         console.warn('Backend not available. Order saved locally only.', error);
     });
 }
 
-// Note: To automatically save orders when payment succeeds,
-// add this line inside the Paystack callback where you have orderDetails:
-// saveOrderToBackend(orderDetails);
+// 🆕 NEW FUNCTION: Verify Paystack payment + Send SMS receipt
+function verifyPaymentAndSendSMS(reference) {
+    fetch(`${API_BASE_URL}/verify-payment`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ reference: reference })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('✅ Payment verified & SMS receipt sent');
+        } else {
+            console.warn('Payment verification failed:', data.error);
+        }
+    })
+    .catch(error => {
+        console.warn('Verification error:', error);
+    });
+}
 
-// For now, you need to manually add the saveOrderToBackend call in the callback above.
-// Add this line right after where orderDetails is created:
-// saveOrderToBackend(orderDetails);
-
-// ========== MAKE FUNCTIONS GLOBALLY AVAILABLE ==========
-window.addToCart = addToCart;
-window.removeFromCart = removeFromCart;
-window.updateQuantity = updateQuantity;
-window.selectDeliveryZone = selectDeliveryZone;
-window.selectSpecificArea = selectSpecificArea;
-window.openCart = openCart;
-window.closeCartSidebar = closeCartSidebar;
-window.closeSMSModal = closeSMSModal;
-window.saveOrderToBackend = saveOrderToBackend;
+// Make new function globally available
+window.verifyPaymentAndSendSMS = verifyPaymentAndSendSMS;

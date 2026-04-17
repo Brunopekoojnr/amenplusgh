@@ -486,9 +486,40 @@
             </div>
             <div class="nav-icons">
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
+                <!-- Add this inside your nav, after nav-icons -->
+<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">
+        <i class="fas fa-times"></i>
+    </button>
+    <a href="index.html" onclick="closeMobileMenu()">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <a href="shop.html" onclick="closeMobileMenu()">
+        <i class="fas fa-store"></i> Shop
+    </a>
+    <a href="delivery.html" onclick="closeMobileMenu()">
+        <i class="fas fa-truck"></i> Delivery
+    </a>
+    <a href="about.html" onclick="closeMobileMenu()">
+        <i class="fas fa-book-open"></i> About
+    </a>
+    <a href="contact.html" onclick="closeMobileMenu()">
+        <i class="fas fa-address-book"></i> Contact & Team
+    </a>
+    <a href="https://wa.me/233201686831" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp Us
+    </a>
+</div>
 
     <!-- Shop Hero -->
     <section class="shop-hero">
@@ -794,6 +825,23 @@
             }
         }
     })();
+</script>
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.remove('active');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 </script>
 </body>
 </html>
