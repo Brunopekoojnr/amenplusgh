@@ -1,21 +1,28 @@
-// ========== PRODUCTS DATABASE ==========
+// ========================================
+// AMEN+ CROSSROAD EDITION
+// PRE-ORDER LAUNCH COLLECTION
+// ========================================
+
 const products = [
-  // ========== MEN'S COLLECTION ==========
   {
     id: 1,
-    name: "Amen+ Crossroads Tee — Sand",
-    price: 180,
-    originalPrice: 250,
-    category: "male",
-    subCategory: "tees",
+    name: "Crossroad Statement Shirt",
+    price: 200,
+    category: "shirts",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["Sand"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium cotton tee with Crossroads design in sand color. The perfect blend of comfort and faith-inspired style.",
+    colors: ["Brown"],
+    image: "assets/images/IMG_1786.JPG.jpeg",
+    hoverImage: "assets/images/IMG_1787.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1786.JPG.jpeg",
+      "assets/images/IMG_1787.JPG.jpeg",
+      "assets/images/IMG_1788.JPG.jpeg",
+      "assets/images/IMG_1789.JPG.jpeg"
+    ],
+    description: "At every crossroad, a choice is made. This piece represents the decision to stand firm in Christ—bold in faith, clear in purpose, and unapologetic in identity.",
     features: [
       "100% Premium Combed Cotton",
-      "Screen Printed Design",
+      "Bold Statement Design",
       "Preshrunk Fabric",
       "Reinforced Shoulder Seams",
       "Made with Purpose in Ghana"
@@ -26,30 +33,36 @@ const products = [
       "Iron on low heat if needed",
       "Do not bleach"
     ],
-    badge: "New",
-    rating: 4.8,
-    reviewCount: 24,
+    badge: "PRE-ORDER",
+    rating: 5.0,
+    reviewCount: 0,
     inStock: true,
-    stockQuantity: 45,
-    tags: ["men", "tee", "sand", "crossroads", "new"]
+    isPreOrder: true,
+    expectedDeliveryDate: "2026-05-15",
+    stockQuantity: 100,
+    tags: ["preorder", "shirt", "statement", "crossroads"]
   },
   {
     id: 2,
-    name: "Amen+ Crossroads Tee — Brown",
-    price: 180,
-    originalPrice: 200,
-    category: "male",
-    subCategory: "tees",
+    name: "Crossroad Essential Tee",
+    price: 150,
+    category: "shirts",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["Brown"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Premium cotton tee with Crossroads design in rich brown color. Earthy tones meet eternal truths.",
+    colors: ["Off-White"],
+    image: "assets/images/IMG_1790.JPG.jpeg",
+    hoverImage: "assets/images/IMG_1791.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1790.JPG.jpeg",
+      "assets/images/IMG_1791.JPG.jpeg",
+      "assets/images/IMG_1792.JPG.jpeg",
+      "assets/images/IMG_1793.JPG.jpeg"
+    ],
+    description: "Everyday wear, eternal message. The Crossroad Tee is a reminder that no matter the path, God is at the center of it all.",
     features: [
       "100% Premium Combed Cotton",
-      "Screen Printed Design",
+      "Everyday Comfort Fit",
       "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
+      "Soft Touch Finish",
       "Made with Purpose in Ghana"
     ],
     careInstructions: [
@@ -58,741 +71,71 @@ const products = [
       "Iron on low heat if needed",
       "Do not bleach"
     ],
-    rating: 4.7,
-    reviewCount: 18,
+    badge: "PRE-ORDER",
+    rating: 5.0,
+    reviewCount: 0,
     inStock: true,
-    stockQuantity: 38,
-    tags: ["men", "tee", "brown", "crossroads"]
+    isPreOrder: true,
+    expectedDeliveryDate: "2026-05-15",
+    stockQuantity: 100,
+    tags: ["preorder", "tee", "essential", "crossroads"]
   },
   {
     id: 3,
-    name: "Amen+ Crossroads Tee — Olive",
-    price: 180,
-    originalPrice: 200,
-    category: "male",
-    subCategory: "tees",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Olive"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Premium cotton tee with Crossroads design in olive green. A versatile color for everyday faith.",
+    name: "Crossroad Signature Cap",
+    price: 100,
+    category: "accessories",
+    sizes: ["One Size"],
+    colors: ["Brown"],
+    image: "assets/images/IMG_1800.JPG.jpeg",
+    hoverImage: "assets/images/IMG_1801.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1800.JPG.jpeg",
+      "assets/images/IMG_1801.JPG.jpeg",
+      "assets/images/IMG_1802.JPG.jpeg",
+      "assets/images/IMG_1803.JPG.jpeg"
+    ],
+    description: "More than an accessory—it's a statement. The Crossroad Cap represents a life led by faith, even in the smallest details.",
     features: [
-      "100% Premium Combed Cotton",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
+      "Premium Cotton Twill",
+      "Embroidered Crossroad Design",
+      "Adjustable Strap",
+      "Pre-curved Visor",
       "Made with Purpose in Ghana"
     ],
     careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
+      "Spot clean only",
+      "Do not machine wash",
+      "Air dry"
     ],
-    rating: 4.6,
-    reviewCount: 15,
+    badge: "PRE-ORDER",
+    rating: 5.0,
+    reviewCount: 0,
     inStock: true,
-    stockQuantity: 42,
-    tags: ["men", "tee", "olive", "crossroads"]
+    isPreOrder: true,
+    expectedDeliveryDate: "2026-05-15",
+    stockQuantity: 100,
+    tags: ["preorder", "cap", "signature", "crossroads"]
   },
   {
     id: 4,
-    name: "Amen+ Crossroads Tee — Navy",
-    price: 180,
-    originalPrice: 200,
-    category: "male",
-    subCategory: "tees",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Navy"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Premium cotton tee with Crossroads design in navy blue. Classic and timeless, just like your faith.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.9,
-    reviewCount: 31,
-    inStock: true,
-    stockQuantity: 52,
-    tags: ["men", "tee", "navy", "crossroads", "bestseller"]
-  },
-  {
-    id: 5,
-    name: "Amen+ Crossroads Tee — Charcoal",
-    price: 180,
-    originalPrice: 200,
-    category: "male",
-    subCategory: "tees",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Charcoal"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "Premium cotton tee with Crossroads design in charcoal grey. Modern, sleek, and spiritually grounded.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.7,
-    reviewCount: 22,
-    inStock: true,
-    stockQuantity: 36,
-    tags: ["men", "tee", "charcoal", "crossroads"]
-  },
-  {
-    id: 6,
-    name: "Amen+ Crossroads Tee — Black",
-    price: 180,
-    originalPrice: 200,
-    category: "male",
-    subCategory: "tees",
-    sizes: ["S", "M", "L", "XL", "2XL"],
-    colors: ["Black"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium cotton tee with Crossroads design in classic black. Goes with everything, speaks to everything.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Reinforced Shoulder Seams",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.8,
-    reviewCount: 42,
-    inStock: true,
-    stockQuantity: 65,
-    tags: ["men", "tee", "black", "crossroads", "essential"]
-  },
-
-  // ========== WOMEN'S COLLECTION ==========
-  {
-    id: 7,
-    name: "Amen+ Crossroads Tee — White (Women's Fit)",
-    price: 180,
-    originalPrice: 200,
-    category: "female",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M", "L"],
-    colors: ["White"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Women's fit premium cotton tee with Crossroads design in crisp white. Tailored for her, designed for faith.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Women's Contoured Fit",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.9,
-    reviewCount: 28,
-    inStock: true,
-    stockQuantity: 41,
-    tags: ["women", "tee", "white", "crossroads", "new"]
-  },
-  {
-    id: 8,
-    name: "Amen+ Crossroads Tee — Ash (Women's Fit)",
-    price: 180,
-    originalPrice: 200,
-    category: "female",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M", "L"],
-    colors: ["Ash"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Women's fit premium cotton tee with Crossroads design in ash grey. Subtle and stylish.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Women's Contoured Fit",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.6,
-    reviewCount: 17,
-    inStock: true,
-    stockQuantity: 29,
-    tags: ["women", "tee", "ash", "crossroads"]
-  },
-  {
-    id: 9,
-    name: "Amen+ Crossroads Tee — Heather Grey (Women's Fit)",
-    price: 180,
-    originalPrice: 200,
-    category: "female",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M", "L"],
-    colors: ["Heather Grey"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Women's fit premium cotton tee with Crossroads design in heather grey. Soft feel, strong message.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Women's Contoured Fit",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.7,
-    reviewCount: 21,
-    inStock: true,
-    stockQuantity: 33,
-    tags: ["women", "tee", "heather-grey", "crossroads"]
-  },
-  {
-    id: 10,
-    name: "Amen+ Crossroads Tee — Cream (Women's Fit)",
-    price: 180,
-    originalPrice: 200,
-    category: "female",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M", "L"],
-    colors: ["Cream"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "Women's fit premium cotton tee with Crossroads design in cream. Warm and welcoming, like your faith.",
-    features: [
-      "100% Premium Combed Cotton",
-      "Women's Contoured Fit",
-      "Screen Printed Design",
-      "Preshrunk Fabric",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold with similar colors",
-      "Tumble dry low or hang to dry",
-      "Iron on low heat if needed",
-      "Do not bleach"
-    ],
-    rating: 4.8,
-    reviewCount: 19,
-    inStock: true,
-    stockQuantity: 27,
-    tags: ["women", "tee", "cream", "crossroads"]
-  },
-
-  // ========== UNISEX HOODIES ==========
-  {
-    id: 11,
-    name: "Amen+ Crossroads Hoodie — Black",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Black"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in black. Cozy comfort meets eternal truth.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    badge: "Sale",
-    rating: 4.9,
-    reviewCount: 56,
-    inStock: true,
-    stockQuantity: 48,
-    tags: ["unisex", "hoodie", "black", "crossroads", "bestseller"]
-  },
-  {
-    id: 12,
-    name: "Amen+ Crossroads Hoodie — Navy",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Navy"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in navy. Deep color, deeper meaning.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.8,
-    reviewCount: 34,
-    inStock: true,
-    stockQuantity: 42,
-    tags: ["unisex", "hoodie", "navy", "crossroads"]
-  },
-  {
-    id: 13,
-    name: "Amen+ Crossroads Hoodie — Charcoal",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Charcoal"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in charcoal. Modern style, timeless message.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.7,
-    reviewCount: 29,
-    inStock: true,
-    stockQuantity: 38,
-    tags: ["unisex", "hoodie", "charcoal", "crossroads"]
-  },
-  {
-    id: 14,
-    name: "Amen+ Crossroads Hoodie — Olive",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Olive"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in olive. Earthy tones for grounded faith.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.6,
-    reviewCount: 22,
-    inStock: true,
-    stockQuantity: 31,
-    tags: ["unisex", "hoodie", "olive", "crossroads"]
-  },
-  {
-    id: 15,
-    name: "Amen+ Crossroads Hoodie — Burgundy",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL"],
-    colors: ["Burgundy"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in burgundy. Rich color, richer faith.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.8,
-    reviewCount: 27,
-    inStock: true,
-    stockQuantity: 24,
-    tags: ["unisex", "hoodie", "burgundy", "crossroads"]
-  },
-  {
-    id: 16,
-    name: "Amen+ Crossroads Hoodie — Sand",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL"],
-    colors: ["Sand"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in sand. Neutral style, powerful message.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.5,
-    reviewCount: 16,
-    inStock: true,
-    stockQuantity: 22,
-    tags: ["unisex", "hoodie", "sand", "crossroads"]
-  },
-  {
-    id: 17,
-    name: "Amen+ Crossroads Hoodie — Brown",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL"],
-    colors: ["Brown"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in brown. Warm and welcoming.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.6,
-    reviewCount: 19,
-    inStock: true,
-    stockQuantity: 26,
-    tags: ["unisex", "hoodie", "brown", "crossroads"]
-  },
-  {
-    id: 18,
-    name: "Amen+ Crossroads Hoodie — Royal Blue",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Royal Blue"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in royal blue. Bold color, bold faith.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.7,
-    reviewCount: 31,
-    inStock: true,
-    stockQuantity: 35,
-    tags: ["unisex", "hoodie", "royal-blue", "crossroads"]
-  },
-  {
-    id: 19,
-    name: "Amen+ Crossroads Hoodie — Heather Grey",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL", "2XL"],
-    colors: ["Heather Grey"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in heather grey. Soft feel, strong statement.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.8,
-    reviewCount: 28,
-    inStock: true,
-    stockQuantity: 37,
-    tags: ["unisex", "hoodie", "heather-grey", "crossroads"]
-  },
-  {
-    id: 20,
-    name: "Amen+ Crossroads Hoodie — Maroon",
-    price: 350,
-    originalPrice: 380,
-    category: "unisex",
-    subCategory: "hoodies",
-    sizes: ["M", "L", "XL"],
-    colors: ["Maroon"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "Premium unisex hoodie with Crossroads design in maroon. Rich and meaningful.",
-    features: [
-      "80% Cotton, 20% Polyester",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Adjustable Hood with Drawstrings",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not iron directly on print",
-      "Do not dry clean"
-    ],
-    rating: 4.5,
-    reviewCount: 14,
-    inStock: true,
-    stockQuantity: 19,
-    tags: ["unisex", "hoodie", "maroon", "crossroads"]
-  },
-
-  // ========== CHILDREN'S COLLECTION ==========
-  {
-    id: 21,
-    name: "Kids Crossroads Tee — Sand",
-    price: 150,
-    originalPrice: 170,
-    category: "children",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M"],
-    colors: ["Sand"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium cotton tee for children with Crossroads design. Little faith, big impact.",
-    features: [
-      "100% Soft Cotton",
-      "Screen Printed Design",
-      "Tagless Label",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold",
-      "Tumble dry low",
-      "Do not bleach"
-    ],
-    rating: 4.9,
-    reviewCount: 23,
-    inStock: true,
-    stockQuantity: 41,
-    tags: ["kids", "tee", "sand", "crossroads", "new"]
-  },
-  {
-    id: 22,
-    name: "Kids Crossroads Tee — Navy",
-    price: 150,
-    originalPrice: 170,
-    category: "children",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M"],
-    colors: ["Navy"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Premium cotton tee for children with Crossroads design in navy. Start them young in faith.",
-    features: [
-      "100% Soft Cotton",
-      "Screen Printed Design",
-      "Tagless Label",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold",
-      "Tumble dry low",
-      "Do not bleach"
-    ],
-    rating: 4.8,
-    reviewCount: 19,
-    inStock: true,
-    stockQuantity: 36,
-    tags: ["kids", "tee", "navy", "crossroads"]
-  },
-  {
-    id: 23,
-    name: "Kids Crossroads Tee — Black",
-    price: 150,
-    originalPrice: 170,
-    category: "children",
-    subCategory: "tees",
-    sizes: ["XS", "S", "M"],
-    colors: ["Black"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Premium cotton tee for children with Crossroads design in black. Classic style for little ones.",
-    features: [
-      "100% Soft Cotton",
-      "Screen Printed Design",
-      "Tagless Label",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold",
-      "Tumble dry low",
-      "Do not bleach"
-    ],
-    rating: 4.7,
-    reviewCount: 16,
-    inStock: true,
-    stockQuantity: 29,
-    tags: ["kids", "tee", "black", "crossroads"]
-  },
-
-  // ========== ACCESSORIES ==========
-  {
-    id: 24,
-    name: "Crossroads Cap — Black",
-    price: 120,
-    originalPrice: 140,
-    category: "unisex",
-    subCategory: "accessories",
-    sizes: ["One Size"],
-    colors: ["Black"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Premium cap with Crossroads embroidery in black. Top off your look with faith.",
-    features: [
-      "Premium Cotton Twill",
-      "Embroidered Crossroads Design",
-      "Adjustable Strap",
-      "Pre-curved Visor",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Spot clean only",
-      "Do not machine wash",
-      "Air dry"
-    ],
-    rating: 4.8,
-    reviewCount: 32,
-    inStock: true,
-    stockQuantity: 54,
-    tags: ["accessories", "cap", "black", "crossroads", "bestseller"]
-  },
-  {
-    id: 25,
-    name: "Crossroads Cap — Navy",
-    price: 120,
-    originalPrice: 140,
-    category: "unisex",
-    subCategory: "accessories",
-    sizes: ["One Size"],
-    colors: ["Navy"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "Premium cap with Crossroads embroidery in navy. Complete your outfit with purpose.",
-    features: [
-      "Premium Cotton Twill",
-      "Embroidered Crossroads Design",
-      "Adjustable Strap",
-      "Pre-curved Visor",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Spot clean only",
-      "Do not machine wash",
-      "Air dry"
-    ],
-    rating: 4.7,
-    reviewCount: 24,
-    inStock: true,
-    stockQuantity: 47,
-    tags: ["accessories", "cap", "navy", "crossroads"]
-  },
-  {
-    id: 26,
-    name: "Crossroads Tote Bag",
-    price: 150,
-    originalPrice: 170,
-    category: "unisex",
-    subCategory: "accessories",
+    name: "Crossroad Carry Tote",
+    price: 100,
+    category: "accessories",
     sizes: ["One Size"],
     colors: ["Natural"],
-    image: "assets/images/sample%204.jpeg",
-    hoverImage: "assets/images/sample%204.jpeg",
-    description: "Premium canvas tote with Crossroads design. Carry your faith wherever you go.",
+    image: "assets/images/IMG_1809.JPG.jpeg",
+    hoverImage: "assets/images/IMG_1810.JPG.jpeg",
+    gallery: [
+      "assets/images/IMG_1809.JPG.jpeg",
+      "assets/images/IMG_1810.JPG.jpeg",
+      "assets/images/IMG_1811.JPG.jpeg",
+      "assets/images/IMG_1812.JPG.jpeg"
+    ],
+    description: "Wherever life takes you, carry the message. The Crossroad Tote is built for movement, purpose, and representing Christ without compromise.",
     features: [
       "100% Heavy Cotton Canvas",
-      "Screen Printed Design",
+      "Spacious Interior",
       "Reinforced Handles",
       "Internal Pocket",
       "Made with Purpose in Ghana"
@@ -802,182 +145,34 @@ const products = [
       "Do not machine wash",
       "Line dry"
     ],
-    rating: 4.9,
-    reviewCount: 41,
-    inStock: true,
-    stockQuantity: 62,
-    tags: ["accessories", "tote", "bag", "crossroads", "bestseller"]
-  },
-
-  // ========== PREMIUM/LIMITED ==========
-  {
-    id: 27,
-    name: "Premium Crossroads Tee — Sand (Limited)",
-    price: 250,
-    originalPrice: 280,
-    category: "male",
-    subCategory: "premium",
-    sizes: ["S", "M", "L"],
-    colors: ["Sand"],
-    image: "assets/images/sample 5.jpeg",
-    hoverImage: "assets/images/sample 5.jpeg",
-    description: "Limited edition premium quality tee in sand. Exclusive design, elevated comfort.",
-    features: [
-      "100% Premium Egyptian Cotton",
-      "Premium Screen Printed Design",
-      "Reinforced Construction",
-      "Limited Edition Numbering",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold gentle cycle",
-      "Hang dry recommended",
-      "Do not bleach",
-      "Iron inside out"
-    ],
-    badge: "Limited Edition",
+    badge: "PRE-ORDER",
     rating: 5.0,
-    reviewCount: 12,
+    reviewCount: 0,
     inStock: true,
-    stockQuantity: 15,
-    tags: ["men", "premium", "limited", "sand", "crossroads"]
-  },
-  {
-    id: 28,
-    name: "Premium Crossroads Tee — Black (Limited)",
-    price: 250,
-    originalPrice: 280,
-    category: "male",
-    subCategory: "premium",
-    sizes: ["S", "M", "L"],
-    colors: ["Black"],
-    image: "assets/images/sample shirt 1.jpeg",
-    hoverImage: "assets/images/sample shirt 1.jpeg",
-    description: "Limited edition premium quality tee in black. Exclusive design, exceptional quality.",
-    features: [
-      "100% Premium Egyptian Cotton",
-      "Premium Screen Printed Design",
-      "Reinforced Construction",
-      "Limited Edition Numbering",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold gentle cycle",
-      "Hang dry recommended",
-      "Do not bleach",
-      "Iron inside out"
-    ],
-    badge: "Limited Edition",
-    rating: 4.9,
-    reviewCount: 9,
-    inStock: true,
-    stockQuantity: 12,
-    tags: ["men", "premium", "limited", "black", "crossroads"]
-  },
-  {
-    id: 29,
-    name: "Crossroads Hoodie — White (Limited)",
-    price: 380,
-    originalPrice: 420,
-    category: "unisex",
-    subCategory: "premium",
-    sizes: ["M", "L"],
-    colors: ["White"],
-    image: "assets/images/sample shirt 3.jpeg",
-    hoverImage: "assets/images/sample shirt 3.jpeg",
-    description: "Limited edition white hoodie. Pure color, pure faith.",
-    features: [
-      "Premium Cotton Blend",
-      "Screen Printed Design",
-      "Kangaroo Pocket",
-      "Limited Edition Numbering",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold inside out",
-      "Tumble dry low",
-      "Do not bleach",
-      "Wash with like colors"
-    ],
-    badge: "Limited Edition",
-    rating: 4.8,
-    reviewCount: 7,
-    inStock: true,
-    stockQuantity: 8,
-    tags: ["unisex", "hoodie", "white", "limited", "crossroads"]
-  },
-  {
-    id: 30,
-    name: "Crossroads Tee Bundle (3 Pack)",
-    price: 500,
-    originalPrice: 540,
-    category: "unisex",
-    subCategory: "bundles",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Assorted"],
-    image: "assets/images/shirt%20sample%202.jpeg",
-    hoverImage: "assets/images/shirt%20sample%202.jpeg",
-    description: "3 premium tees (mix colors) in one value pack. More faith, more savings.",
-    features: [
-      "3 Premium Cotton Tees",
-      "Assorted Colors",
-      "Screen Printed Designs",
-      "Preshrunk Fabric",
-      "Made with Purpose in Ghana"
-    ],
-    careInstructions: [
-      "Machine wash cold",
-      "Tumble dry low",
-      "Do not bleach",
-      "Iron on low heat"
-    ],
-    badge: "Best Value",
-    rating: 5.0,
-    reviewCount: 34,
-    inStock: true,
-    stockQuantity: 25,
-    tags: ["bundle", "tees", "value", "crossroads", "bestseller"]
+    isPreOrder: true,
+    expectedDeliveryDate: "2026-05-15",
+    stockQuantity: 100,
+    tags: ["preorder", "tote", "bag", "carry", "crossroads"]
   }
 ];
 
-// ========== HELPER FUNCTIONS ==========
+// ========================================
+// HELPER FUNCTIONS
+// ========================================
 
-// Get products by category
+function getProductById(id) {
+  return products.find(product => product.id === parseInt(id));
+}
+
 function getProductsByCategory(category) {
+  if (category === 'all') return products;
   return products.filter(product => product.category === category);
 }
 
-// Get products by subcategory
-function getProductsBySubCategory(subCategory) {
-  return products.filter(product => product.subCategory === subCategory);
+function getPreOrderProducts() {
+  return products.filter(product => product.isPreOrder);
 }
 
-// Get product by ID
-function getProductById(id) {
-  return products.find(product => product.id === id);
-}
-
-// Get new arrivals (products with 'New' badge)
-function getNewArrivals() {
-  return products.filter(product => product.badge === "New");
-}
-
-// Get bestsellers (products with rating >= 4.8)
-function getBestsellers() {
-  return products.filter(product => product.rating >= 4.8);
-}
-
-// Get on sale products
-function getOnSaleProducts() {
-  return products.filter(product => product.originalPrice > product.price);
-}
-
-// Get limited edition products
-function getLimitedEdition() {
-  return products.filter(product => product.badge === "Limited Edition");
-}
-
-// Search products
 function searchProducts(query) {
   const searchTerm = query.toLowerCase();
   return products.filter(product => 
@@ -987,63 +182,25 @@ function searchProducts(query) {
   );
 }
 
-// Get related products
-function getRelatedProducts(productId, limit = 4) {
+function getRelatedProducts(productId, limit = 3) {
   const product = getProductById(productId);
   if (!product) return [];
-  
   return products
-    .filter(p => p.id !== productId && p.category === product.category)
-    .sort(() => 0.5 - Math.random())
+    .filter(p => p.id !== parseInt(productId))
     .slice(0, limit);
 }
 
-// Get price range
-function getPriceRange(min, max) {
-  return products.filter(product => product.price >= min && product.price <= max);
-}
+// ========================================
+// EXPORT TO WINDOW
+// ========================================
 
-// Get available sizes for a product
-function getAvailableSizes(productId) {
-  const product = getProductById(productId);
-  return product ? product.sizes : [];
-}
-
-// Check if product is in stock
-function isInStock(productId) {
-  const product = getProductById(productId);
-  return product ? product.inStock : false;
-}
-
-// Get stock quantity
-function getStockQuantity(productId) {
-  const product = getProductById(productId);
-  return product ? product.stockQuantity : 0;
-}
-
-// ========== EXPORT ==========
-// Make products and helper functions available globally
 if (typeof window !== 'undefined') {
   window.products = products;
-  window.getProductsByCategory = getProductsByCategory;
-  window.getProductsBySubCategory = getProductsBySubCategory;
   window.getProductById = getProductById;
-  window.getNewArrivals = getNewArrivals;
-  window.getBestsellers = getBestsellers;
-  window.getOnSaleProducts = getOnSaleProducts;
-  window.getLimitedEdition = getLimitedEdition;
+  window.getProductsByCategory = getProductsByCategory;
+  window.getPreOrderProducts = getPreOrderProducts;
   window.searchProducts = searchProducts;
   window.getRelatedProducts = getRelatedProducts;
-  window.getPriceRange = getPriceRange;
-  window.getAvailableSizes = getAvailableSizes;
-  window.isInStock = isInStock;
-  window.getStockQuantity = getStockQuantity;
   
-  console.log('✅ Products loaded successfully:', products.length, 'items');
-  console.log('📦 Categories:', {
-    men: getProductsByCategory('male').length,
-    women: getProductsByCategory('female').length,
-    children: getProductsByCategory('children').length,
-    unisex: getProductsByCategory('unisex').length
-  });
+  console.log('✅ Crossroad Collection loaded:', products.length, 'pre-order items');
 }

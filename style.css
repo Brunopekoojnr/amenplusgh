@@ -4603,3 +4603,178 @@ section {
         display: none !important;
     }
 }
+
+/* ========== DESKTOP NAVIGATION POLISH ========== */
+@media (min-width: 769px) {
+    .main-header {
+        padding: 1rem 2rem;
+    }
+    
+    .nav {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .nav-links {
+        gap: 2.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.05rem;
+        font-weight: 600;
+        position: relative;
+        padding: 8px 0;
+    }
+    
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: #D4AF37;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+        width: 100%;
+    }
+    
+    .logo-image {
+        height: 80px;
+    }
+    
+    .brand-name {
+        font-size: 2rem;
+    }
+    
+    .slogan {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========== PRE-ORDER CARDS POLISH ========== */
+.product-card {
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.product-card:hover {
+    border-color: #D4AF37;
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+}
+
+.product-card img {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* ========== HOMEPAGE FEATURED GRID FIX ========== */
+.featured-products .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .featured-products .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .featured-products .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== DESKTOP NAVIGATION POLISH ========== */
+@media (min-width: 769px) {
+    .main-header {
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+    }
+    
+    .nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        align-items: center;
+    }
+    
+    .nav-links {
+        gap: 2.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #5C3A2D;
+        position: relative;
+        padding: 8px 0;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: #D4AF37;
+    }
+    
+    .nav-links a.active {
+        color: #D4AF37;
+    }
+    
+    .logo-image {
+        height: 70px;
+    }
+    
+    .brand-name {
+        font-size: 1.8rem;
+    }
+    
+    .slogan {
+        font-size: 0.75rem;
+    }
+    
+    /* Featured Products Grid */
+    .featured-products .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .featured-products .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .featured-products .products-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Pre-order card hover */
+.product-card {
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    background: white;
+    border-radius: 20px;
+}
+
+.product-card:hover {
+    border-color: #D4AF37;
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+}
