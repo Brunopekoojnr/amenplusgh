@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
    <meta name="viewport" content="width=1200, initial-scale=1.0">
+   <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <title>Amen+ | Contact & Team</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -1815,6 +1816,43 @@ function closeMobileMenu() {
     hamburger.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.team-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('.view-profile-btn')) return;
+            
+            const name = this.querySelector('h3')?.textContent || '';
+            const role = this.querySelector('.team-role')?.textContent || '';
+            const bio = this.querySelector('.team-bio')?.textContent || '';
+            const img = this.querySelector('.team-image img')?.src || '';
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;align-items:center;justify-content:center;padding:2rem;';
+            modal.innerHTML = `
+                <div style="background:white;border-radius:20px;max-width:600px;width:100%;overflow:hidden;border:4px solid #D4AF37;">
+                    <div style="height:400px;overflow:hidden;background:#FAF0E6;">
+                        <img src="${img}" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                    </div>
+                    <div style="padding:2rem;">
+                        <h2 style="color:#5C3A2D;font-size:2rem;margin-bottom:0.5rem;">${name}</h2>
+                        <p style="color:#D4AF37;font-weight:600;margin-bottom:1rem;">${role}</p>
+                        <p style="color:#4A4A4A;line-height:1.7;">${bio}</p>
+                        <button onclick="this.closest('div[style*=fixed]').remove()" 
+                            style="margin-top:1.5rem;padding:0.8rem 2rem;background:#5C3A2D;color:white;border:none;border-radius:50px;cursor:pointer;font-weight:600;width:100%;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            modal.onclick = function(e) {
+                if (e.target === modal) modal.remove();
+            };
+            document.body.appendChild(modal);
+        });
+    });
+});
 </script>
 </body>
 </html>

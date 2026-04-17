@@ -1,3 +1,371 @@
+/* ========================================
+   AMEN+ EMERGENCY FIXES - ALL ISSUES
+   ======================================== */
+
+/* ===== 1. FIX HERO TEXT VISIBILITY ===== */
+.shop-hero,
+.delivery-hero,
+.contact-hero {
+    background: linear-gradient(135deg, #5C3A2D, #3a2019) !important;
+    padding: 6rem 2rem !important;
+    position: relative;
+}
+
+.shop-hero h1,
+.delivery-hero h1,
+.contact-hero h1 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: none !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5) !important;
+    font-size: 3.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.shop-hero p,
+.delivery-hero p,
+.contact-hero p {
+    color: #FAF0E6 !important;
+    font-size: 1.3rem !important;
+}
+
+.shop-hero-subtitle {
+    background: rgba(212, 175, 55, 0.2) !important;
+    border: 2px solid #D4AF37 !important;
+}
+
+.shop-hero-subtitle p {
+    color: #FFFFFF !important;
+}
+
+/* ===== 2. FIX HERO STATS BOXES ===== */
+.hero-stats .stat h3 {
+    color: #D4AF37 !important;
+    font-size: 2.2rem !important;
+}
+
+.hero-stats .stat p {
+    color: #FFFFFF !important;
+}
+
+/* ===== 3. REPLACE BLURRY TRUCK EMOJI WITH ICON ===== */
+.delivery-hero h1::before {
+    content: "\f0d1" !important; /* FontAwesome truck */
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    margin-right: 15px;
+    color: #D4AF37;
+}
+
+/* ===== 4. FIX TEAM CARD IMAGES (Joy's photo issue) ===== */
+.team-image {
+    width: 100% !important;
+    height: 350px !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #FAF0E6, #FDF6F0) !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.team-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    display: block !important;
+}
+
+/* Make team cards clickable */
+.team-card {
+    cursor: pointer !important;
+    transition: all 0.4s ease !important;
+}
+
+.team-card:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 25px 50px rgba(92, 58, 45, 0.3) !important;
+    border-color: #D4AF37 !important;
+}
+
+.view-profile-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* ===== 5. ABOUT PAGE - "OUR STORY" CENTERED & BEAUTIFUL ===== */
+.about-hero,
+.our-story-hero {
+    background: linear-gradient(135deg, #5C3A2D, #3a2019) !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 6rem 2rem !important;
+    margin-bottom: 4rem !important;
+}
+
+.about-hero h1,
+.our-story-hero h1 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: none !important;
+    font-size: 4rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+.about-hero p,
+.our-story-hero p,
+.about-hero .tagline {
+    color: #FAF0E6 !important;
+    font-size: 1.4rem !important;
+    text-align: center !important;
+    font-style: italic !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+}
+
+/* If "Our Story" header is misaligned */
+body > h1:first-child,
+.page-title {
+    text-align: center !important;
+    width: 100% !important;
+    padding: 3rem 2rem !important;
+}
+
+/* ===== 6. "MEANING OF AMEN+" - ELEVATED DESIGN ===== */
+.meaning-section {
+    background: linear-gradient(135deg, #FDF6F0, #FFFFFF) !important;
+    padding: 5rem 2rem !important;
+}
+
+.meaning-container {
+    background: #FFFFFF !important;
+    border-radius: 30px !important;
+    padding: 4rem !important;
+    box-shadow: 0 30px 60px rgba(92, 58, 45, 0.15) !important;
+    border: 2px solid rgba(212, 175, 55, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.meaning-container::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 8px !important;
+    height: 100% !important;
+    background: linear-gradient(180deg, #D4AF37, #5C3A2D) !important;
+}
+
+.meaning-content h2 {
+    font-size: 3.2rem !important;
+    color: #5C3A2D !important;
+    margin-bottom: 2rem !important;
+    line-height: 1.2 !important;
+}
+
+.meaning-content h2 .plus,
+.meaning-content .plus {
+    color: #D4AF37 !important;
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+}
+
+.meaning-text p {
+    font-size: 1.2rem !important;
+    line-height: 2 !important;
+    color: #4A4A4A !important;
+}
+
+.meaning-text strong,
+.meaning-text b {
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+}
+
+.meaning-quote {
+    background: linear-gradient(135deg, #FAF0E6, #FFFFFF) !important;
+    padding: 2.5rem !important;
+    border-radius: 20px !important;
+    border-left: 5px solid #D4AF37 !important;
+    margin-top: 2rem !important;
+    box-shadow: 0 10px 25px rgba(92, 58, 45, 0.1) !important;
+}
+
+.meaning-quote p {
+    font-size: 1.3rem !important;
+    font-style: italic !important;
+    color: #5C3A2D !important;
+    font-weight: 500 !important;
+    line-height: 1.8 !important;
+}
+
+/* ===== 7. FIX "SINCE 2026" BADGE - FIT IT INSIDE ===== */
+.image-overlay {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    background: linear-gradient(135deg, #D4AF37, #C5A028) !important;
+    color: #5C3A2D !important;
+    padding: 12px 25px !important;
+    border-radius: 50px !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4) !important;
+    z-index: 5 !important;
+    white-space: nowrap !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+.meaning-image {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.meaning-image img {
+    border-radius: 25px !important;
+    border: 4px solid #D4AF37 !important;
+    max-height: 500px !important;
+    object-fit: contain !important;
+    background: #FFFFFF !important;
+    padding: 2rem !important;
+}
+
+/* ===== 8. SHOP PAGE - SHOW ALL PRODUCTS PROPERLY ===== */
+.products-grid,
+.featured-products .products-grid,
+.category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 25px !important;
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    overflow: visible !important;
+    min-width: auto !important;
+}
+
+@media (max-width: 1200px) {
+    .products-grid,
+    .featured-products .products-grid,
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .products-grid,
+    .featured-products .products-grid,
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+.product-card {
+    background: white !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(92, 58, 45, 0.12) !important;
+    transition: all 0.4s ease !important;
+    border: 2px solid transparent !important;
+    min-width: auto !important;
+}
+
+.product-card img {
+    width: 100% !important;
+    height: 320px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.product-card h3 {
+    padding: 1.2rem 1rem 0.5rem !important;
+    font-size: 1.15rem !important;
+    color: #5C3A2D !important;
+    min-height: 60px !important;
+}
+
+.product-card .price {
+    padding: 0 1rem !important;
+    font-size: 1.5rem !important;
+    color: #D4AF37 !important;
+    font-weight: 800 !important;
+}
+
+.product-actions {
+    padding: 1rem !important;
+    display: flex !important;
+    gap: 10px !important;
+}
+
+/* ===== 9. SHOP HERO TITLE VISIBILITY ===== */
+.shop-hero h1,
+section[class*="hero"] h1 {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    background-clip: initial !important;
+}
+
+/* ===== 10. FIX TWITTER X ICON ===== */
+.fa-x-twitter::before {
+    content: "𝕏" !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.1em !important;
+}
+
+/* Alternative: Use a styled X */
+.social-btn.twitter::before,
+a[title="Twitter"]::before,
+a[title="X"]::before {
+    content: "𝕏" !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.3rem !important;
+    color: white !important;
+}
+
+a[title="Twitter"] i,
+a[title="X"] i {
+    font-style: normal !important;
+}
+
+a[title="Twitter"] i::before,
+a[title="X"] i::before {
+    content: "𝕏" !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: 900 !important;
+    color: inherit !important;
+}
+
+/* ===== 11. FIX ALL HERO H1 GRADIENT ISSUES ===== */
+section[class*="hero"] h1,
+.delivery-hero h1,
+.shop-hero h1,
+.about-hero h1,
+.contact-hero h1 {
+    background: none !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== 12. PRE-ORDER BADGE BETTER ===== */
+.product-card [style*="PRE-ORDER"],
+.product-badge {
+    background: linear-gradient(135deg, #D4AF37, #C5A028) !important;
+    color: #5C3A2D !important;
+    font-weight: 800 !important;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4) !important;
+}
+
 /* ========== BRAND COLOR OVERRIDE ========== */
 /* Remove ALL purple - Replace with Deep Brown + Gold */
 
@@ -2340,7 +2708,7 @@ section {
     transform: rotate(15deg);
 }
 
-.option-card.{ border-top-color: var(--gold-accent); }
+.option-card.sales { border-top-color: var(--gold-accent); }
 .option-card.customer-service { border-top-color: #25D366; }
 .option-card.tech { border-top-color: var(--deep-brown); }
 .option-card.general { border-top-color: var(--coffee-brown); }
@@ -4652,4 +5020,242 @@ section {
     border-color: #D4AF37;
     transform: translateY(-15px);
     box-shadow: 0 20px 40px rgba(92, 58, 45, 0.2);
+}
+
+/* ========================================
+   TEAM GRID - PROFESSIONAL FIX
+   ======================================== */
+
+/* Force team grid to be perfectly aligned */
+.team-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    max-width: 1300px !important;
+    margin: 3rem auto !important;
+    padding: 0 20px !important;
+    align-items: stretch !important;
+}
+
+/* All team cards must be SAME HEIGHT */
+.team-card {
+    background: white !important;
+    border-radius: 25px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(92, 58, 45, 0.15) !important;
+    transition: all 0.4s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    border: 2px solid rgba(212, 175, 55, 0.2) !important;
+    position: relative !important;
+}
+
+.team-card:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 25px 50px rgba(92, 58, 45, 0.25) !important;
+    border-color: #D4AF37 !important;
+}
+
+/* TEAM IMAGE — CONSISTENT SIZE FOR ALL */
+.team-image {
+    width: 100% !important;
+    height: 380px !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #FAF0E6, #FDF6F0) !important;
+    position: relative !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+.team-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    display: block !important;
+    transition: transform 0.6s ease !important;
+}
+
+.team-card:hover .team-image img {
+    transform: scale(1.05) !important;
+}
+
+/* TEAM INFO — FILLS REMAINING SPACE */
+.team-info {
+    padding: 2rem !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: white !important;
+}
+
+.team-info h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.3rem !important;
+    color: #5C3A2D !important;
+}
+
+.team-role {
+    color: #D4AF37 !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    font-size: 1rem !important;
+}
+
+.team-bio {
+    color: #4A4A4A !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+    flex: 1 !important;
+}
+
+.team-contact {
+    background: #FAF0E6 !important;
+    padding: 1.2rem !important;
+    border-radius: 15px !important;
+    border-left: 4px solid #D4AF37 !important;
+    margin-bottom: 1rem !important;
+}
+
+.team-contact p {
+    margin: 0.5rem 0 !important;
+    font-size: 0.9rem !important;
+    color: #4A4A4A !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.team-contact i {
+    color: #D4AF37 !important;
+}
+
+/* VIEW PROFILE BUTTON — Always at bottom */
+.view-profile-btn {
+    background: #5C3A2D !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 25px !important;
+    width: 100% !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: auto !important;
+}
+
+.view-profile-btn:hover {
+    background: #D4AF37 !important;
+    color: #5C3A2D !important;
+    transform: translateY(-3px) !important;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 500px !important;
+    }
+    
+    .team-image {
+        height: 400px !important;
+    }
+}
+
+/* FOUNDER BADGE FIX */
+.team-card.founder {
+    border: 3px solid #D4AF37 !important;
+}
+
+.team-card.founder::before {
+    content: "👑" !important;
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    font-size: 1.5rem !important;
+    z-index: 10 !important;
+    background: white !important;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    border: 2px solid #D4AF37 !important;
+}
+
+/* Remove the cross decoration that's causing issues */
+.team-card::after {
+    display: none !important;
+}
+
+/* SECTION HEADER FIX */
+.team-section h2 {
+    color: #5C3A2D !important;
+    -webkit-text-fill-color: #5C3A2D !important;
+    background: none !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+}
+
+.section-subtitle {
+    color: #8B6B4D !important;
+    text-align: center !important;
+    margin-bottom: 3rem !important;
+}
+
+/* TEAM PAGE - FIXED ALIGNMENT */
+.team-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    align-items: stretch !important;
+}
+
+.team-card {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: 2px solid transparent !important;
+    transition: all 0.4s ease !important;
+}
+
+.team-card:hover {
+    border-color: #D4AF37 !important;
+    transform: translateY(-10px) !important;
+}
+
+.team-image {
+    height: 380px !important;
+    overflow: hidden !important;
+    background: #FAF0E6 !important;
+}
+
+.team-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+}
+
+.team-info {
+    flex: 1 !important;
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.view-profile-btn {
+    margin-top: auto !important;
 }
