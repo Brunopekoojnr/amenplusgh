@@ -5285,29 +5285,7 @@ section {
 .cart-actions { margin-top: 5px !important; gap: 5px !important; }
 .cart-actions a { padding: 5px !important; font-size: 0.8rem !important; }
 
-/* ===== CRITICAL CART FIXES ===== */
-/* Cart sidebar layout - ensure footer is ALWAYS visible */
-.cart-sidebar {
-    display: flex !important;
-    flex-direction: column !important;
-    max-height: 100vh !important;
-    overflow: hidden !important;
-}
-.cart-items {
-    flex: 1 !important;
-    overflow-y: auto !important;
-    min-height: 0 !important;
-}
-.cart-footer {
-    flex-shrink: 0 !important;
-    position: relative !important;
-    background: white !important;
-    border-top: 2px solid #f0e8e0 !important;
-    padding: 15px !important;
-    z-index: 10 !important;
-}
 
-/* ===== FIX ALL BLUE COLORS ===== */
 /* Remove any blue from anywhere */
 a { color: var(--deep-brown, #5C3A2D); }
 a:hover { color: var(--gold-accent, #D4AF37); }
@@ -5412,20 +5390,7 @@ h2 .section-emoji {
     touch-action: manipulation !important;
 }
 
-/* Cart Footer Pinning & Scrolling */
-.cart-sidebar {
-    display: flex !important;
-    flex-direction: column !important;
-}
-.cart-items {
-    flex: 1 !important;
-    overflow-y: auto !important;
-}
-.cart-footer {
-    padding-bottom: env(safe-area-inset-bottom) !important;
-}
 
-/* GLOBAL CART SCROLLING FIX (Bypasses media queries) */
 .cart-sidebar {
     height: 100vh !important;
     height: -webkit-fill-available !important;
@@ -5448,3 +5413,88 @@ h2 .section-emoji {
     background: white !important;
     box-shadow: 0 -5px 15px rgba(0,0,0,0.05) !important;
 }
+
+/* ============================================================
+   ULTIMATE CART SCROLLING & PINNING FIX (MOBILE & DESKTOP)
+   ============================================================ */
+.cart-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    width: 450px !important; /* Perfect "squeezed" width for 1200px viewport */
+    background: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    z-index: 100000 !important;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.2) !important;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    transform: translateX(100%);
+    visibility: hidden;
+}
+
+.cart-sidebar.active {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+}
+
+.cart-header {
+    flex-shrink: 0 !important;
+    padding: 20px !important;
+    border-bottom: 1px solid #eee !important;
+    background: #fff !important;
+}
+
+.cart-items {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 20px !important;
+    min-height: 0 !important; /* CRITICAL for flex scrolling */
+}
+
+.cart-footer {
+    flex-shrink: 0 !important;
+    padding: 20px !important;
+    background: #fff !important;
+    border-top: 2px solid #f8f8f8 !important;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.05) !important;
+    z-index: 10 !important;
+}
+
+/* Ensure buttons are visible */
+.checkout-btn {
+    display: block !important;
+    width: 100% !important;
+    padding: 15px !important;
+    background: #5C3A2D !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+    text-decoration: none !important;
+}
+
+.continue-shopping {
+    display: block !important;
+    text-align: center !important;
+    color: #5C3A2D !important;
+    font-weight: 600 !important;
+    padding: 10px !important;
+    text-decoration: underline !important;
+}
+
+/* Special fix for mobile "zoom" factor on 1200px site */
+@media screen and (max-width: 1200px) {
+    .cart-sidebar {
+        width: 80% !important; /* Take up more room on phone if site is scaled */
+        max-width: 500px !important;
+    }
+}
+
+.plus-small { color: #D4AF37 !important; font-weight: 800 !important; }
+.logo .slogan { display: block !important; font-size: 0.85rem !important; color: #D4AF37 !important; font-weight: 600 !important; text-transform: uppercase !important; margin-top: -5px !important; }
+.btn-primary, .shop-now-btn { color: white !important; }
