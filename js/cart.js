@@ -626,9 +626,8 @@ function checkout() {
         amount: Math.round(totalAmount * 100),
         currency: 'GHS',
         ref: 'AMEN-' + Math.floor(Math.random() * 1000000000) + 1,
-        // TODO: Replace 'SUB_xxxxxxxxxxxxxxx' with your actual Paystack Delivery Subaccount Code
-        subaccount: 'SUB_xxxxxxxxxxxxxxx',
-        bearer: 'account',
+        // subaccount: 'SUB_xxxxxxxxxxxxxxx', // Temporarily disabled until real code is provided
+        // bearer: 'account',
         metadata: metadata,
       callback: function(response) {
     // Payment successful
