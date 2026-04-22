@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, initial-scale=0.75, user-scalable=yes, maximum-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <title>Amen+ | Shop Collection</title>
     <link rel="stylesheet" href="style.css">
@@ -517,7 +517,7 @@
 
     <!-- Category Tabs -->
     <div class="category-tabs">
-        <button class="category-tab active" data-category="all">All Pre-Orders</button>
+        <button class="category-tab active" data-category="all">All Collection</button>
         <button class="category-tab" data-category="Shirt">Shirts & Tees</button>
         <button class="category-tab" data-category="Accessory">Accessories</button>
     </div>
@@ -608,9 +608,9 @@
                 console.error('Products section not found!');
                 return;
             }
-            
+
             if (typeof products === 'undefined' || !products || products.length === 0) {
-                console.error('Products array not found!');
+                console.error('Products array not found or empty!');
                 productsSection.innerHTML = `
                     <div class="empty-category">
                         <i class="fas fa-box-open"></i>
@@ -621,7 +621,10 @@
                 return;
             }
             
-            console.log(`Found ${products.length} products`);
+            console.log(`Loaded ${products.length} products`);
+            
+            // Expose globally for cart.js
+            window.products = products;
             
             function renderProducts(category) {
                 let filteredProducts = products;
@@ -672,14 +675,14 @@
                                         <div class="product-card">
                                             <div class="product-image-container">
                                                 <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Product'">
-                                                <span class="product-badge preorder-badge">Pre-order</span>
+                                                ${product.preorder || product.isPreOrder ? '<span class="product-badge preorder-badge">Pre-order</span>' : ''}
                                             </div>
                                             <h3>${product.name}</h3>
-                                            <p class="product-description">${product.description.substring(0, 70)}...</p>
+                                            <p class="product-description">${(product.description || '').substring(0, 70)}...</p>
                                             <p class="price">₵${product.price.toLocaleString()}</p>
                                             <div class="product-actions">
                                                 <a href="product.html?id=${product.id}" class="view-product"><i class="fas fa-eye"></i> Details</a>
-                                                <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes[0]}')"><i class="fas fa-shopping-bag"></i> Pre-order</button>
+                                                <button class="quick-add" onclick="addToCart(${product.id}, '${product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'One Size'}')"><i class="fas fa-shopping-bag"></i> ${product.preorder || product.isPreOrder ? 'Pre-order' : 'Add to Cart'}</button>
                                             </div>
                                         </div>
                                     `).join('')}

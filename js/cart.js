@@ -561,11 +561,12 @@ function checkout() {
     const customerName = prompt('👋 Please enter your full name:');
     if (!customerName) return;
     
-    const customerEmail = prompt('📧 Please enter your email address:');
-    if (!customerEmail) return;
-    
     const customerPhone = prompt('📱 Please enter your phone number:');
     if (!customerPhone) return;
+
+    // Email is required by Paystack but we want an SMS-only flow
+    // So we generate a dummy email based on the phone number
+    const customerEmail = `${customerPhone.replace(/[^0-9]/g, '')}@amenplus.com`;
 
     // Prepare metadata for Paystack
     const metadata = {
@@ -623,6 +624,9 @@ function checkout() {
         amount: Math.round(totalAmount * 100),
         currency: 'GHS',
         ref: 'AMEN-' + Math.floor(Math.random() * 1000000000) + 1,
+        // TODO: Replace 'SUB_xxxxxxxxxxxxxxx' with your actual Paystack Delivery Subaccount Code
+        subaccount: 'SUB_xxxxxxxxxxxxxxx',
+        bearer: 'account',
         metadata: metadata,
       callback: function(response) {
     // Payment successful
