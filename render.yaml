@@ -1,0 +1,23 @@
+# render.yaml - Render.com deployment config for Amen+ Backend
+services:
+  - type: web
+    name: amenplus-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: ARKESEL_API_KEY
+        sync: false
+      - key: ARKESEL_SENDER_ID
+        value: AmenPlus
+      - key: MOMO_NUMBER
+        value: "0530379533"
