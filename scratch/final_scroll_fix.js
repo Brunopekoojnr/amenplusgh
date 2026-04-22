@@ -1,4 +1,11 @@
+const fs = require('fs');
 
+let css = fs.readFileSync('style.css', 'utf8');
+
+// Remove the "Ultimate Fix" block to start fresh
+css = css.replace(/\/\* =+[\s\S]*?ULTIMATE CART SCROLLING[\s\S]*$/g, '');
+
+const finalAttempt = `
 /* ============================================================
    FINAL CART FIX: NO LOCKING, FULL SCROLLING
    ============================================================ */
@@ -58,3 +65,8 @@
 /* Slogan & Plus Sign */
 .plus-small { color: #D4AF37 !important; font-weight: 800 !important; }
 .logo .slogan { display: block !important; font-size: 0.85rem !important; color: #D4AF37 !important; font-weight: 600 !important; text-transform: uppercase !important; margin-top: -5px !important; }
+`;
+
+css += finalAttempt;
+fs.writeFileSync('style.css', css);
+console.log('Applied Final Scroll Fix');
