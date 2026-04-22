@@ -260,6 +260,70 @@ app.get('/api/customers', adminAuth, (req, res) => {
     }
 });
 
+// Manually add a client
+app.post('/api/customers', adminAuth, (req, res) => {
+    try {
+        const customers = readJSON(CUSTOMERS_FILE);
+        const { name, phone, email, notes } = req.body;
+        if (!name || !phone) return res.status(400).json({ success: false, error: 'Name and phone are required' });
+
+        const existing = customers.find(c => c.phone === phone);
+        if (existing) return res.status(409).json({ success: false, error: 'Client with this phone already exists' });
+
+        const newCustomer = {
+            id: Date.now().toString(),
+            name, phone,
+            email: email || '',
+            notes: notes || '',
+            totalOrders: 0,
+            totalSpent: 0,
+            addedManually: true,
+            createdAt: new Date().toISOString()
+        };
+        customers.push(newCustomer);
+        writeJSON(CUSTOMERS_FILE, customers);
+        res.json({ success: true, customer: newCustomer });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// Edit a client
+app.patch('/api/customers/:id', adminAuth, (req, res) => {
+    try {
+        const customers = readJSON(CUSTOMERS_FILE);
+        const index = customers.findIndex(c => c.id === req.params.id);
+        if (index === -1) return res.status(404).json({ success: false, error: 'Client not found' });
+
+        const { name, phone, email, notes } = req.body;
+        if (name) customers[index].name = name;
+        if (phone) customers[index].phone = phone;
+        if (email !== undefined) customers[index].email = email;
+        if (notes !== undefined) customers[index].notes = notes;
+        customers[index].updatedAt = new Date().toISOString();
+
+        writeJSON(CUSTOMERS_FILE, customers);
+        res.json({ success: true, customer: customers[index] });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// Delete a client
+app.delete('/api/customers/:id', adminAuth, (req, res) => {
+    try {
+        let customers = readJSON(CUSTOMERS_FILE);
+        const index = customers.findIndex(c => c.id === req.params.id);
+        if (index === -1) return res.status(404).json({ success: false, error: 'Client not found' });
+
+        customers.splice(index, 1);
+        writeJSON(CUSTOMERS_FILE, customers);
+        res.json({ success: true, message: 'Client deleted' });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 app.get('/api/dashboard/stats', adminAuth, (req, res) => {
     try {
         const orders = readJSON(ORDERS_FILE);
