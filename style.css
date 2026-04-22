@@ -5424,3 +5424,27 @@ h2 .section-emoji {
 .cart-footer {
     padding-bottom: env(safe-area-inset-bottom) !important;
 }
+
+/* GLOBAL CART SCROLLING FIX (Bypasses media queries) */
+.cart-sidebar {
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+.cart-items {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 20px !important;
+}
+.cart-footer {
+    flex-shrink: 0 !important;
+    background: white !important;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05) !important;
+}
