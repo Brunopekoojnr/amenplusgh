@@ -564,9 +564,11 @@ function checkout() {
     const customerPhone = prompt('📱 Please enter your phone number:');
     if (!customerPhone) return;
 
-    // Email is required by Paystack but we want an SMS-only flow
-    // So we generate a dummy email based on the phone number
-    const customerEmail = `${customerPhone.replace(/[^0-9]/g, '')}@amenplus.com`;
+    const customerEmail = prompt('✉️ Please enter your email address for the receipt:');
+    if (!customerEmail || !customerEmail.includes('@')) {
+        showNotification('Valid email is required', 'error');
+        return;
+    }
 
     // Prepare metadata for Paystack
     const metadata = {
