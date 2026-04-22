@@ -677,6 +677,10 @@ function checkout() {
         }
     });
     
+    // CRITICAL: Close cart sidebar so body overflow: hidden is removed. 
+    // This allows the Paystack modal to scroll if the screen is small!
+    closeCartSidebar();
+    
     handler.openIframe();
 }
 
