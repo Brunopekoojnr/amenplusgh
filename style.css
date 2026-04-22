@@ -5309,8 +5309,8 @@ section {
 
 /* ===== FIX ALL BLUE COLORS ===== */
 /* Remove any blue from anywhere */
-a { color: var(--deep-brown, #5C3A2D) !important; }
-a:hover { color: var(--gold-accent, #D4AF37) !important; }
+a { color: var(--deep-brown, #5C3A2D); }
+a:hover { color: var(--gold-accent, #D4AF37); }
 .logo { color: var(--deep-brown, #5C3A2D) !important; }
 .logo span { color: var(--deep-brown, #5C3A2D) !important; }
 .logo .plus { color: var(--gold-accent, #D4AF37) !important; }
@@ -5321,9 +5321,7 @@ a:hover { color: var(--gold-accent, #D4AF37) !important; }
 }
 
 /* Fix slogan display - hide from nav, only show on homepage hero */
-.slogan {
-    display: none !important;
-}
+
 
 /* ===== FIX PLUS SIGN ON ALL PAGES ===== */
 .plus {
@@ -5348,4 +5346,81 @@ h2 .section-emoji {
 }
 .table-card {
     overflow-x: auto !important;
+}
+
+/* Ensure slogan is visible but elegant */
+.logo .slogan {
+    display: block !important;
+    font-size: 0.75rem !important;
+    color: var(--gold-accent) !important;
+    font-weight: 500 !important;
+    margin-top: -2px !important;
+    letter-spacing: 1px !important;
+}
+
+/* Fix button contrast - ensure white text stays white */
+.btn-primary, .checkout-btn, .add-to-cart-btn, .shop-more-btn {
+    color: white !important;
+}
+.btn-primary:hover, .checkout-btn:hover, .add-to-cart-btn:hover {
+    color: white !important;
+}
+
+/* Cart Scrolling Fix for Mobile */
+@media (max-width: 768px) {
+    .cart-sidebar {
+        width: 100% !important;
+        right: -100% !important;
+        height: 100vh !important;
+        height: -webkit-fill-available !important;
+    }
+    .cart-sidebar.active {
+        right: 0 !important;
+    }
+    .cart-items {
+        max-height: calc(100vh - 250px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* Final Branding Polishes */
+.plus-small {
+    color: var(--gold-accent) !important;
+    font-weight: 800 !important;
+}
+
+.logo .slogan {
+    display: block !important;
+    font-size: 0.85rem !important;
+    color: var(--gold-accent) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    margin-top: -5px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Fix for Button Visibility - OVERRIDE ALL */
+.btn-primary, .checkout-btn, .add-to-cart-btn, .shop-now-btn, .shop-more-btn {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Viewport Fix: Allow zooming on all elements */
+* {
+    touch-action: manipulation !important;
+}
+
+/* Cart Footer Pinning & Scrolling */
+.cart-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.cart-items {
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+.cart-footer {
+    padding-bottom: env(safe-area-inset-bottom) !important;
 }
