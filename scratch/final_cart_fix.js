@@ -1,4 +1,11 @@
+const fs = require('fs');
 
+let css = fs.readFileSync('style.css', 'utf8');
+
+// Remove the "EMERGENCY RESTORE: CART SCROLLING" block to update it
+css = css.replace(/\/\* =+[\s\S]*?EMERGENCY RESTORE: CART SCROLLING[\s\S]*$/g, '');
+
+const finalCartFix = `
 /* ============================================================
    FINAL CART FIX: NO PINNING, FULL SCROLLING, RELIABLE CLOSING
    ============================================================ */
@@ -75,3 +82,8 @@
     opacity: 1 !important;
     visibility: visible !important;
 }
+`;
+
+css += finalCartFix;
+fs.writeFileSync('style.css', css);
+console.log('Applied Final No-Pinning Cart Fix');
