@@ -731,8 +731,8 @@ function getProductById(id) {
 // ========== BACKEND ORDER SAVING (ADDED - NO EXISTING CODE CHANGED) ==========
 // API endpoint for saving orders (change to your actual server URL when deployed)
 const API_BASE_URL = window.location.hostname === 'localhost' 
-    ? 'https://amenplusgh.onrender.com/api'
-    : 'https://amenplus-api.onrender.com/api';
+    ? 'http://localhost:3000/api'
+    : 'https://amenplusgh.onrender.com/api';
 
 // Function to save order to backend
 // Function to save order to backend
