@@ -34,8 +34,9 @@ let deliveryLocation = JSON.parse(localStorage.getItem('deliveryLocation')) || {
 // ========== SMS CONFIGURATION ==========
 const SMS_CONFIG = {
     orderNumber: '0530379533',  // Confirmation SMS
-    salesNumber: '0550987093',  // Melanie Finance MoMo
-    deliveryNumber: '0530379533'  // Delivery fees
+    salesNumber: '0550987093',  // Melanie Finance MoMo (Payment Primary)
+    deliveryNumber: '0530379533', // Delivery fees
+    financeLead: 'Melanie Asante'
 };
 
 // ========== DOM ELEMENTS ==========
@@ -479,7 +480,7 @@ function showSMSInstructions(orderDetails) {
                 </div>
                 
                 <div class="sms-help">
-                    <p><strong>Questions?</strong> Call us on <a href="tel:${SMS_CONFIG.salesNumber}">${SMS_CONFIG.salesNumber}</a></p>
+                    <p><strong>Questions?</strong> Call our Finance Lead, <strong>Melanie Asante</strong>, on <a href="tel:${SMS_CONFIG.salesNumber}">${SMS_CONFIG.salesNumber}</a></p>
                 </div>
             </div>
             
@@ -631,7 +632,8 @@ function checkout() {
         metadata: metadata,
       callback: function(response) {
     // Payment successful
-    showNotification(`Payment successful! Thank you for your order, ${customerName}.`, 'success');
+    // Preparation for centralizing payments
+    showNotification(`Payment successful! Our Finance Lead, Melanie Asante, will confirm your order shortly.`, 'success');
     
     // Prepare order details for SMS
     const orderDetails = {

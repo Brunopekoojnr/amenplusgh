@@ -121,11 +121,11 @@ const teamBios = {
         role: "Digital Products & Systems Manager",
         bio: "Driving digital innovation and seamless systems that power Amen+ every day. Passionate about leveraging technology to create exceptional customer experiences and streamline operations.",
         funFact: "I can automate almost any repetitive task! 🤖",
-        phone: "+233 55 000 0000",
+        phone: "+233207997071",
         email: "joy@amenplus.com",
         handles: "Digital Products, Systems Management, Tech Innovation",
         image: "assets/Team/Joy_Adevu_Digital products and systems Manager .png",
-        whatsapp: "233550000000"
+        whatsapp: "233207997071"
     }
 };
 

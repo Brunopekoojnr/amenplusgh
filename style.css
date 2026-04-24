@@ -1,4 +1,138 @@
 /* ========================================
+   FIX: CONTACT CARD BUTTON TEXT
+   ======================================== */
+
+/* Force all card buttons to show text */
+.card-btn,
+.call-btn,
+.whatsapp-btn,
+.email-btn {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Remove shimmer overlay from card buttons */
+.card-btn::before,
+.call-btn::before,
+.whatsapp-btn::before,
+.email-btn::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Force text visible on dark buttons */
+.call-btn {
+    background: #5C3A2D !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.call-btn * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.email-btn {
+    background: #8B6B4D !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.email-btn * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.whatsapp-btn {
+    background: #25D366 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    white-space: nowrap !important;
+    padding: 10px 20px !important;
+}
+
+.whatsapp-btn * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Make sure text inside icons shows */
+.card-btn i,
+.call-btn i,
+.whatsapp-btn i,
+.email-btn i {
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+/* ========================================
+   FIX: ALL BUTTON TEXT INVISIBLE
+   ======================================== */
+
+/* Remove shimmer overlay that's hiding text */
+.btn-primary::before,
+.btn-secondary::before,
+.btn-view-all::before,
+.btn-view-delivery::before,
+.btn-view-team::before,
+.shop-more-btn::before,
+.checkout-btn::before,
+.add-to-cart-btn::before,
+.submit-btn::before,
+.back-to-shop a::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Force ALL button text to be visible */
+.btn-primary,
+.btn-secondary,
+.btn-view-all,
+.btn-view-delivery,
+.btn-view-team,
+.shop-more-btn,
+.back-to-shop a,
+.view-profile-btn,
+.checkout-btn,
+.btn-shop-now,
+.continue-shopping,
+.view-delivery-info {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    text-shadow: none !important;
+    position: relative;
+    z-index: 2;
+    overflow: visible !important;
+}
+
+/* Fix text inside buttons */
+.btn-primary *,
+.btn-view-all *,
+.btn-view-delivery *,
+.btn-view-team *,
+.shop-more-btn *,
+.back-to-shop a * {
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+/* Fix Shop Now button in cart */
+.btn-shop-now {
+    background: #5C3A2D !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 2px solid #D4AF37 !important;
+}
+
+/* Fix product card buttons (these work but ensuring) */
+.view-product,
+.quick-add {
+    -webkit-text-fill-color: currentColor !important;
+    overflow: visible !important;
+}
+
+/* ========================================
    AMEN+ EMERGENCY FIXES - ALL ISSUES
    ======================================== */
 
@@ -5546,6 +5680,7 @@ button,
     letter-spacing: 1px !important;
     font-weight: 700 !important;
     text-decoration: none !important;
+    border-radius: 50px !important; /* Make all buttons round */
 }
 
 /* 1. DARK BACKGROUND BUTTONS -> WHITE TEXT */
@@ -5591,7 +5726,7 @@ button,
     background: #5C3A2D !important;
     color: #ffffff !important;
     padding: 10px 20px !important;
-    border-radius: 5px !important;
+    border-radius: 50px !important; /* Pill shape */
     font-size: 0.9rem !important;
 }
 
@@ -5603,4 +5738,250 @@ button i, .btn-primary i, .btn-secondary i, a i {
 /* Global button shadow to make them pop */
 button, .btn-primary, .btn-secondary, .quick-add, .view-product {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+}
+
+/* iOS Fix: Prevent decorative cross symbols from turning purple/blue or being links */
+.cross-decoration, 
+[class*="hero"]::before, 
+[class*="hero"]::after,
+.zone-card::before,
+.coverage-card::before,
+.restriction-card::before,
+.partner-container::before,
+.close-cart,
+.shop-hero::before,
+.shop-hero::after,
+.delivery-hero::before,
+.delivery-hero::after,
+.hero::before,
+.hero::after {
+    text-decoration: none !important;
+    pointer-events: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: inherit !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* Ensure the close button in cart remains clickable but doesn't change color */
+.close-cart {
+    pointer-events: auto !important;
+}
+/* ========================================
+   1. REMOVE ALL CROSSES (Purple iPhone Fix)
+   ======================================== */
+
+/* Hide ALL decorative crosses */
+.hero::before, .hero::after,
+.shop-hero::before, .shop-hero::after,
+.delivery-hero::before, .delivery-hero::after,
+.contact-hero::before, .contact-hero::after,
+.about-hero::before, .about-hero::after,
+.impact-section::before, .impact-section::after,
+.delivery-preview::before,
+.team-preview-home::before,
+.value-card::before,
+.product-card::before,
+.zone-card::before,
+.meaning-container::before, .meaning-container::after,
+.team-section::before,
+.team-card::after,
+.footer::before, .footer::after,
+.office-card::before,
+.option-card::before,
+.category-header::before,
+.cross-decoration::before, .cross-decoration::after,
+.section-title::after,
+h2::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Also remove any remaining cross characters in HTML */
+.cross-decoration {
+    display: none !important;
+}
+
+/* Remove cross emoji from hero */
+.hero h1 .plus::before,
+.shop-hero h1 .plus::before,
+.delivery-hero h1 .plus::before,
+.contact-hero h1 .plus::before {
+    content: none !important;
+}
+
+/* ========================================
+   2. PRODUCT CARDS - CENTER ALIGNED
+   ======================================== */
+
+.product-card {
+    text-align: center !important;
+}
+
+.product-card h3 {
+    text-align: center !important;
+}
+
+.product-card .price {
+    text-align: center !important;
+}
+
+.product-card .description,
+.product-card p {
+    text-align: center !important;
+}
+
+.product-card .product-actions {
+    justify-content: center !important;
+}
+
+/* ========================================
+   3. DESKTOP LANDSCAPE FEEL
+   ======================================== */
+
+/* Wide max-widths for desktop */
+.section {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+
+/* Hero sections - wider landscape */
+.hero {
+    min-height: 75vh !important;
+    padding: 100px 40px !important;
+}
+
+.shop-hero {
+    min-height: 55vh !important;
+    padding: 60px 40px !important;
+}
+
+.delivery-hero {
+    min-height: 50vh !important;
+    padding: 60px 40px !important;
+}
+
+.about-hero,
+.our-story-hero {
+    min-height: 60vh !important;
+    padding: 80px 40px !important;
+}
+
+.contact-hero {
+    min-height: 45vh !important;
+    padding: 60px 40px !important;
+}
+
+/* Delivery zones - landscape cards */
+.zones-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* Contact options - landscape 4 columns */
+.options-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+}
+
+/* Team grid - 3 columns centered */
+.team-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 1300px !important;
+    margin: 3rem auto !important;
+}
+
+/* Values - 4 columns */
+.values-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+}
+
+/* Delivery highlights - 3 columns */
+.delivery-highlights {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* ========================================
+   4. FIX ALL BUTTON TEXT (Still needed)
+   ======================================== */
+
+.btn-primary, .btn-secondary, .btn-view-all,
+.btn-view-delivery, .btn-view-team, .shop-more-btn,
+.back-to-shop a, .view-profile-btn, .checkout-btn,
+.btn-shop-now, .view-product, .quick-add,
+.card-btn, .call-btn, .whatsapp-btn, .email-btn,
+.continue-shopping, .view-delivery-info {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 2 !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary::before, .btn-secondary::before,
+.btn-view-all::before, .btn-view-delivery::before,
+.btn-view-team::before, .shop-more-btn::before,
+.back-to-shop a::before, .checkout-btn::before,
+.btn-shop-now::before {
+    display: none !important;
+    content: none !important;
+}
+
+.quick-add {
+    -webkit-text-fill-color: #5C3A2D !important;
+    color: #5C3A2D !important;
+}
+
+.whatsapp-btn {
+    white-space: nowrap !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* ========================================
+   5. RESPONSIVE LANDSCAPE
+   ======================================== */
+
+@media (min-width: 1400px) {
+    .category-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-grid,
+    .values-grid,
+    .delivery-highlights,
+    .zones-container {
+        grid-template-columns: 1fr !important;
+    }
+    .options-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .team-grid {
+        grid-template-columns: 1fr !important;
+    }
 }
