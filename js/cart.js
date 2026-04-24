@@ -622,7 +622,7 @@ function checkout() {
 
     // Paystack configuration
     const handler = PaystackPop.setup({
-        key:pk_test_802197895cbf5302a65ee707342b8e1930f2961a, // Replace with your Paystack public key
+        key: 'pk_test_802197895cbf5302a65ee707342b8e1930f2961a',
         email: customerEmail,
         amount: Math.round(totalAmount * 100),
         currency: 'GHS',

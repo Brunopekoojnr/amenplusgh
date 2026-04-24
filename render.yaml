@@ -13,7 +13,7 @@ services:
         value: production
       - key: ADMIN_KEY
         generateValue: true
-      - key:pk_test_802197895cbf5302a65ee707342b8e1930f2961a
+      - key: PAYSTACK_SECRET_KEY
         sync: false
       - key: ARKESEL_API_KEY
         sync: false
