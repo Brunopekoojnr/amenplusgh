@@ -5768,66 +5768,67 @@ button, .btn-primary, .btn-secondary, .quick-add, .view-product {
     pointer-events: auto !important;
 }
 /* ========================================
-   1. REMOVE ALL CROSSES (Purple iPhone Fix)
+   REMOVE ALL SMALL DECORATIVE CROSSES
    ======================================== */
-
-/* Hide ALL decorative crosses */
-.hero::before, .hero::after,
-.shop-hero::before, .shop-hero::after,
-.delivery-hero::before, .delivery-hero::after,
-.contact-hero::before, .contact-hero::after,
-.about-hero::before, .about-hero::after,
-.impact-section::before, .impact-section::after,
-.delivery-preview::before,
-.team-preview-home::before,
-.value-card::before,
 .product-card::before,
+.product-card::after,
+.value-card::before,
+.value-card::after,
 .zone-card::before,
-.meaning-container::before, .meaning-container::after,
-.team-section::before,
-.team-card::after,
-.footer::before, .footer::after,
-.office-card::before,
+.zone-card::after,
 .option-card::before,
+.option-card::after,
+.office-card::before,
+.office-card::after,
+.team-card::before,
+.team-card::after,
 .category-header::before,
-.cross-decoration::before, .cross-decoration::after,
-.section-title::after,
-h2::after {
+.category-header::after,
+.kumasi-card::before,
+.kumasi-card::after,
+.coverage-card::before,
+.coverage-card::after,
+.restriction-card::before,
+.restriction-card::after,
+.highlight::before,
+.highlight::after,
+.stat::before,
+.stat::after {
     content: none !important;
     display: none !important;
-}
-
-/* Also remove any remaining cross characters in HTML */
-.cross-decoration {
-    display: none !important;
-}
-
-/* Remove cross emoji from hero */
-.hero h1 .plus::before,
-.shop-hero h1 .plus::before,
-.delivery-hero h1 .plus::before,
-.contact-hero h1 .plus::before {
-    content: none !important;
+    visibility: hidden !important;
 }
 
 /* ========================================
-   2. PRODUCT CARDS - CENTER ALIGNED
+   CENTER PRODUCTS ON THE PAGE
    ======================================== */
-
-.product-card {
+.category-section {
     text-align: center !important;
 }
 
-.product-card h3 {
-    text-align: center !important;
+.category-header {
+    justify-content: center !important;
 }
 
-.product-card .price {
-    text-align: center !important;
+.category-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
 }
 
-.product-card .description,
-.product-card p {
+.category-grid .product-card {
+    flex: 0 0 340px !important;
+    max-width: 340px !important;
+}
+
+.product-card h3,
+.product-card p,
+.product-card .price,
+.product-card .description {
     text-align: center !important;
 }
 
@@ -5836,92 +5837,279 @@ h2::after {
 }
 
 /* ========================================
-   3. DESKTOP LANDSCAPE FEEL
+   FIX BUTTON TEXT
    ======================================== */
-
-/* Wide max-widths for desktop */
-.section {
-    max-width: 1400px !important;
-    margin: 0 auto !important;
+.btn-primary, .btn-secondary, .btn-view-all,
+.btn-view-delivery, .btn-view-team, .shop-more-btn,
+.back-to-shop a, .view-profile-btn, .checkout-btn,
+.btn-shop-now, .card-btn, .call-btn, .whatsapp-btn,
+.email-btn {
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
-/* Hero sections - wider landscape */
-.hero {
-    min-height: 75vh !important;
-    padding: 100px 40px !important;
+.quick-add {
+    -webkit-text-fill-color: #5C3A2D !important;
+    color: #5C3A2D !important;
 }
 
-.shop-hero {
-    min-height: 55vh !important;
-    padding: 60px 40px !important;
-}
-
-.delivery-hero {
-    min-height: 50vh !important;
-    padding: 60px 40px !important;
-}
-
-.about-hero,
-.our-story-hero {
-    min-height: 60vh !important;
-    padding: 80px 40px !important;
-}
-
-.contact-hero {
-    min-height: 45vh !important;
-    padding: 60px 40px !important;
-}
-
-/* Delivery zones - landscape cards */
-.zones-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-}
-
-/* Contact options - landscape 4 columns */
-.options-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-    max-width: 1300px !important;
-    margin: 0 auto !important;
-}
-
-/* Team grid - 3 columns centered */
-.team-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    max-width: 1300px !important;
-    margin: 3rem auto !important;
-}
-
-/* Values - 4 columns */
-.values-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-    max-width: 1300px !important;
-    margin: 0 auto !important;
-}
-
-/* Delivery highlights - 3 columns */
-.delivery-highlights {
-    grid-template-columns: repeat(3, 1fr) !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
+/* Remove ALL crosses from header and footer on ALL pages */
+.footer::before,
+.footer::after,
+.main-header::before,
+.main-header::after,
+header::before,
+header::after {
+    content: none !important;
+    display: none !important;
+    visibility: hidden !important;
 }
 
 /* ========================================
-   4. FIX ALL BUTTON TEXT (Still needed)
+   1. REMOVE EVERY SINGLE FLOATING CROSS
+   ======================================== */
+
+/* Hero section crosses */
+.hero::before, .hero::after,
+.shop-hero::before, .shop-hero::after,
+.delivery-hero::before, .delivery-hero::after,
+.contact-hero::before, .contact-hero::after,
+.about-hero::before, .about-hero::after,
+.our-story-hero::before, .our-story-hero::after,
+
+/* Section background crosses */
+.impact-section::before, .impact-section::after,
+.delivery-preview::before,
+.team-preview-home::before,
+.values-section::before,
+
+/* Footer crosses */
+.footer::before, .footer::after,
+
+/* Card crosses */
+.product-card::before,
+.value-card::before,
+.zone-card::before,
+.option-card::before,
+.office-card::before,
+.meaning-container::before, .meaning-container::after,
+.team-section::before,
+.team-card::after,
+.highlight::before,
+
+/* Sicca partner section */
+.partner-container::before,
+
+/* Delivery coverage cards */
+.coverage-card::before, .coverage-card::after,
+.kumasi-card::before, .kumasi-card::after,
+.restriction-card::before, .restriction-card::after,
+
+/* FAQ items */
+.faq-item::before,
+
+/* Cross decoration class */
+.cross-decoration::before, .cross-decoration::after,
+
+/* Header pseudo */
+.main-header::before, .main-header::after,
+
+/* Section titles */
+h2::after,
+.section-title::after,
+.category-header::before,
+
+/* Stat cards */
+.hero-stats .stat::before,
+
+/* Any remaining universal crosses */
+[class*="hero"]::before, [class*="hero"]::after {
+
+    content: none !important;
+    display: none !important;
+    visibility: hidden !important;
+    animation: none !important;
+}
+
+/* Also hide any actual ✝ text in HTML */
+.cross-fade,
+.cross-decoration {
+    display: none !important;
+}
+
+/* ========================================
+   2. DELIVERY PAGE - FIX CONTRAST & READABILITY
+   ======================================== */
+
+/* Delivery hero - white text on dark brown */
+.delivery-hero {
+    background: #5C3A2D !important;
+    color: #FFFFFF !important;
+    border-radius: 0 !important;
+    border-bottom: 4px solid #D4AF37;
+}
+
+.delivery-hero h1,
+.delivery-hero h1 * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    text-shadow: none !important;
+}
+
+.delivery-hero p {
+    color: #FAF0E6 !important;
+}
+
+/* Stat boxes - gold numbers on brown */
+.hero-stats .stat {
+    background: rgba(255,255,255,0.15) !important;
+    border: 2px solid #D4AF37 !important;
+    backdrop-filter: blur(5px);
+}
+
+.hero-stats .stat h3 {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+}
+
+.hero-stats .stat p {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Zone cards - fix contrast */
+.zone-card.accra-zone {
+    background: #FFFFFF !important;
+    border-top: 5px solid #5C3A2D !important;
+}
+
+.zone-card.accra-zone h3,
+.zone-card.accra-zone .price,
+.zone-card.accra-zone .detail-item,
+.zone-card.accra-zone .areas-count,
+.zone-card.accra-zone .pricing-tier h4 {
+    color: #5C3A2D !important;
+}
+
+.zone-card.accra-zone .price {
+    color: #D4AF37 !important;
+}
+
+.zone-card.kumasi-zone {
+    background: #5C3A2D !important;
+    border-top: 5px solid #D4AF37 !important;
+}
+
+.zone-card.kumasi-zone h3 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.zone-card.kumasi-zone .price {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+}
+
+.zone-card.kumasi-zone .detail-item {
+    color: #FAF0E6 !important;
+}
+
+.zone-card.kumasi-zone .detail-item i {
+    color: #D4AF37 !important;
+}
+
+.zone-card.kumasi-zone .pricing-tier {
+    background: rgba(255,255,255,0.15) !important;
+}
+
+.zone-card.kumasi-zone .pricing-tier h4 {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+}
+
+.zone-card.kumasi-zone .areas-count {
+    color: #FAF0E6 !important;
+    -webkit-text-fill-color: #FAF0E6 !important;
+}
+
+.zone-card.kumasi-zone .detail-item {
+    background: rgba(255,255,255,0.1) !important;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+}
+
+/* Zone details bar */
+.zone-card.kumasi-zone .zone-details {
+    background: rgba(255,255,255,0.1) !important;
+}
+
+/* View coverage buttons - text visible */
+.view-coverage-btn {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 2px solid #D4AF37 !important;
+}
+
+/* Sicca's Partner Section - better contrast */
+.partner-container {
+    background: #5C3A2D !important;
+    border-radius: 20px !important;
+}
+
+.partner-logo h2 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.partner-tagline {
+    color: #FAF0E6 !important;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.15) !important;
+    border: 2px solid rgba(212, 175, 55, 0.5) !important;
+}
+
+.info-content h4 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.info-content p {
+    color: #FAF0E6 !important;
+    -webkit-text-fill-color: #FAF0E6 !important;
+}
+
+.info-content a {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+}
+
+.partner-notes .note {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+.partner-notes .note p {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* ========================================
+   3. FIX ALL BUTTON TEXT
    ======================================== */
 
 .btn-primary, .btn-secondary, .btn-view-all,
 .btn-view-delivery, .btn-view-team, .shop-more-btn,
 .back-to-shop a, .view-profile-btn, .checkout-btn,
-.btn-shop-now, .view-product, .quick-add,
-.card-btn, .call-btn, .whatsapp-btn, .email-btn,
-.continue-shopping, .view-delivery-info {
+.btn-shop-now, .card-btn, .call-btn, .whatsapp-btn,
+.email-btn, .continue-shopping, .view-delivery-info,
+.view-coverage-btn {
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
     overflow: visible !important;
     position: relative !important;
     z-index: 2 !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    color: #FFFFFF !important;
 }
 
 .btn-primary::before, .btn-secondary::before,
@@ -5938,50 +6126,76 @@ h2::after {
     color: #5C3A2D !important;
 }
 
-.whatsapp-btn {
-    white-space: nowrap !important;
-    -webkit-text-fill-color: #FFFFFF !important;
+/* ========================================
+   4. CENTER PRODUCTS
+   ======================================== */
+
+.category-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+.category-grid .product-card {
+    flex: 0 0 340px !important;
+    max-width: 340px !important;
+}
+
+.product-card h3,
+.product-card p,
+.product-card .price {
+    text-align: center !important;
+}
+
+.product-card .product-actions {
+    justify-content: center !important;
 }
 
 /* ========================================
-   5. RESPONSIVE LANDSCAPE
+   5. RESPONSIVE
    ======================================== */
-
-@media (min-width: 1400px) {
-    .category-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-    }
-}
-
-@media (min-width: 1200px) {
-    .category-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-}
 
 @media (max-width: 1024px) {
     .category-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
-    .values-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-    .options-grid {
+    .values-grid, .options-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
 }
 
 @media (max-width: 768px) {
-    .category-grid,
-    .values-grid,
-    .delivery-highlights,
-    .zones-container {
+    .team-grid, .values-grid, .options-grid,
+    .delivery-highlights, .zones-container {
         grid-template-columns: 1fr !important;
     }
-    .options-grid {
-        grid-template-columns: 1fr !important;
-    }
-    .team-grid {
-        grid-template-columns: 1fr !important;
-    }
+}
+
+/* ========================================
+   FOOTER COPYRIGHT - MAKE VISIBLE
+   ======================================== */
+.footer-bottom {
+    border-top: 2px solid rgba(255,255,255,0.3) !important;
+    padding: 2rem !important;
+}
+
+.footer-bottom p {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+}
+
+.footer-bottom .brand-tags {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+    font-size: 0.95rem !important;
+    font-style: italic !important;
+    opacity: 1 !important;
 }

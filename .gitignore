@@ -8,3 +8,5 @@ backend/.env
 .DS_Store
 Thumbs.db
 *.log
+key: sk_test_6fc88c0bab025e6520a1b87e268ddcabf33232c0
+pk_test_802197895cbf5302a65ee707342b8e1930f2961a

@@ -13,11 +13,11 @@ services:
         value: production
       - key: ADMIN_KEY
         generateValue: true
-      - key: PAYSTACK_SECRET_KEY
-        sync: false
+      - key: sk_test_6fc88c0bab025e6520a1b87e268ddcabf33232c0
+        sync: true
       - key: ARKESEL_API_KEY
         sync: false
       - key: ARKESEL_SENDER_ID
         value: AmenPlus
       - key: MOMO_NUMBER
-        value: "0530379533"
+        value: "+23355098093"
