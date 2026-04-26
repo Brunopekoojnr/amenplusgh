@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <title>Amen+ | Home - Faith Meets Fashion</title>
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
@@ -16,6 +17,7 @@
 <!-- Config (must be first) -->
 <script src="js/config.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-menu-fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -668,8 +670,120 @@
             }
         }
 
+        /* Mobile Navigation Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+            gap: 5px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #5C3A2D;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 75%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(92, 58, 45, 0.2);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            flex-direction: column;
+            padding: 80px 0 20px 0;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            color: #5C3A2D;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: #FDF6F0;
+            color: #D4AF37;
+            padding-left: 24px;
+        }
+
+        .mobile-menu a i {
+            font-size: 1.2rem;
+            color: #D4AF37;
+            width: 24px;
+            text-align: center;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #5C3A2D;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-close:hover {
+            color: #D4AF37;
+            transform: rotate(90deg);
+        }
+
         /* FIXED: Keep 4 columns on mobile with horizontal scroll */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
@@ -1015,11 +1129,12 @@
     <!-- Paystack SDK -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 
-<!-- Scripts -->
-<script src="js/products.js"></script>
-<script src="js/cart.js"></script>
-<script>
-    // Load featured products on home page
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Load featured products on home page
     document.addEventListener('DOMContentLoaded', function() {
         const featuredContainer = document.getElementById('featured-products');
         if (featuredContainer && products && products.length > 0) {
@@ -1047,22 +1162,5 @@
         }
     });
 </script>
-    <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger');
-    menu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
-}
-
-function closeMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger');
-    menu.classList.remove('active');
-    hamburger.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-    </script>
 </body>
 </html>

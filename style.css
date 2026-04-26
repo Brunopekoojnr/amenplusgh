@@ -4167,31 +4167,35 @@ section {
 }
 
 /* ========== FLOATING WHATSAPP ========== */
+/* 1. Standard Floating Position (Desktop & Base) */
 .floating-whatsapp {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: white;
-    padding: 1.2rem 2rem;
-    border-radius: 60px;
-    text-decoration: none;
+    position: fixed; /* Detaches it from the normal document flow */
+    bottom: 20px;    /* Anchors it 20px from the bottom */
+    right: 20px;     /* Anchors it 20px from the right */
+    z-index: 990;    /* High enough to float above content, below the mobile menu overlay */
+    
+    /* Shape and Styling */
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-    z-index: 500 !important;
-    transition: all 0.4s;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border: 2px solid var(--gold-accent);
-    pointer-events: auto;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 12px 24px;
+    background-color: #25D366; /* Official WhatsApp Green */
+    color: #ffffff !important; /* Ensure text is white */
+    font-weight: 500;
+    border-radius: 50px; /* Gives the pill shape */
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); /* Subtle green glow/shadow */
+    text-decoration: none;
+    
+    /* Crucial fix for the overlap bug */
+    width: auto;
+    max-width: max-content; 
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .floating-whatsapp:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
-    background: #128C7E;
+    background-color: #1DA851; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
 .floating-whatsapp i {
@@ -4709,6 +4713,16 @@ section {
     }
 }
 
+/* 2. Mobile Specific Adjustments */
+@media (max-width: 480px) {
+    .floating-whatsapp {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 20px;
+        font-size: 14px; /* Make text slightly smaller on mobile */
+    }
+}
+
 /* ========== SMS MODAL STYLES ========== */
 .sms-modal {
     display: none;
@@ -4916,60 +4930,89 @@ section {
 }
 
 .mobile-menu {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75vw;
+    max-width: 320px;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 1.5rem 2rem;
+    box-shadow: -5px 0 20px rgba(92, 58, 45, 0.15);
+    /* SURGICAL FIX: Off-canvas by default */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.mobile-menu.active,
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+.mobile-menu a {
+    color: #5C3A2D;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.mobile-menu a:hover {
+    color: #D4AF37;
+    padding-left: 8px;
+}
+
+.mobile-menu a i {
+    color: #D4AF37;
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Menu Overlay (optional dark backdrop) */
+.menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background: rgba(92, 58, 45, 0.98);
-    z-index: 150;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-.mobile-menu.active {
-    display: flex;
-    animation: fadeIn 0.3s ease;
-}
-
-.mobile-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.mobile-menu a:hover {
-    color: var(--gold-accent);
-}
-
-.mobile-menu a i {
-    color: var(--gold-accent);
-    font-size: 1.3rem;
+.menu-overlay.active,
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
 }
 
 .mobile-menu-close {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    align-self: flex-end;
     background: none;
     border: none;
-    color: white;
-    font-size: 2rem;
+    color: #5C3A2D;
+    font-size: 1.8rem;
     cursor: pointer;
-    transition: color 0.3s;
+    padding: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
 }
 
 .mobile-menu-close:hover {
-    color: var(--gold-accent);
+    color: #D4AF37;
+    transform: rotate(90deg);
 }
 
 @media (max-width: 768px) {
