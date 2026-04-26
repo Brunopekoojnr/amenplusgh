@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <title>Amen+ | Our Story</title>
+    <meta name="description" content="The story behind Amen+ — a faith-inspired Ghanaian lifestyle brand born at the crossroads of fashion, culture, and social impact.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-menu-fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -333,18 +334,18 @@
                     <span class="slogan">Jesus is the <span class="plus-small">+</span></span>
                 </div>
             </a>
-       <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="delivery.html">Delivery</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact & Team</a>
-</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="delivery.html">Delivery</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact &amp; Team</a>
+            </div>
             <div class="nav-icons">
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
             </div>
             <!-- Add this inside your nav, after nav-icons -->
-<button class="hamburger" id="hamburger" type="button" title="Toggle mobile menu" onclick="toggleMobileMenu()">
+<button class="hamburger" aria-label="Toggle mobile menu" id="hamburger" type="button" title="Toggle mobile menu" onclick="toggleMobileMenu()">
     <span></span>
     <span></span>
     <span></span>
@@ -353,29 +354,7 @@
     </header>
 
     <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" type="button" title="Close mobile menu" onclick="closeMobileMenu()">
-        <i class="fas fa-times"></i>
-    </button>
-    <a href="index.html" onclick="closeMobileMenu()">
-        <i class="fas fa-home"></i> Home
-    </a>
-    <a href="shop.html" onclick="closeMobileMenu()">
-        <i class="fas fa-store"></i> Shop
-    </a>
-    <a href="delivery.html" onclick="closeMobileMenu()">
-        <i class="fas fa-truck"></i> Delivery
-    </a>
-    <a href="about.html" onclick="closeMobileMenu()">
-        <i class="fas fa-book-open"></i> About
-    </a>
-    <a href="contact.html" onclick="closeMobileMenu()">
-        <i class="fas fa-address-book"></i> Contact & Team
-    </a>
-    <a href="https://wa.me/233201686831" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-</div>
+<!-- Injected by components.js -->
 
     <!-- About Hero -->
    <section class="about-hero">
@@ -411,7 +390,7 @@
     </section>
 
     <!-- Vision & Mission - REDESIGNED WITH CARDS -->
-    <section class="vision-mission">
+    <section class="vision-mission scroll-fade">
         <div class="vm-grid">
             <div class="vm-card vision">
                 <h3><i class="fas fa-eye"></i> Our Vision</h3>
@@ -427,7 +406,7 @@
     </section>
 
     <!-- Impact Model - REDESIGNED WITH BUTTONS -->
-    <section class="impact-model">
+    <section class="impact-model scroll-fade">
         <h2>How We Make Impact</h2>
         <div class="impact-steps">
             <div class="step">
@@ -582,6 +561,7 @@
     <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

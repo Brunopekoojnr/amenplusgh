@@ -1,4 +1,7 @@
 # render.yaml - Render.com deployment config for Amen+ Backend
+# NOTE: Render automatically provisions a free TLS/SSL certificate for every
+#       web service and custom domain — no extra configuration needed.
+#       The HTTPS redirect is enforced in server.js via x-forwarded-proto.
 services:
   - type: web
     name: amenplus-backend
@@ -6,6 +9,8 @@ services:
     rootDir: backend
     buildCommand: npm install
     startCommand: node server.js
+    healthCheckPath: /
+    autoDeploy: true
     envVars:
       - key: PORT
         value: 10000
@@ -21,3 +26,5 @@ services:
         value: AmenPlus
       - key: MOMO_NUMBER
         value: "+23355098093"
+      - key: ALLOWED_ORIGINS
+        value: "https://www.amenplusgh.com,https://amenplusgh.com"

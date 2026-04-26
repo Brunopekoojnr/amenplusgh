@@ -11,11 +11,41 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Allowed origins for CORS (comma-separated in env, or wildcard for dev)
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',')
+    : ['*'];
+
 // Middleware
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({
+    origin: allowedOrigins.includes('*') ? '*' : (origin, cb) => {
+        if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+        else cb(new Error('Not allowed by CORS'));
+    },
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// ── HTTPS redirect (Render.com terminates TLS and sets x-forwarded-proto) ──
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(301, `https://${req.headers.host}${req.url}`);
+    }
+    next();
+});
+
+// ── Security headers ──────────────────────────────────────────────────────
+app.use((req, res, next) => {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
+});
+
 app.use(express.static(path.join(__dirname, '../')));
+
 
 // JSON File Paths
 const DB_DIR = __dirname;
@@ -123,6 +153,27 @@ app.post('/api/products', adminAuth, (req, res) => {
 // ORDERS
 app.post('/api/orders', (req, res) => {
     try {
+        // Input validation
+        const { reference, customerName, customerPhone, customerEmail, totalAmount, items } = req.body;
+        if (!reference || typeof reference !== 'string' || reference.length > 100) {
+            return res.status(400).json({ success: false, error: 'Invalid or missing reference' });
+        }
+        if (!customerName || typeof customerName !== 'string' || customerName.length > 100) {
+            return res.status(400).json({ success: false, error: 'Invalid or missing customerName' });
+        }
+        if (!customerPhone || typeof customerPhone !== 'string' || customerPhone.length > 20) {
+            return res.status(400).json({ success: false, error: 'Invalid or missing customerPhone' });
+        }
+        if (!customerEmail || typeof customerEmail !== 'string' || !customerEmail.includes('@') || customerEmail.length > 254) {
+            return res.status(400).json({ success: false, error: 'Invalid or missing customerEmail' });
+        }
+        if (typeof totalAmount !== 'number' || totalAmount < 0 || totalAmount > 100000) {
+            return res.status(400).json({ success: false, error: 'Invalid totalAmount' });
+        }
+        if (!Array.isArray(items) || items.length === 0 || items.length > 50) {
+            return res.status(400).json({ success: false, error: 'Invalid or empty items array' });
+        }
+
         const orders = readJSON(ORDERS_FILE);
         
         // Check if order already exists (Paystack reference)
@@ -373,7 +424,13 @@ cron.schedule('0 8 * * *', async () => {
     }
 });
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+// Catch-all: only serve frontend routes, not API paths
+app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+        return res.status(404).json({ success: false, error: 'API endpoint not found' });
+    }
+    res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`🚀 AMEN+ SERVER RUNNING on port ${PORT} (Node.js JSON mode)`);

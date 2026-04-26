@@ -6,6 +6,7 @@
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <link rel="icon" href="assets/logo.png" type="image/png">
     <title>Amen+ | Home - Faith Meets Fashion</title>
+    <meta name="description" content="Amen+ is Ghana's premium faith-inspired lifestyle brand. Shop the Crossroad Collection — streetwear rooted in scripture. Every purchase feeds the homeless.">
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="assets/logo.png">
@@ -852,38 +853,13 @@
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
             </div>
             <!-- Add this inside your nav, after nav-icons -->
-<button class="hamburger" id="hamburger" type="button" title="Toggle mobile menu" onclick="toggleMobileMenu()">
+<button class="hamburger" aria-label="Toggle mobile menu" id="hamburger" type="button" title="Toggle mobile menu" onclick="toggleMobileMenu()">
     <span></span>
     <span></span>
     <span></span>
 </button>
         </nav>
     </header>
-
-    <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" onclick="closeMobileMenu()" title="Close menu">
-        <i class="fas fa-times"></i>
-    </button>
-    <a href="index.html" onclick="closeMobileMenu()">
-        <i class="fas fa-home"></i> Home
-    </a>
-    <a href="shop.html" onclick="closeMobileMenu()">
-        <i class="fas fa-store"></i> Shop
-    </a>
-    <a href="delivery.html" onclick="closeMobileMenu()">
-        <i class="fas fa-truck"></i> Delivery
-    </a>
-    <a href="about.html" onclick="closeMobileMenu()">
-        <i class="fas fa-book-open"></i> About
-    </a>
-    <a href="contact.html" onclick="closeMobileMenu()">
-        <i class="fas fa-address-book"></i> Contact & Team
-    </a>
-    <a href="https://wa.me/233201686831" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-</div>
 
     <!-- Hero Section - Enhanced -->
     <section class="hero">
@@ -899,7 +875,7 @@
     </section>
 
     <!-- Delivery Preview - Enhanced -->
-    <section class="delivery-preview">
+    <section class="delivery-preview scroll-fade">
         <div class="preview-container">
             <h2><i class="fas fa-truck"></i> Ghana-Wide Delivery</h2>
             <p class="preview-subtitle">We deliver across Accra, Kasoa, Tema & Kumasi</p>
@@ -930,7 +906,7 @@
     </section>
 
     <!-- Team Preview Section - Enhanced -->
-    <section class="team-preview-home">
+    <section class="team-preview-home scroll-fade">
         <div class="preview-container">
             <h2><i class="fas fa-users"></i> Meet Our Ghanaian Team</h2>
             <p class="preview-subtitle">The passionate creators behind Amen+</p>
@@ -966,7 +942,7 @@
     </section>
 
    <!-- Crossroad Edition Preview -->
-<section class="featured-products" style="padding: 5rem 2rem; background: linear-gradient(135deg, #FDF6F0, white);">
+<section class="featured-products scroll-fade" style="padding: 5rem 2rem; background: linear-gradient(135deg, #FDF6F0, white);">
     <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
         <div style="display: inline-block; background: #5C3A2D; color: #D4AF37; padding: 8px 24px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 1rem;">
             🔥 FIRST EDITION • PRE-ORDER NOW
@@ -990,7 +966,7 @@
 </section>
 
     <!-- Impact Section - Enhanced -->
-    <section class="impact-section">
+    <section class="impact-section scroll-fade">
         <div class="impact-content">
             <h2>Your Purchase Makes Impact</h2>
             <p class="impact-text">Every Amen+ garment purchased provides meals for the homeless in Ghana. We're not just selling clothes—we're building communities.</p>
@@ -1013,7 +989,7 @@
     </section>
 
     <!-- Brand Values - Enhanced -->
-    <section class="values-section">
+    <section class="values-section scroll-fade">
         <h2>Why Amen+?</h2>
         <div class="values-grid">
             <div class="value-card">
@@ -1132,6 +1108,7 @@
     <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Load featured products on home page
@@ -1144,7 +1121,7 @@
                         PRE-ORDER
                     </div>
                     <img src="${product.image}" alt="${product.name}" 
-                         onerror="this.src='https://via.placeholder.com/400x300/5C3A2D/D4AF37?text=Amen%2B'"
+                         onerror="this.onerror=null;this.style.background='linear-gradient(135deg,#5C3A2D,#8B6B4D)';this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#5C3A2D,#8B6B4D)';"
                          style="width: 100%; height: 280px; object-fit: cover;">
                     <h3 style="padding: 1rem 1rem 0.5rem; color: #5C3A2D; font-size: 1.15rem;">${product.name}</h3>
                     <p class="price" style="padding: 0 1rem; color: #D4AF37; font-size: 1.4rem; font-weight: 700;">Gh¢${product.price.toFixed(2)}</p>

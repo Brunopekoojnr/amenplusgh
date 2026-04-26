@@ -543,126 +543,253 @@ function checkout() {
         return;
     }
     
+    // Show branded checkout modal instead of browser prompts
+    showCheckoutModal();
+}
+
+// ========== CHECKOUT MODAL ==========
+function showCheckoutModal() {
+    // Remove any existing modal
+    const existing = document.getElementById('checkout-modal');
+    if (existing) existing.remove();
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = calculateDeliveryFee();
+    const totalAmount = subtotal + deliveryFee;
+
+    const modal = document.createElement('div');
+    modal.id = 'checkout-modal';
+    modal.style.cssText = [
+        'position:fixed', 'inset:0', 'z-index:9999',
+        'display:flex', 'align-items:center', 'justify-content:center',
+        'background:rgba(0,0,0,0.65)', 'backdrop-filter:blur(6px)',
+        'padding:20px', 'animation:fadeIn 0.2s ease'
+    ].join(';');
+
+    modal.innerHTML = `
+        <div style="
+            background:#fff;
+            border-radius:24px;
+            width:100%;
+            max-width:480px;
+            box-shadow:0 30px 80px rgba(92,58,45,0.35);
+            overflow:hidden;
+            animation:slideUp 0.3s ease;
+            font-family:'Inter',sans-serif;
+        ">
+            <!-- Modal Header -->
+            <div style="
+                background:linear-gradient(135deg,#5C3A2D,#8B6B4D);
+                padding:28px 32px;
+                text-align:center;
+                position:relative;
+            ">
+                <button onclick="closeCheckoutModal()" style="
+                    position:absolute;top:16px;right:16px;
+                    background:rgba(255,255,255,0.15);border:none;
+                    color:white;width:32px;height:32px;border-radius:50%;
+                    font-size:1.2rem;cursor:pointer;display:flex;
+                    align-items:center;justify-content:center;
+                    transition:background 0.2s;
+                " onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&times;</button>
+                <div style="font-size:2rem;margin-bottom:8px;">✝</div>
+                <h2 style="color:white;font-family:'Playfair Display',serif;font-size:1.6rem;margin:0 0 4px;">Complete Your Order</h2>
+                <p style="color:rgba(255,255,255,0.8);margin:0;font-size:0.9rem;">Secured by Paystack</p>
+            </div>
+
+            <!-- Order Summary -->
+            <div style="
+                background:#FDF6F0;
+                padding:16px 32px;
+                display:flex;justify-content:space-between;
+                font-size:0.9rem;color:#5C3A2D;
+            ">
+                <span><strong>${cart.reduce((s,i) => s + i.quantity, 0)}</strong> item${cart.reduce((s,i) => s + i.quantity, 0) !== 1 ? 's' : ''} &nbsp;|&nbsp; Delivery: <strong>₵${deliveryFee > 0 ? deliveryFee : 'TBD'}</strong></span>
+                <span style="font-weight:700;color:#D4AF37;font-size:1rem;">₵${totalAmount.toLocaleString()}</span>
+            </div>
+
+            <!-- Form -->
+            <form id="checkout-form" style="padding:28px 32px;" onsubmit="submitCheckoutForm(event)">
+                <div style="margin-bottom:20px;">
+                    <label style="display:block;font-size:0.85rem;font-weight:600;color:#5C3A2D;margin-bottom:8px;">
+                        <i class="fas fa-user" style="color:#D4AF37;margin-right:6px;"></i> Full Name *
+                    </label>
+                    <input id="co-name" type="text" placeholder="e.g. Kofi Mensah" required
+                        style="
+                            width:100%;padding:13px 16px;
+                            border:2px solid rgba(212,175,55,0.3);
+                            border-radius:12px;font-size:1rem;
+                            font-family:'Inter',sans-serif;
+                            outline:none;transition:border-color 0.2s;
+                            box-sizing:border-box;
+                        "
+                        onfocus="this.style.borderColor='#D4AF37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label style="display:block;font-size:0.85rem;font-weight:600;color:#5C3A2D;margin-bottom:8px;">
+                        <i class="fas fa-phone" style="color:#D4AF37;margin-right:6px;"></i> Phone Number *
+                    </label>
+                    <input id="co-phone" type="tel" placeholder="e.g. 0201234567" required
+                        style="
+                            width:100%;padding:13px 16px;
+                            border:2px solid rgba(212,175,55,0.3);
+                            border-radius:12px;font-size:1rem;
+                            font-family:'Inter',sans-serif;
+                            outline:none;transition:border-color 0.2s;
+                            box-sizing:border-box;
+                        "
+                        onfocus="this.style.borderColor='#D4AF37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
+                </div>
+
+                <div style="margin-bottom:28px;">
+                    <label style="display:block;font-size:0.85rem;font-weight:600;color:#5C3A2D;margin-bottom:8px;">
+                        <i class="fas fa-envelope" style="color:#D4AF37;margin-right:6px;"></i> Email Address *
+                    </label>
+                    <input id="co-email" type="email" placeholder="e.g. kofi@example.com" required
+                        style="
+                            width:100%;padding:13px 16px;
+                            border:2px solid rgba(212,175,55,0.3);
+                            border-radius:12px;font-size:1rem;
+                            font-family:'Inter',sans-serif;
+                            outline:none;transition:border-color 0.2s;
+                            box-sizing:border-box;
+                        "
+                        onfocus="this.style.borderColor='#D4AF37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
+                </div>
+
+                <button type="submit" id="co-submit-btn" style="
+                    width:100%;padding:16px;
+                    background:linear-gradient(135deg,#5C3A2D,#8B6B4D);
+                    color:white;border:none;border-radius:12px;
+                    font-size:1.05rem;font-weight:600;
+                    font-family:'Inter',sans-serif;
+                    cursor:pointer;transition:all 0.3s;
+                    display:flex;align-items:center;justify-content:center;gap:10px;
+                " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 25px rgba(92,58,45,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                    <i class="fas fa-lock"></i> Pay ₵${totalAmount.toLocaleString()} with Paystack
+                </button>
+
+                <p style="text-align:center;margin:16px 0 0;font-size:0.8rem;color:#8B6B4D;">
+                    <i class="fas fa-shield-alt" style="color:#D4AF37;"></i>
+                    Every purchase feeds the homeless in Ghana. Jesus is the <strong style="color:#D4AF37;">+</strong>
+                </p>
+            </form>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeCheckoutModal(); });
+    document.getElementById('co-name').focus();
+}
+
+function closeCheckoutModal() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) {
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.2s';
+        setTimeout(() => modal.remove(), 200);
+    }
+}
+
+function submitCheckoutForm(event) {
+    event.preventDefault();
+
+    const customerName = document.getElementById('co-name').value.trim();
+    const customerPhone = document.getElementById('co-phone').value.trim();
+    const customerEmail = document.getElementById('co-email').value.trim();
+
+    // Basic validation
+    if (!customerName || customerName.length < 2) {
+        showNotification('Please enter your full name', 'warning');
+        return;
+    }
+    if (!customerPhone || !/^[0-9+\s\-]{7,15}$/.test(customerPhone)) {
+        showNotification('Please enter a valid phone number', 'warning');
+        return;
+    }
+    if (!customerEmail || !customerEmail.includes('@')) {
+        showNotification('Please enter a valid email address', 'warning');
+        return;
+    }
+
+    // Ask about area if not selected
     if (!deliveryLocation.specificArea) {
-        if (!confirm('You haven\'t selected a specific area. Continue with general zone delivery?')) {
+        if (!window.confirm('You haven\'t selected a specific area. Continue with general zone delivery?')) {
+            closeCheckoutModal();
             const areaSelect = document.getElementById('specific-area');
-            if (areaSelect) {
-                areaSelect.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (areaSelect) areaSelect.scrollIntoView({ behavior: 'smooth' });
             return;
         }
     }
 
-    // Calculate totals
+    // Disable submit button to prevent double-submit
+    const submitBtn = document.getElementById('co-submit-btn');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening Paystack...';
+    }
+
+    closeCheckoutModal();
+    processPaystackPayment(customerName, customerPhone, customerEmail);
+}
+
+function processPaystackPayment(customerName, customerPhone, customerEmail) {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const deliveryFee = calculateDeliveryFee();
     const totalAmount = subtotal + deliveryFee;
-    
-    // Prepare customer info
-    const customerName = prompt('👋 Please enter your full name:');
-    if (!customerName) return;
-    
-    const customerPhone = prompt('📱 Please enter your phone number:');
-    if (!customerPhone) return;
 
-    const customerEmail = prompt('✉️ Please enter your email address for the receipt:');
-    if (!customerEmail || !customerEmail.includes('@')) {
-        showNotification('Valid email is required', 'error');
-        return;
-    }
-
-    // Prepare metadata for Paystack
     const metadata = {
         custom_fields: [
-            {
-                display_name: "Delivery Zone",
-                variable_name: "delivery_zone",
-                value: deliveryLocation.zoneName || 'Not selected'
-            },
-            {
-                display_name: "Delivery Area",
-                variable_name: "delivery_area",
-                value: deliveryLocation.specificArea || 'Not specified'
-            },
-            {
-                display_name: "Delivery Fee",
-                variable_name: "delivery_fee",
-                value: `₵${deliveryFee}`
-            },
-            {
-                display_name: "Items Count",
-                variable_name: "items_count",
-                value: cart.length.toString()
-            },
-            {
-                display_name: "Customer Phone",
-                variable_name: "customer_phone",
-                value: customerPhone
-            },
-            {
-                display_name: "Customer Name",
-                variable_name: "customer_name",
-                value: customerName
-            }
-        ]
+            { display_name: 'Delivery Zone', variable_name: 'delivery_zone', value: deliveryLocation.zoneName || 'Not selected' },
+            { display_name: 'Delivery Area', variable_name: 'delivery_area', value: deliveryLocation.specificArea || 'Not specified' },
+            { display_name: 'Delivery Fee', variable_name: 'delivery_fee', value: `₵${deliveryFee}` },
+            { display_name: 'Items Count', variable_name: 'items_count', value: cart.length.toString() },
+            { display_name: 'Customer Phone', variable_name: 'customer_phone', value: customerPhone },
+            { display_name: 'Customer Name', variable_name: 'customer_name', value: customerName }
+        ],
+        cart_items: cart.map(item => ({ name: item.name, size: item.size, quantity: item.quantity, price: item.price }))
     };
 
-    // Prepare cart items for reference
-    const items = cart.map(item => ({
-        name: item.name,
-        size: item.size,
-        quantity: item.quantity,
-        price: item.price
-    }));
-    
-    metadata.cart_items = items;
+    showNotification('Opening secure payment...', 'info');
 
-    // Show loading notification
-    showNotification('Processing your payment...', 'info');
+    // Use config.js public key if available, fallback to inline
+    const paystackKey = (window.AMEN_CONFIG && window.AMEN_CONFIG.paystackPublicKey)
+        || 'pk_test_802197895cbf5302a65ee707342b8e1930f2961a';
 
-    // Paystack configuration
     const handler = PaystackPop.setup({
-        key: 'pk_test_802197895cbf5302a65ee707342b8e1930f2961a',
+        key: paystackKey,
         email: customerEmail,
         amount: Math.round(totalAmount * 100),
         currency: 'GHS',
-        ref: 'AMEN-' + Math.floor(Math.random() * 1000000000) + 1,
-        // subaccount: 'SUB_xxxxxxxxxxxxxxx', // Temporarily disabled until real code is provided
-        // bearer: 'account',
-        metadata: metadata,
-      callback: function(response) {
-    // Payment successful
-    // Preparation for centralizing payments
-    showNotification(`Payment successful! Our Finance Lead, Melanie Asante, will confirm your order shortly.`, 'success');
-    
-    // Prepare order details for SMS
-    const orderDetails = {
-        reference: response.reference,
-        customerName: customerName,
-        itemCount: cart.length,
-        totalAmount: totalAmount,
-        deliveryArea: deliveryLocation.specificArea || deliveryLocation.zoneName
-    };
-    
-    // 🆕 SAVE ORDER TO BACKEND (MongoDB) + TRIGGER SMS RECEIPT
-    saveOrderToBackend({
-        reference: response.reference,
-        customerName: customerName,
-        customerPhone: customerPhone,
-        customerEmail: customerEmail,
-        items: cart,
-        totalAmount: totalAmount,
-        deliveryFee: deliveryFee,
-        deliveryZone: deliveryLocation.zoneName,
-        deliveryArea: deliveryLocation.specificArea || 'Not specified'
-    });
-    
-    // Verify payment & trigger SMS receipt
-    verifyPaymentAndSendSMS(response.reference);
-    
-    // Show SMS instructions
-    showSMSInstructions(orderDetails);
-            
+        ref: 'AMEN-' + Date.now() + '-' + Math.floor(Math.random() * 10000),
+        metadata,
+        callback: function(response) {
+            showNotification('Payment successful! Melanie Asante will confirm your order shortly.', 'success');
+
+            const orderDetails = {
+                reference: response.reference,
+                customerName,
+                itemCount: cart.length,
+                totalAmount,
+                deliveryArea: deliveryLocation.specificArea || deliveryLocation.zoneName
+            };
+
+            saveOrderToBackend({
+                reference: response.reference,
+                customerName,
+                customerPhone,
+                customerEmail,
+                items: cart,
+                totalAmount,
+                deliveryFee,
+                deliveryZone: deliveryLocation.zoneName,
+                deliveryArea: deliveryLocation.specificArea || 'Not specified'
+            });
+
+            verifyPaymentAndSendSMS(response.reference);
+            showSMSInstructions(orderDetails);
+
             // Clear cart
             cart = [];
             deliveryLocation = { zone: '', specificArea: '', zoneName: '', zonePrice: 0 };
@@ -670,21 +797,19 @@ function checkout() {
             saveDeliveryLocation();
             updateCartCount();
             closeCartSidebar();
-            
-            // Celebrate with confetti
             celebratePayment();
         },
         onClose: function() {
-            showNotification('Payment window closed. You can complete your payment anytime.', 'info');
+            showNotification('Payment window closed. You can complete your order anytime.', 'info');
         }
     });
-    
-    // CRITICAL: Close cart sidebar so body overflow: hidden is removed. 
-    // This allows the Paystack modal to scroll if the screen is small!
+
     closeCartSidebar();
-    
     handler.openIframe();
 }
+
+window.closeCheckoutModal = closeCheckoutModal;
+window.submitCheckoutForm = submitCheckoutForm;
 
 // ========== CELEBRATION FUNCTION ==========
 function celebratePayment() {

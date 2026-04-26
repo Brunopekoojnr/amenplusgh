@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <title>Amen+ | Shop Collection</title>
+    <meta name="description" content="Shop the Amen+ Crossroad Collection — premium faith-inspired shirts, hoodies, caps and totes. Made in Ghana. Every purchase feeds the homeless.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -85,12 +87,15 @@
             padding: 12px 25px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 50px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 2px solid var(--gold-accent);
             -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
             position: relative;
             z-index: 2;
+            max-width: 90%;
         }
 
         .shop-hero-subtitle p {
@@ -100,21 +105,25 @@
             align-items: center;
             gap: 10px;
             color: white;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
         }
 
         .shop-hero-subtitle i {
             color: var(--gold-accent);
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         /* Category Tabs */
         .category-tabs {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 3rem auto;
+            gap: 12px;
+            margin: 2rem auto;
             max-width: 1200px;
-            padding: 0 20px;
+            padding: 0 16px;
             flex-wrap: wrap;
         }
 
@@ -303,11 +312,11 @@
 
         .product-card h3 {
             padding: 1.2rem 1rem 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--deep-brown);
             font-weight: 600;
             line-height: 1.4;
-            min-height: 70px;
+            word-break: break-word;
         }
 
         .product-description {
@@ -329,7 +338,8 @@
         .product-actions {
             padding: 1rem;
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .view-product {
@@ -435,39 +445,75 @@
         @media (max-width: 992px) {
             .category-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
+            .shop-hero {
+                padding: 3rem 1rem;
+            }
             .shop-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             .shop-hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+            .shop-hero-subtitle {
+                padding: 10px 18px;
+                border-radius: 30px;
+            }
+            .shop-hero-subtitle p {
+                font-size: 0.9rem;
+                gap: 8px;
             }
             .category-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
             .category-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             .category-header i {
-                width: 50px;
-                height: 50px;
-                font-size: 1.8rem;
+                width: 48px;
+                height: 48px;
+                font-size: 1.6rem;
             }
             .product-actions {
                 flex-direction: column;
             }
             .view-product, .quick-add {
                 width: 100%;
+                text-align: center;
+                justify-content: center;
             }
             .category-tabs {
-                gap: 10px;
+                gap: 8px;
+                padding: 0 12px;
             }
             .category-tab {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                flex: 0 0 auto;
+            }
+            .products-section {
+                padding: 0 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .shop-hero h1 {
+                font-size: 1.7rem;
+            }
+            .category-tab {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+            .product-image-container {
+                height: 240px;
+            }
+            .price {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -485,32 +531,30 @@
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="shop.html" class="active">Shop</a>
+                <a href="shop.html">Shop</a>
                 <a href="delivery.html">Delivery</a>
+                <a href="about.html">About</a>
                 <a href="contact.html">Contact & Team</a>
             </div>
             <div class="nav-icons">
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
-                <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" title="Toggle mobile menu" aria-label="Toggle mobile menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
+            <button class="hamburger" aria-label="Toggle mobile menu" id="hamburger" type="button" title="Toggle mobile menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-close" type="button" title="Close menu" onclick="closeMobileMenu()">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="index.html" onclick="closeMobileMenu()"><i class="fas fa-home"></i> Home</a>
-        <a href="shop.html" onclick="closeMobileMenu()"><i class="fas fa-store"></i> Shop</a>
-        <a href="delivery.html" onclick="closeMobileMenu()"><i class="fas fa-truck"></i> Delivery</a>
-        <a href="about.html" onclick="closeMobileMenu()"><i class="fas fa-book-open"></i> About</a>
-        <a href="contact.html" onclick="closeMobileMenu()"><i class="fas fa-address-book"></i> Contact & Team</a>
-        <a href="https://wa.me/233201686831" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <!-- Mobile Menu (injected by components.js, placeholder needed for main.js) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="shop.html"><i class="fas fa-store"></i> Shop</a>
+        <a href="delivery.html"><i class="fas fa-truck"></i> Delivery</a>
+        <a href="about.html"><i class="fas fa-book-open"></i> About</a>
+        <a href="contact.html"><i class="fas fa-address-book"></i> Contact &amp; Team</a>
     </div>
 
     <!-- Shop Hero -->
@@ -530,7 +574,7 @@
     </div>
 
     <!-- Products Container -->
-    <section class="products-section" id="products-section"></section>
+    <section class="products-section scroll-fade" id="products-section"></section>
 
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cart-sidebar">
@@ -603,6 +647,8 @@
     <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
     <script>
         // Shop page JavaScript with categories
         document.addEventListener('DOMContentLoaded', function() {
@@ -681,7 +727,7 @@
                                     ${group.items.map(product => `
                                         <div class="product-card">
                                             <div class="product-image-container">
-                                                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Product'">
+                                                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#5C3A2D,#8B6B4D)';">
                                                 ${product.preorder || product.isPreOrder ? '<span class="product-badge preorder-badge">Pre-order</span>' : ''}
                                             </div>
                                             <h3>${product.name}</h3>

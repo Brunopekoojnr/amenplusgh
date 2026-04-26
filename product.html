@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
     <title>Amen+ | Product Details</title>
     <link rel="stylesheet" href="style.css">
@@ -600,7 +600,7 @@
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
             </div>
             <!-- Add this inside your nav, after nav-icons -->
-<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" title="Toggle navigation menu">
+<button class="hamburger" aria-label="Toggle mobile menu" id="hamburger" onclick="toggleMobileMenu()" title="Toggle navigation menu">
     <span></span>
     <span></span>
     <span></span>
@@ -609,29 +609,7 @@
     </header>
 
     <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" onclick="closeMobileMenu()" type="button" title="Close menu">
-        <i class="fas fa-times"></i>
-    </button>
-    <a href="index.html" onclick="closeMobileMenu()">
-        <i class="fas fa-home"></i> Home
-    </a>
-    <a href="shop.html" onclick="closeMobileMenu()">
-        <i class="fas fa-store"></i> Shop
-    </a>
-    <a href="delivery.html" onclick="closeMobileMenu()">
-        <i class="fas fa-truck"></i> Delivery
-    </a>
-    <a href="about.html" onclick="closeMobileMenu()">
-        <i class="fas fa-book-open"></i> About
-    </a>
-    <a href="contact.html" onclick="closeMobileMenu()">
-        <i class="fas fa-address-book"></i> Contact & Team
-    </a>
-    <a href="https://wa.me/233201686831" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-</div>
+<!-- Mobile Menu injected by js/components.js -->
 
     <!-- Main Content -->
     <main class="product-page">
@@ -866,6 +844,8 @@
     <script src="js/products.js"></script>
     <script src="js/paystack-sms.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/product.js"></script>
     <script>
         // Update product badge based on product data

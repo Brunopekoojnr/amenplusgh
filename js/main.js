@@ -1,6 +1,13 @@
 // Shared mobile menu drawer controller
 
 document.addEventListener('DOMContentLoaded', () => {
+    // STEP 1: Inject the mobile menu component into the DOM
+    // This allows us to use a single menu template across all pages
+    if (typeof injectMobileMenu === 'function') {
+        injectMobileMenu();
+    }
+
+    // STEP 2: Set up menu toggle logic (now that the menu HTML is injected)
     const hamburger = document.getElementById('hamburger') || document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     let menuOverlay = document.getElementById('menu-overlay');
@@ -55,4 +62,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeMenu();
+
+    // STEP 3: Active nav link highlighting
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const linkFile = link.getAttribute('href');
+        if (linkFile === currentPath || (currentPath === '' && linkFile === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+
+    // STEP 4: Scroll-reveal via IntersectionObserver
+    const scrollFadeEls = document.querySelectorAll('.scroll-fade');
+    if (scrollFadeEls.length > 0 && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        scrollFadeEls.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback: make all visible immediately for older browsers
+        scrollFadeEls.forEach(el => el.classList.add('visible'));
+    }
 });
+

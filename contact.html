@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=1200, user-scalable=yes">
-   <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <title>Amen+ | Contact & Team</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -229,6 +230,11 @@
             position: relative;
             animation: fadeInUp 0.5s ease;
             animation-fill-mode: both;
+            padding: 1.8rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .team-card:nth-child(1) { animation-delay: 0.1s; }
@@ -282,87 +288,217 @@
             border: 2px solid #D4AF37;
         }
 
-        .team-image {
-            height: 450px;
-            overflow: hidden;
-            background: #FDF6F0;
+        /* ── Team avatar with zoom overlay ─────────────────────── */
+        .team-image-wrap {
             position: relative;
+            width: 100%;
+            max-width: 640px;
+            aspect-ratio: 640 / 600;
+            flex-shrink: 0;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid #D4AF37;
+            box-shadow: 0 8px 24px rgba(92, 58, 45, 0.25);
+            background: #FDF6F0;
+            cursor: zoom-in;
+            transition: box-shadow 0.3s, border-color 0.3s;
         }
 
-        .team-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .team-image {
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, 
-                transparent 60%, 
-                rgba(212, 175, 55, 0.03) 100%);
-            pointer-events: none;
         }
 
         .team-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
-            opacity: 0.95;
+            object-position: top center;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .team-card:hover .team-image img {
+        .team-image-wrap:hover img {
             transform: scale(1.08);
         }
 
-        .team-card:hover .team-image::after {
-            background: radial-gradient(circle at center, 
-                transparent 50%, 
-                rgba(212, 175, 55, 0.05) 100%);
+        /* Magnifier overlay */
+        .team-image-zoom {
+            position: absolute;
+            inset: 0;
+            background: rgba(92, 58, 45, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            cursor: zoom-in;
+            backdrop-filter: blur(2px);
+        }
+
+        .team-image-zoom i {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        .team-image-wrap:hover .team-image-zoom {
+            opacity: 1;
+        }
+
+        /* Pulse ring on the avatar */
+        @keyframes ringPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55); }
+            70%  { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        .team-card:hover .team-image {
+            border-color: #D4AF37;
+            animation: ringPulse 1.2s ease-out infinite;
+        }
+
+        /* ── Photo Lightbox ─────────────────────────────────────────────── */
+        #photo-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #photo-lightbox.active {
+            display: flex;
+            animation: lbFadeIn 0.25s ease;
+        }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .lb-inner {
+            position: relative;
+            max-width: 520px;
+            width: 100%;
+            cursor: default;
+            animation: lbSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes lbSlideUp {
+            from { transform: translateY(30px) scale(0.95); opacity: 0; }
+            to   { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .lb-photo {
+            width: 100%;
+            border-radius: 20px;
+            border: 4px solid #D4AF37;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            display: block;
+            object-fit: contain;
+            max-height: 70vh;
+            background: #1a0f0a;
+        }
+
+        .lb-caption {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .lb-caption h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.2rem;
+        }
+
+        .lb-caption p {
+            color: #D4AF37;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .lb-close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 40px;
+            height: 40px;
+            background: #D4AF37;
+            border: none;
+            border-radius: 50%;
+            color: #5C3A2D;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background 0.2s;
+            line-height: 1;
+        }
+
+        .lb-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #fff;
         }
 
         .team-info {
-            padding: 1.5rem;
+            padding: 1.2rem 0 0;
+            width: 100%;
         }
 
         .team-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.25rem;
             color: #5C3A2D;
+            font-weight: 700;
         }
 
         .team-role {
             color: #D4AF37;
             font-weight: 600;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.88rem;
         }
 
         .team-bio {
             color: #4A4A4A;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .team-contact {
             background: #FDF6F0;
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             border-radius: 10px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
         }
 
         .team-contact p {
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             color: #5C3A2D;
+            word-break: break-all;
         }
 
         .team-contact i {
             color: #D4AF37;
-            width: 18px;
+            width: 16px;
+            flex-shrink: 0;
         }
 
         .view-profile-btn {
@@ -372,6 +508,7 @@
             padding: 10px 20px;
             border-radius: 25px;
             width: 100%;
+            min-height: 48px;
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
@@ -380,13 +517,14 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(92, 58, 45, 0.2);
         }
 
         .view-profile-btn:hover {
             background: #D4AF37;
             color: #5C3A2D;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
         }
 
         .contact-options {
@@ -785,40 +923,7 @@
             box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
         }
 
-        /* ========== TEAM PHOTO ENHANCEMENT ========== */
-        .team-image {
-            position: relative;
-            background: #FDF6F0;
-            overflow: hidden;
-        }
-
-        .team-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, 
-                transparent 60%, 
-                rgba(212, 175, 55, 0.03) 100%);
-            pointer-events: none;
-        }
-
-        .team-image img {
-            transition: all 0.5s;
-            opacity: 0.98;
-        }
-
-        .team-card:hover .team-image img {
-            transform: scale(1.05);
-        }
-
-        .team-card:hover .team-image::after {
-            background: radial-gradient(circle at center, 
-                transparent 50%, 
-                rgba(212, 175, 55, 0.05) 100%);
-        }
+        /* Team card images are now circular avatars — see .team-image above */
 
         /* Team Modal Styles */
         .team-modal {
@@ -1022,7 +1127,9 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
-            .team-grid,
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
             .options-grid,
             .social-buttons-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1030,30 +1137,102 @@
         }
 
         @media (max-width: 768px) {
-            .team-grid,
+            .contact-hero {
+                padding: 3rem 1rem;
+            }
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
             .options-grid,
-            .social-buttons-grid,
+            .social-buttons-grid {
+                grid-template-columns: 1fr;
+            }
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
             .form-group.full-width {
                 grid-column: span 1;
             }
-            
-            .contact-hero h1 {
-                font-size: 2.5rem;
-            }
-            
             .modal-buttons {
                 flex-direction: column;
             }
-            
-            .team-image {
-                height: 400px;
+            .office-card {
+                padding: 2rem 1.5rem;
+            }
+            .team-section h2 {
+                font-size: 2rem;
+            }
+            .contact-options h2,
+            .social-section h2,
+            .hours-section h2 {
+                font-size: 2rem;
+            }
+            .modal-content {
+                margin: 5% auto;
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .modal-image {
+                height: 280px;
+            }
+            .modal-info h2 {
+                font-size: 1.8rem;
+            }
+            .modal-bio {
+                font-size: 1rem;
+            }
+            .form-container {
+                padding: 2rem 1.5rem;
             }
         }
-    </style>
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .team-image {
+                width: 110px;
+                height: 110px;
+            }
+            .team-info h3 {
+                font-size: 1rem;
+            }
+            .team-role {
+                font-size: 0.8rem;
+            }
+            .team-contact {
+                display: none;
+            }
+            .card-buttons {
+                flex-direction: column;
+            }
+            .social-btn span {
+                display: none;
+            }
+            .social-btn {
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                justify-content: self-start;
+            }
+            .social-buttons-grid {
+                grid-template-columns: repeat(4, 1fr);
+                justify-items: center;
+            }
+        }
+</style>
 </head>
 <body>
     <!-- Header -->
@@ -1077,7 +1256,7 @@
                 <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a>
             </div>
             <!-- Add this inside your nav, after nav-icons -->
-<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+<button class="hamburger" aria-label="Toggle mobile menu" id="hamburger" onclick="toggleMobileMenu()">
     <span></span>
     <span></span>
     <span></span>
@@ -1085,30 +1264,7 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" onclick="closeMobileMenu()">
-        <i class="fas fa-times"></i>
-    </button>
-    <a href="index.html" onclick="closeMobileMenu()">
-        <i class="fas fa-home"></i> Home
-    </a>
-    <a href="shop.html" onclick="closeMobileMenu()">
-        <i class="fas fa-store"></i> Shop
-    </a>
-    <a href="delivery.html" onclick="closeMobileMenu()">
-        <i class="fas fa-truck"></i> Delivery
-    </a>
-    <a href="about.html" onclick="closeMobileMenu()">
-        <i class="fas fa-book-open"></i> About
-    </a>
-    <a href="contact.html" onclick="closeMobileMenu()">
-        <i class="fas fa-address-book"></i> Contact & Team
-    </a>
-    <a href="https://wa.me/233201686831" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-</div>
+    <!-- Mobile Menu injected by js/components.js -->
 
     <!-- Contact Hero -->
     <section class="contact-hero">
@@ -1150,8 +1306,11 @@
         <div class="team-grid">
             <!-- Founder & Creative Director -->
             <div class="team-card founder" onclick="openTeamModal('richmond')">
-                <div class="team-image">
-                    <img src="assets\Team\Richmond Appiah-Founder and Creative Director.png" alt="Richmond Appiah - Founder">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Richmond Appiah-Founder and Creative Director.png" alt="Richmond Appiah - Founder">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Richmond Appiah</h3>
@@ -1167,8 +1326,11 @@
 
             <!-- Brand Manager -->
             <div class="team-card" onclick="openTeamModal('stephen')">
-                <div class="team-image">
-                    <img src="assets\Team\Stephen_Oboakoh-Brand Manager.png" alt="Stephen Oboakoh - Brand Manager">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Stephen_Oboakoh-Brand Manager.png" alt="Stephen Oboakoh - Brand Manager">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Stephen Oboakoh</h3>
@@ -1184,8 +1346,11 @@
 
             <!-- Tech Lead -->
             <div class="team-card" onclick="openTeamModal('prince')">
-                <div class="team-image">
-                    <img src="assets\Team\Prince_Edward-Tech_lead.png" alt="Prince Edward - Tech Lead">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Prince_Edward-Tech_lead.png" alt="Prince Edward - Tech Lead">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Prince Edward</h3>
@@ -1201,8 +1366,11 @@
 
             <!-- Tech Assistant (Smith) -->
             <div class="team-card" onclick="openTeamModal('brian')">
-                <div class="team-image">
-                    <img src="assets\Team\Brian_Smith-Tech_Assistant.png" alt="Brian Smith - Tech Assistant">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Brian_Smith-Tech_Assistant.png" alt="Brian Smith - Tech Assistant">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Brian Smith</h3>
@@ -1218,8 +1386,11 @@
 
             <!-- Design Lead -->
             <div class="team-card" onclick="openTeamModal('joe')">
-                <div class="team-image">
-                    <img src="assets\Team\Joe_Junior_Makpanki_-Design Lead.png" alt="Joe Junior - Design Lead">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Joe_Junior_Makpanki_-Design Lead.png" alt="Joe Junior - Design Lead">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Joe Junior Makpanki</h3>
@@ -1235,8 +1406,11 @@
 
             <!-- PR, Sales & Community Manager (Leslly) -->
             <div class="team-card" onclick="openTeamModal('lesly')">
-                <div class="team-image">
-                    <img src="assets\Team\Leslly_Naa-Ayele-PR_Sales and Community Manager.png" alt="Leslly Mensah - PR, Sales & Community">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Leslly_Naa-Ayele-PR_Sales and Community Manager.png" alt="Leslly Mensah - PR, Sales & Community">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Leslly Mensah</h3>
@@ -1252,9 +1426,12 @@
 
             <!-- Finance & Accounts (Centralized Payment Contact) -->
             <div class="team-card founder" onclick="openTeamModal('melanie')" style="border-color: #D4AF37 !important; border-width: 3px !important; transform: scale(1.02); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);">
-                <div class="team-image">
-                    <img src="assets\Team\Melanie_Afua_Marfoah_Asante-Finance and Accounts.png" alt="Melanie Asante - Finance Lead">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Melanie_Afua_Marfoah_Asante-Finance and Accounts.png" alt="Melanie Asante - Finance Lead">
                     <div class="team-badge" style="position: absolute; top: 15px; left: 15px; background: #D4AF37; color: #5C3A2D; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; z-index: 10;">FINANCE LEAD</div>
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3 style="color: #5C3A2D !important;">Melanie Asante</h3>
@@ -1270,8 +1447,11 @@
 
             <!-- Designer & Stylist -->
             <div class="team-card" onclick="openTeamModal('alfreda')">
-                <div class="team-image">
-                    <img src="assets\Team\Alfreda_NaaAyele_Okai-lead_Designer_and_Stylist.png" alt="Alfreda NaaAyele - Designer">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Alfreda_NaaAyele_Okai-lead_Designer_and_Stylist.png" alt="Alfreda NaaAyele - Designer">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Alfreda Okai</h3>
@@ -1287,8 +1467,11 @@
 
             <!-- Digital Product Manager -->
             <div class="team-card" onclick="openTeamModal('katahena')">
-                <div class="team-image">
-                    <img src="assets\Team\Katahena_Bright-Digital_Product-Manager.png" alt="Katahena Bright - Digital Product Manager">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Katahena_Bright-Digital_Product-Manager.png" alt="Katahena Bright - Digital Product Manager">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Katahena Bright</h3>
@@ -1304,8 +1487,11 @@
 
             <!-- Customer Service Assistant -->
             <div class="team-card" onclick="openTeamModal('lawrencia')">
-                <div class="team-image">
-                    <img src="assets\Team\Sewornu_Lawrencia-Customer_Service_Assistant.png" alt="Sewornu Lawrencia - Customer Service Assistant">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets\Team\Sewornu_Lawrencia-Customer_Service_Assistant.png" alt="Sewornu Lawrencia - Customer Service Assistant">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Sewornu Lawrencia</h3>
@@ -1321,8 +1507,11 @@
 
             <!-- Joy Adevu - Digital Products & Systems Manager (NEW) -->
             <div class="team-card" onclick="openTeamModal('joy')">
-                <div class="team-image">
-                    <img src="assets/Team/Joy_Adevu_Digital products and systems Manager .png" alt="Joy Adevu - Digital Products & Systems Manager">
+                <div class="team-image-wrap" onclick="openPhotoLightbox(this)">
+                    <div class="team-image">
+                        <img src="assets/Team/Joy_Adevu_Digital products and systems Manager .png" alt="Joy Adevu - Digital Products & Systems Manager">
+                    </div>
+                    <div class="team-image-zoom"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="team-info">
                     <h3>Joy Adevu</h3>
@@ -1597,6 +1786,8 @@
     <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
     <script>
         // Team Bios Data
         const teamBios = {
@@ -1802,18 +1993,7 @@
             document.getElementById('contact-form').reset();
         }
     </script>
-    <script>
-    // Force desktop view on mobile - set zoom to show full width
-    (function() {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Set viewport to show full 1200px width
-            const viewport = document.querySelector('meta[name=viewport]');
-            if (viewport) {
-                viewport.setAttribute('content', 'width=1200');
-            }
-        }
-    })();
-</script>
+
 <script>
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
