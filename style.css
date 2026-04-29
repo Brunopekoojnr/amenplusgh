@@ -6963,3 +6963,156 @@ h2::after,
         display: block !important;
     }
 }
+
+/* ==========================================================================
+   MOBILE "LEARN MORE" TEXT EXPANSION (PRODUCT CARDS)
+   ========================================================================== */
+.product-description {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    /* Truncate text to 2 lines on mobile by default */
+    .product-description.mobile-truncate {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-height: 3.2rem; /* Fallback for 2 lines */
+    }
+
+    /* Class added by JS to show full text */
+    .product-description.expanded {
+        display: block;
+        -webkit-line-clamp: unset;
+        max-height: 500px; /* Arbitrary large number for smooth transition */
+    }
+
+    .learn-more-btn {
+        display: inline-block;
+        margin-top: 8px;
+        color: #4A3320;
+        font-weight: 600;
+        font-size: 0.9rem;
+        background: none;
+        border: none;
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+    }
+}
+
+/* Hide the Learn More button on desktop if you prefer the modal there */
+@media (min-width: 769px) {
+    .learn-more-btn {
+        display: none !important;
+    }
+}
+
+/* Fix for Footer X (Twitter) Icon Alignment */
+.social-links a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.social-links a i.fa-x-twitter {
+    line-height: 1 !important;
+    font-size: 1.1rem !important; /* Scale slightly down to prevent clipping */
+}
+
+/* ==========================================================================
+   MOBILE MENU PREMIUM POLISH (SAFE)
+   ========================================================================== */
+.ff-mobile-menu {
+    background-color: #FAFAFA !important; /* An elegant, very light off-white/cream */
+    box-shadow: -5px 0 25px rgba(0,0,0,0.05); /* Soft shadow on the left edge */
+}
+
+/* Targeting .ff-mobile-nav as found in HTML instead of .ff-menu-links */
+.ff-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+}
+
+.ff-mobile-nav a,
+.ff-nav-link {
+    padding: 1.2rem 0;
+    font-size: 1.25rem;
+    color: #4A3320; /* Brand Dark Brown */
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 51, 32, 0.1); /* Subtle brown divider */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+/* Add a subtle chevron arrow using CSS pseudo-elements for a premium app feel */
+.ff-mobile-nav a::after,
+.ff-nav-link::after {
+    content: '›';
+    font-size: 1.5rem;
+    color: #E5C158; /* Brand Gold */
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ff-mobile-nav a:hover, 
+.ff-mobile-nav a:active,
+.ff-nav-link:hover,
+.ff-nav-link:active {
+    color: #E5C158;
+    padding-left: 10px; /* Slight indent on tap/hover */
+}
+
+.ff-mobile-nav a:hover::after,
+.ff-mobile-nav a:active::after,
+.ff-nav-link:hover::after,
+.ff-nav-link:active::after {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Refined Close Button */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: #4A3320;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ==========================================================================
+   PRODUCT CARD CLIPPING & FLEX ALIGNMENT FIX
+   ========================================================================== */
+.product-card {
+    height: auto !important; /* OVERRIDE ANY FIXED HEIGHT CLIPPING */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+.product-actions {
+    margin-top: auto !important; /* PUSHES BUTTONS SECURELY TO THE BOTTOM */
+}

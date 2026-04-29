@@ -93,3 +93,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile "Learn More" Toggle for Product Cards (Using Event Delegation for dynamically injected cards)
+    document.body.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('learn-more-btn')) {
+            e.preventDefault();
+            // Find the description paragraph right above this button
+            const desc = e.target.previousElementSibling;
+            
+            if (desc && desc.classList.contains('product-description')) {
+                desc.classList.toggle('expanded');
+                desc.classList.toggle('mobile-truncate');
+                
+                // Toggle button text
+                if (desc.classList.contains('expanded')) {
+                    e.target.innerText = 'Show Less';
+                } else {
+                    e.target.innerText = 'Learn More';
+                }
+            }
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile "Learn More" Toggle for Product Cards (Using Event Delegation for dynamically injected cards)
+    document.body.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('learn-more-btn')) {
+            e.preventDefault();
+            // Find the description paragraph right above this button
+            const desc = e.target.previousElementSibling;
+            
+            if (desc && desc.classList.contains('product-description')) {
+                desc.classList.toggle('expanded');
+                desc.classList.toggle('mobile-truncate');
+                
+                // Toggle button text
+                if (desc.classList.contains('expanded')) {
+                    e.target.innerText = 'Show Less';
+                } else {
+                    e.target.innerText = 'Learn More';
+                }
+            }
+        }
+    });
+});

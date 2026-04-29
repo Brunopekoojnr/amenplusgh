@@ -700,16 +700,35 @@
                                     <div class="category-grid">
                                         ${group.items.map(product => `
                                             <div class="product-card">
-                                                <div class="product-image-container">
-                                                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Product'">
-                                                    ${product.preorder || product.isPreOrder ? '<span class="product-badge preorder-badge">Pre-order</span>' : ''}
+                                                <!-- RESTORED: Top Image Container & Badge -->
+                                                <div class="product-image-wrapper" style="position: relative; overflow: hidden; border-radius: 12px 12px 0 0; margin-bottom: 15px; height: 280px; width: 100%; background: #FAF0E6; flex-shrink: 0; min-height: 280px;">
+                                                    ${(product.preorder || product.isPreOrder) ? `<span class="badge" style="position: absolute; top: 12px; left: 12px; background-color: #E5C158; color: #4A3320; padding: 6px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">Pre-order</span>` : ''}
+                                                    <img src="${product.image || product.img}" alt="${product.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                                 </div>
                                                 <h3>${product.name}</h3>
-                                                <p class="product-description">${(product.description || '').substring(0, 70)}...</p>
-                                                <p class="price">₵${product.price.toLocaleString()}</p>
-                                                <div class="product-actions" style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px;">
-                                                    <a href="#" class="view-details-link" style="color: #666; text-decoration: underline; font-size: 0.9rem; cursor: pointer;" data-id="${product.id}" data-image="${product.image}" data-title="${product.name}" data-price="${product.price.toLocaleString()}" data-desc="${product.description || ''}">View Details</a>
-                                                    <button class="btn pre-order-btn" onclick="addToCart(${product.id}, '${product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'One Size'}')" style="width: 100%; padding: 14px; background-color: #E5C158; color: #4A3320; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background-color 0.3s ease;">
+                                                
+                                                <!-- Description & Learn More isolated to prevent overlapping -->
+                                                <div style="margin-bottom: 12px; display: flex; flex-direction: column; align-items: center;">
+                                                    <p class="product-description mobile-truncate" style="margin-bottom: 4px;">${product.description || ''}</p>
+                                                    <button class="learn-more-btn" style="background: transparent !important; border: none !important; box-shadow: none !important; color: #4A3320; font-weight: bold; text-decoration: underline; cursor: pointer; padding: 4px 8px; font-size: 0.9rem;">Learn More</button>
+                                                </div>
+                                                
+                                                <!-- Price -->
+                                                <p class="price" style="font-size: 1.5rem; color: #E5C158; font-weight: bold; margin: 5px 0;">₵${product.price.toLocaleString()}</p>
+                                                
+                                                <!-- Premium Option C Additions -->
+                                                <p style="padding: 0 1rem; color: #8B6B4D; font-size: 0.85rem; margin: 8px 0; text-align: center;">
+                                                    <i class="fas fa-truck" style="color: #D4AF37;"></i> Ships May 2026
+                                                </p>
+                                                
+                                                <!-- The Premium Button Stack -->
+                                                <div class="product-actions" style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: auto; padding: 0 0.5rem 1rem 0.5rem; width: 100%;">
+                                                    <a href="product.html?id=${product.id}" style="width: 100%; text-decoration: none;">
+                                                        <button type="button" style="width: 100%; padding: 12px; background-color: transparent; color: #5C3A2D; border: 2px solid #5C3A2D; border-radius: 8px; font-weight: 700; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;">
+                                                            View Details
+                                                        </button>
+                                                    </a>
+                                                    <button class="btn pre-order-btn" onclick="addToCart(${product.id}, 'One Size')" style="width: 100%; padding: 12px; background-color: #E5C158; color: #4A3320; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(229, 193, 88, 0.3);">
                                                         ${product.preorder || product.isPreOrder ? 'Pre-order' : 'Add to Cart'}
                                                     </button>
                                                 </div>
