@@ -18,7 +18,7 @@ function injectMobileMenu() {
                 <img src="assets/logo.png" alt="Amen+ Logo" class="ff-logo-img">
                 <span class="ff-menu-brand">AMEN+</span>
             </div>
-            <button class="ff-menu-close" onclick="closeMobileMenu()" title="Close menu" aria-label="Close mobile menu">
+            <button class="ff-menu-close" onclick="closeMobileMenu()" title="Close menu">
                 <span>&times;</span>
             </button>
         </div>

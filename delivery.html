@@ -113,7 +113,7 @@
             animation: fadeInUp 0.8s ease 0.1s both;
         }
 
-        .zones-container {
+        .delivery-grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2.5rem;
@@ -121,12 +121,12 @@
         }
 
         @media (max-width: 768px) {
-            .zones-container {
+            .delivery-grid-container {
                 grid-template-columns: 1fr;
             }
         }
 
-        .zone-card {
+        .delivery-card {
             background: white;
             border-radius: 30px;
             padding: 2.5rem;
@@ -139,10 +139,10 @@
             animation-fill-mode: both;
         }
 
-        .zone-card:nth-child(1) { animation-delay: 0.1s; }
-        .zone-card:nth-child(2) { animation-delay: 0.2s; }
+        .delivery-card:nth-child(1) { animation-delay: 0.1s; }
+        .delivery-card:nth-child(2) { animation-delay: 0.2s; }
 
-        .zone-card::before {
+        .delivery-card::before {
             content: "✝";
             position: absolute;
             bottom: 15px;
@@ -155,17 +155,17 @@
             -webkit-text-fill-color: #D4AF37 !important;
         }
 
-        .zone-card:hover {
+        .delivery-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 25px 50px rgba(92, 58, 45, 0.2);
             border-color: #D4AF37;
         }
 
-        .zone-card.accra-zone {
+        .delivery-card.accra-zone {
             border-top: 5px solid #5C3A2D;
         }
 
-        .zone-card.kumasi-zone {
+        .delivery-card.kumasi-zone {
             border-top: 5px solid #D4AF37;
         }
 
@@ -960,7 +960,17 @@
     <!-- Delivery Hero -->
     <section class="delivery-hero">
         <div class="hero-content">
-            <h1>🚚 Nationwide Delivery Across Ghana</h1>
+            <!-- Replace 🚚 🚚 with this SVG -->
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4A3320" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="premium-hero-icon">
+                    <rect width="16" height="8" x="2" y="12" rx="2"/>
+                    <path d="M18 12v-4a2 2 0 0 0-2-2h-4"/>
+                    <path d="M22 17v-3a2 2 0 0 0-2-2h-2"/>
+                    <circle cx="7" cy="20" r="2"/>
+                    <circle cx="17" cy="20" r="2"/>
+                </svg>
+            </div>
+            <h1>Nationwide Delivery Across Ghana</h1>
             <p class="hero-subtitle">Fast, reliable delivery through our partner Sicca's Delivery Services</p>
             <p class="hero-description">We deliver to Accra, Kasoa, Tema, Kumasi and surrounding areas</p>
             <div class="hero-stats">
@@ -994,82 +1004,86 @@
         <h2>Delivery Zones & Pricing</h2>
         <p class="section-subtitle">Choose your location to see delivery fees and coverage</p>
         
-        <div class="zones-container">
+        <div class="delivery-grid-container">
             <!-- Accra/Kasoa/Tema Zone -->
-            <div class="zone-card accra-zone">
+            <div class="delivery-card accra-zone">
                 <div class="zone-header">
-                    <h3>Accra / Kasoa / Tema</h3>
+                    <h3><i class="fas fa-map-signs"></i> Accra, Kasoa & Tema</h3>
                     <div class="zone-price">
-                        <span class="price-from">From</span>
-                        <span class="price">₵35</span>
+                        <div class="price-from">Starting From</div>
+                            <span class="price">₵35</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="zone-details">
-                    <div class="detail-item">
-                        <i class="fas fa-weight"></i>
+
+                <div class="delivery-badges-container">
+                    <div class="delivery-badge">
+                        <i class="fas fa-box"></i>
                         <span>1-3kg parcels</span>
                     </div>
-                    <div class="detail-item">
+                    <div class="delivery-badge">
                         <i class="fas fa-clock"></i>
-                        <span>48-72 hours</span>
+                        <span>Same/Next Day</span>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>100+ areas</span>
+                    <div class="delivery-badge">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Wide Coverage</span>
                     </div>
                 </div>
-                
+
                 <div class="zone-pricing">
                     <div class="pricing-tier">
-                        <h4>₵35 Zone</h4>
-                        <p class="areas-count">60+ areas including Osu, Cantonments, Ridge, Adabraka, Circle, Ministries, Kaneshie, Dansoman, etc.</p>
+                        <h4>Primary Zones <span class="price" style="font-size: 1.2rem; float: right;">₵35</span></h4>
+                        <p class="areas-count">e.g. Airport, East Legon, Dzorwulu, Cantonments, Osu, Spintex, Lapaz, Circle</p>
                     </div>
                     <div class="pricing-tier">
-                        <h4>₵45 Zone</h4>
-                        <p class="areas-count">Extended areas including Ashiaman, Lashibi, Sakumono, Spintex, Baatsona, Tema Com 11-25, etc.</p>
+                        <h4>Extended Zones <span class="price" style="font-size: 1.2rem; float: right;">₵48</span></h4>
+                        <p class="areas-count">e.g. Kasoa, Tema, Ashaiman, Oyibi, Dodowa, Nsawam, Amasaman</p>
                     </div>
                 </div>
-                
+
                 <a href="#accra-coverage" class="view-coverage-btn">
-                    <i class="fas fa-list"></i> View Full Coverage List
+                    <i class="fas fa-eye"></i> View Full Coverage List
                 </a>
             </div>
-            
+
             <!-- Kumasi Zone -->
-            <div class="zone-card kumasi-zone">
+            <div class="delivery-card kumasi-zone">
                 <div class="zone-header">
-                    <h3>Kumasi & Surrounding</h3>
+                    <h3><i class="fas fa-mountain"></i> Kumasi & Environs</h3>
                     <div class="zone-price">
-                        <span class="price-from">Fixed</span>
-                        <span class="price">₵48</span>
+                        <div class="price-from">Starting From</div>
+                        <span class="price">₵40</span>
                     </div>
                 </div>
-                
-                <div class="zone-details">
-                    <div class="detail-item">
-                        <i class="fas fa-weight"></i>
-                        <span>1-3kg parcels</span>
+
+                <div class="delivery-badges-container">
+                    <div class="delivery-badge">
+                        <i class="fas fa-box-open"></i>
+                        <span>Up to 5kg</span>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>48-72 hours</span>
+                    <div class="delivery-badge">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>24-48 Hours</span>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>6 zones covered</span>
+                    <div class="delivery-badge">
+                        <i class="fas fa-city"></i>
+                        <span>6 Zones</span>
                     </div>
                 </div>
-                
+
                 <div class="zone-pricing">
                     <div class="pricing-tier">
-                        <h4>Zone Coverage</h4>
-                        <p class="areas-count">Comprehensive coverage across 6 zones (A-F) including Adum, Kejetia, Ashtown, Manhyia, KNUST, Suame, etc.</p>
+                        <h4>Intra-City Zones <span class="price" style="font-size: 1.2rem; float: right;">₵40 - ₵55</span></h4>
+                        <p class="areas-count">KNUST, Adum, Bantama, Asokwa, Suame, etc. grouped into Zones A-F.</p>
+                    </div>
+                     <div class="pricing-tier">
+                        <h4>Outside Kumasi <span class="price" style="font-size: 1.2rem; float: right;">Call Us</span></h4>
+                        <p class="areas-count">Contact us for special deliveries to areas outside our main Kumasi zones.</p>
                     </div>
                 </div>
-                
+
                 <a href="#kumasi-coverage" class="view-coverage-btn">
-                    <i class="fas fa-list"></i> View 6 Zones Details
+                    <i class="fas fa-map"></i> View Kumasi Zones
                 </a>
             </div>
         </div>

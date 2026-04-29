@@ -1,0 +1,46 @@
+/* ========================================
+   PREMIUM MATERIAL 3 AESTHETIC UPGRADE
+   ======================================== */
+
+/* Staggered Entrance Animation Keyframes */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Glassmorphism & Surface Tint */
+.ff-mobile-menu {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 252, 248, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Luxury Typography */
+.ff-mobile-nav .ff-nav-link {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    color: #4A3320;
+    opacity: 0; /* Initially hidden for animation */
+    animation: fadeSlideUp 0.5s ease-out forwards;
+}
+
+/* Staggered Entrance Animation Delays */
+.ff-mobile-menu.open .ff-nav-link:nth-child(1) { animation-delay: 0.1s; }
+.ff-mobile-menu.open .ff-nav-link:nth-child(2) { animation-delay: 0.2s; }
+.ff-mobile-menu.open .ff-nav-link:nth-child(3) { animation-delay: 0.3s; }
+.ff-mobile-menu.open .ff-nav-link:nth-child(4) { animation-delay: 0.4s; }
+.ff-mobile-menu.open .ff-nav-link:nth-child(5) { animation-delay: 0.5s; }
+
+/* Refined CTA Footer */
+.ff-menu-footer .whatsapp-cta-btn {
+    box-shadow: 0 8px 32px rgba(74, 51, 32, 0.2);
+    border: none; /* Remove border to elevate the button */
+}
