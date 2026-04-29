@@ -6612,6 +6612,7 @@ h2::after,
     width: 100%;
     max-width: 400px; /* Prevents being too wide on tablets */
     height: 100vh;
+    height: 100dvh !important; /* Dynamic viewport height - adapts to address bar changes */
     background-color: #ffffff !important;
     z-index: 9999; /* Ensures it is above everything else */
     
@@ -7115,4 +7116,95 @@ h2::after,
 
 .product-actions {
     margin-top: auto !important; /* PUSHES BUTTONS SECURELY TO THE BOTTOM */
+}
+
+/* ==========================================================================
+   FLUID RESPONSIVE DESIGN: ADAPTIVE GRIDS & TYPOGRAPHY
+   Ensures perfect scaling from tiny iPhone SE (375px) to Pixel 8 Pro (480px+)
+   ========================================================================== */
+
+/* Dynamic Viewport Heights for full-screen overlays */
+.menu-overlay,
+.cart-sidebar {
+    height: 100vh;
+    height: 100dvh !important; /* Prevents cutoff below address bar */
+}
+
+/* Fluid Grid System - Auto-fits columns based on screen width */
+@media (max-width: 768px) {
+    /* Product cards automatically shrink/expand based on available width */
+    .category-grid,
+    .product-grid {
+        display: grid !important;
+        /* minmax(280px, 1fr) = shrink to 280px min, expand to equal space */
+        /* auto-fit = only create columns as needed */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    /* Ensure cards fill their grid cell */
+    .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Fluid Typography - scales between min and max based on viewport width */
+    .product-card h3 {
+        /* clamp(MIN, preferred, MAX) = scales smoothly between 1rem and 1.25rem */
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        line-height: 1.3;
+    }
+
+    /* Ensure product descriptions don't overflow */
+    .product-description {
+        font-size: clamp(0.85rem, 3vw, 0.95rem);
+        line-height: 1.5;
+    }
+
+    /* Fluid price sizing */
+    .price {
+        font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
+    }
+
+    /* Button text scales appropriately on narrow screens */
+    button,
+    .btn-primary,
+    .btn,
+    .pre-order-btn {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+        padding: clamp(0.6rem, 2vw, 1rem);
+    }
+}
+
+/* Extra tiny screens (iPhone SE: 375px) */
+@media (max-width: 450px) {
+    .category-grid,
+    .product-grid {
+        /* Force single column on very narrow phones */
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        padding: 0 0.75rem;
+    }
+
+    .product-card h3 {
+        font-size: clamp(0.95rem, 5vw, 1.1rem);
+    }
+
+    .nav {
+        padding: 0.75rem 1rem;
+    }
+
+    .logo-text {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+}
+
+/* Tablet and larger (ensure grids don't break) */
+@media (min-width: 769px) {
+    .category-grid,
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    }
 }
